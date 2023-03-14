@@ -1,0 +1,8 @@
+name: ddev-m2-frontend-wizzard
+pre_install_actions:
+
+project_files:
+- commands/web/m2-frontend-wizzard
+
+post_install_actions:
+# - chmod +x .ddev/commands/web/m2-frontend-wizzard
