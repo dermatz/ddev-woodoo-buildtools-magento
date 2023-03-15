@@ -2,6 +2,7 @@ name: ddev-woodoo-buildtools-magento
 pre_install_actions:
 
 project_files:
+- commands/web/woodoo_components/
 - commands/web/woodoo
 
 post_install_actions:

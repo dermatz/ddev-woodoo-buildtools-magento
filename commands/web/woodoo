@@ -1,11 +1,12 @@
 #!/bin/bash
+#ddev-generated - Do not modify this file; your modifications will be overwritten.
 
 ## Description: Woodoo-Buildtools for Magento
-## Usage: wooodoo
-## Example: "Woodoo"
-
-#ddev-generated - Do not modify this file; your modifications will be overwritten.
+## Usage: woodoo 
 
 source ".ddev/bash/colors.sh"
 
-echo -en "\n${bldblu}Woodoo-Buildtools for Magento${txtrst}\n"
+echo -e "🛠️  .. ${bldblu}DDEV Woodoo-Buildtools for Magento${txtrst}"
+
+source ".ddev/commands/web/woodoo_components/variables"
+source ".ddev/commands/web/woodoo_components/selftest"

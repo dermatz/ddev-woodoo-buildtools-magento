@@ -1,0 +1,26 @@
+#!/bin/bash
+#ddev-generated - Do not modify this file; your modifications will be overwritten.
+
+function selftest() {
+    if [ -z "$PROJECT_TYPE" ]; then
+        echo -e "${txtcyn}Project Type           = ${txtylw}not set${txtrst}"
+    else 
+        echo -e "${txtcyn}Project Type           = ${txtgrn}$PROJECT_TYPE${txtrst}"
+    fi
+
+    if [ -z "$PROJECT_ARCH" ]; then
+        echo -e "${txtcyn}Project Architecture   = ${txtylw}not set${txtrst}"
+    else 
+        echo -e "${txtcyn}Project Architecture   = ${txtgrn}$PROJECT_ARCH${txtrst}"
+    fi
+
+    if [ -z "$PROJECT_PHP_VERSION" ]; then
+        echo -e "${txtcyn}Project PHP Version    = ${txtylw}not set${txtrst}"
+    else 
+        echo -e "${txtcyn}Project PHP Version    = ${txtgrn}$PROJECT_PHP_VERSION${txtrst}"
+    fi
+}
+
+if [ "$1" = "selftest" ]; then
+    selftest
+fi
