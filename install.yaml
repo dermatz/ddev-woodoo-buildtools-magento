@@ -1,8 +1,8 @@
-name: ddev-m2-frontend-wizzard
+name: ddev-woodoo-buildtools-magento
 pre_install_actions:
 
 project_files:
-- commands/web/m2-frontend-wizzard
+- commands/web/woodoo
 
 post_install_actions:
-# - chmod +x .ddev/commands/web/m2-frontend-wizzard
+

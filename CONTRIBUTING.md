@@ -1,4 +1,4 @@
-# Contributing to ddev M2 Frontend Wizzard
+# Contributing to ddev Woodoo-Buildtools for Magento
 
 ## General
 - Make sure to have a working local development environment, e.g. ddev

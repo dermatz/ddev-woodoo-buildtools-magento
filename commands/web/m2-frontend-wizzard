@@ -1,7 +1,0 @@
-#!/bin/bash
-
-#ddev-generated - Do not modify this file; your modifications will be overwritten.
-
-source ".ddev/bash/colors.sh"
-
-echo -en "\n${bldblu}M2 Frontend Wizzard${txtrst}\n"
