@@ -4,3 +4,5 @@
 PROJECT_TYPE=$DDEV_PROJECT_TYPE
 PROJECT_ARCH=$GOARCH
 PROJECT_PHP_VERSION=$DDEV_PHP_VERSION
+PROJECT_NODEJS_VERSION=$(node -v)
+LATEST_LTS_VERSION=$(curl -s https://nodejs.org/dist/index.json | jq -r '.[] | select(.lts) | .version' | sort -V | tail -1)
