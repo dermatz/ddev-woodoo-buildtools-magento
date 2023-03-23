@@ -1,10 +1,12 @@
 # ddev Woodoo-Buildtools for Magento
+[![tests](https://github.com/dermatz/ddev-woodoo-buildtools-magento/actions/workflows/tests.yml/badge.svg)](https://github.com/dermatz/ddev-woodoo-buildtools-magento/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg)
+### 🚦 Current Status: <font color="red">in development</font>
+
+---
 This ddev add-on helps you to manage your theme build processes in Magento total easy. It take care if you use Magento default Themes, Custom Themes, Hyvä Themes or Hyvä with Fallback Themes.
 It does not matter what you use.
 
-Build with Magic, build with Woodoo!
-
-[![tests](https://github.com/dermatz/ddev-woodoo-buildtools-magento/actions/workflows/tests.yml/badge.svg)](https://github.com/dermatz/ddev-woodoo-buildtools-magento/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg)
+_>> Build all your themes with Magic, build with Woodoo!_
 
 ---
 
