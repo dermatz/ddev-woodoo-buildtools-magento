@@ -2,6 +2,15 @@
 #ddev-generated - Do not modify this file; your modifications will be overwritten.
 
 function getMagento2_ThemeStoreCodes() {
+
+    # check if mysql is installed
+    if ! command -v mysql &> /dev/null
+    then
+        echo -e "\n${txtred}mysql could not be found.${txtrst}"
+        echo -e "${txtred}Please install mysql.${txtrst}\n"
+        exit 1
+    fi
+
     THEME_CODES_DB=$(mysql -e "SELECT code FROM theme" | cut -d ' ' -f 2-)
     THEME_CODES_DB=${THEME_CODES_DB#code}
     THEME_CODES_DB=$(echo "$THEME_CODES_DB" | sed '/^$/d')
