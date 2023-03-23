@@ -9,7 +9,7 @@ function getMagento2_ThemeStoreCodes() {
 }
 
 function addThemesToConfig() {
-    if [ -f ".ddev/config.yaml" ]; then
+    if [ -f $PROJECT_CONFIG_FILE ]; then
 
         getMagento2_ThemeStoreCodes
 
@@ -19,22 +19,22 @@ function addThemesToConfig() {
         echo -en "\n${txtgrn}Woodoo has found $THEME_CODES_DB_COUNT Themes in your Database.${txtrst}"
         echo -en "\n${txtgrn}You can choose now, which theme is relevant to work on it at your local machine.${txtrst}\n\n"
 
-        if grep -q "themes:" .ddev/config.yaml; then
-            echo -e "\n${txtylw}Themes already exist in .ddev/config.yaml ${txtrst}\n"
+        if grep -q "themes:" $PROJECT_CONFIG_FILE; then
+            echo -e "\n${txtylw}Themes already exist in $PROJECT_CONFIG_FILE ${txtrst}\n"
         else
-            sed -i $LINE'i\themes:' .ddev/config.yaml
+            sed -i $LINE'i\themes:' $PROJECT_CONFIG_FILE
         fi
 
         for THEME_CODE in $THEME_CODES_DB; do
 
             ((LINE++))
 
-            echo -en "Add Theme ${txtcyn}$THEME_CODE${txtrst} in config.yaml? [y/n] "
+            echo -en "Add Theme ${txtcyn}$THEME_CODE${txtrst} in $PROJECT_CONFIG_FILE? [y/n] "
             read -r answer
             if [ "$answer" = "y" ] || [ "$answer" = "yes" ] || [ "$answer" = "Y" ] || [ "$answer" = "YES" ] || [ "$answer" = "ja" ] || [ "$answer" = "" ]; then
                 THEME_PATH="path/to/theme"
-                sed -i $LINE'i\  - '$THEME_CODE': "'$THEME_PATH'"' .ddev/config.yaml
-                echo -en "${txtgrn}${ICON_SUCCESS} Theme "$THEME_CODE" added to .ddev/config.yaml ${txtrst}\n\n"
+                sed -i $LINE'i\  - '$THEME_CODE': "'$THEME_PATH'"' $PROJECT_CONFIG_FILE
+                echo -en "${txtgrn}${ICON_SUCCESS} Theme "$THEME_CODE" added to $PROJECT_CONFIG_FILE ${txtrst}\n\n"
                 ((ADDEDTHEMES++))
             else
                 ((LINE--))
@@ -42,12 +42,50 @@ function addThemesToConfig() {
             fi
 
         done
-        echo -en "${txtgrn}${ICON_SUCCESS} $ADDEDTHEMES of $THEME_CODES_DB_COUNT Themes added to .ddev/config.yaml ${txtrst}\n"
+        echo -en "${txtgrn}${ICON_SUCCESS} $ADDEDTHEMES of $THEME_CODES_DB_COUNT Themes added to $PROJECT_CONFIG_FILE ${txtrst}\n"
 
     fi
 }
 
-if [ "$1" = "init" ]; then
+function readThemesInConfig() {
+
+    THEMES_IN_CONFIG=""
+
+    if [ ! -f $PROJECT_CONFIG_FILE ]; then
+        echo -e "\n${txtred}No $PROJECT_CONFIG_FILE found.' first.${txtrst}\n"
+        exit 1
+    fi
+
+    # Read config.yaml to get available themes
+    while read -r line; do
+        # Check whether the line with "Themes:" begins
+        if [[ "$line" =~ ^themes: ]]; then
+            while read -r next_line; do
+                # Check whether the next line begins with "-"
+                if [[ -n "$next_line" && "$next_line" =~ ^- ]]; then
+                    THEMES_IN_CONFIG="$THEMES_IN_CONFIG $(echo $next_line | cut -d ' ' -f 2 | cut -d ':' -f 1)"
+                else
+                    break
+                fi
+            done
+            break
+        fi
+    done < $PROJECT_CONFIG_FILE
+}
+
+# Count Themes by reading config.yaml with readThemesInConfig()
+function countThemesinConfig() {
+
+    readThemesInConfig
+
+    if [ -n "$THEMES_IN_CONFIG" ]; then
+        THEMES_COUNT=$(echo $THEMES_IN_CONFIG | wc -w)
+        echo $THEMES_COUNT
+    fi
+
+}
+
+
+if [[ "$1" = "init" || "$1" = "install" || "$1" = "i" ]]; then
     addThemesToConfig
 fi
-
