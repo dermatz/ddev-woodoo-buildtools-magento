@@ -29,6 +29,12 @@ function addThemesToConfig() {
 
             ((LINE++))
 
+            # checks if theme is already in config.yaml
+            if grep -q "$THEME_CODE" $PROJECT_CONFIG_FILE; then
+                echo -en "${txtylw}${ICON_ERROR} Theme "$THEME_CODE" already exists in $PROJECT_CONFIG_FILE ${txtrst}\n"
+                continue
+            fi
+
             echo -en "Add Theme ${txtcyn}$THEME_CODE${txtrst} in $PROJECT_CONFIG_FILE? [y/n] "
             read -r answer
             if [ "$answer" = "y" ] || [ "$answer" = "yes" ] || [ "$answer" = "Y" ] || [ "$answer" = "YES" ] || [ "$answer" = "ja" ] || [ "$answer" = "" ]; then
