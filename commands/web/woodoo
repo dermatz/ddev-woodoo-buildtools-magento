@@ -11,6 +11,8 @@ source ".ddev/bash/colors.sh"
 echo -e "🛠️  ${bldblu}DDEV Woodoo-Buildtools for Magento${txtrst}"
 
 source ".ddev/commands/web/woodoo_components/variables"
-source ".ddev/commands/web/woodoo_components/selftest"
 source ".ddev/commands/web/woodoo_components/themes"
 source ".ddev/commands/web/woodoo_components/build"
+
+## should be last source
+source ".ddev/commands/web/woodoo_components/selftest"

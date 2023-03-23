@@ -2,7 +2,7 @@
 #ddev-generated - Do not modify this file; your modifications will be overwritten.
 
 function selftest() {
-    if [ -z "$PROJECT_TYPE" ]; then
+    if [ -z "$DDEV_PROJECT_TYPE" ]; then
         echo -e "${txtcyn}Project Type           = ${txtylw}not set${txtrst}"
     else
         echo -e "${txtcyn}Project Type           = ${txtgrn}${DDEV_PROJECT_TYPE^}${txtrst}"
@@ -30,9 +30,10 @@ function selftest() {
         fi
     fi
 
+    checkThemePathExists
 }
 
-if [ "$1" = "selftest" ]; then
+if [[ "$1" = "selftest" || "$1" = "test" || "$1" = "check" ]]; then
     echo -e ""
     selftest
     echo -e ""

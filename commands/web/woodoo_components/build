@@ -3,5 +3,8 @@
 
 if [[ "$1" == "build" || "$1" == "b" ]]; then
     echo -e ""
-    echo -e "${txtcyn}Start Building ${txtylw}$(countThemesinConfig) Themes${txtcyn} configured in .ddev/config.yaml${txtrst}"
+    echo -e "${txtcyn}Start Building ${txtylw}$(countThemesinConfig) Themes${txtcyn} configured in $PROJECT_CONFIG_FILE${txtrst}"
+
+    checkThemePathExists
+
 fi
