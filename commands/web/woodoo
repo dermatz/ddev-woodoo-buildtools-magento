@@ -2,7 +2,9 @@
 #ddev-generated - Do not modify this file; your modifications will be overwritten.
 
 ## Description: Woodoo-Buildtools for Magento
-## Usage: woodoo
+## Usage: woodoo [flags] [args]
+## ProjectTypes: magento2
+## ExecRaw: true
 
 source ".ddev/bash/colors.sh"
 
@@ -10,3 +12,4 @@ echo -e "🛠️  ${bldblu}DDEV Woodoo-Buildtools for Magento${txtrst}"
 
 source ".ddev/commands/web/woodoo_components/variables"
 source ".ddev/commands/web/woodoo_components/selftest"
+source ".ddev/commands/web/woodoo_components/themes"

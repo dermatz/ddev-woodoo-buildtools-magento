@@ -1,0 +1,53 @@
+#!/bin/bash
+#ddev-generated - Do not modify this file; your modifications will be overwritten.
+
+function getMagento2_ThemeStoreCodes() {
+    THEME_CODES_DB=$(mysql -e "SELECT code FROM theme" | cut -d ' ' -f 2-)
+    THEME_CODES_DB=${THEME_CODES_DB#code}
+    THEME_CODES_DB=$(echo "$THEME_CODES_DB" | sed '/^$/d')
+    THEME_CODES_DB_COUNT=$(echo $THEME_CODES_DB | wc -w)
+}
+
+function addThemesToConfig() {
+    if [ -f ".ddev/config.yaml" ]; then
+
+        getMagento2_ThemeStoreCodes
+
+        ADDEDTHEMES=0
+        LINE=4
+
+        echo -en "\n${txtgrn}Woodoo has found $THEME_CODES_DB_COUNT Themes in your Database.${txtrst}"
+        echo -en "\n${txtgrn}You can choose now, which theme is relevant to work on it at your local machine.${txtrst}\n\n"
+
+        if grep -q "themes:" .ddev/config.yaml; then
+            echo -e "\n${txtylw}Themes already exist in .ddev/config.yaml ${txtrst}\n"
+        else
+            sed -i $LINE'i\themes:' .ddev/config.yaml
+        fi
+
+        for THEME_CODE in $THEME_CODES_DB; do
+
+            ((LINE++))
+
+            echo -en "Add Theme ${txtcyn}$THEME_CODE${txtrst} in config.yaml? [y/n] "
+            read -r answer
+            if [ "$answer" = "y" ] || [ "$answer" = "yes" ] || [ "$answer" = "Y" ] || [ "$answer" = "YES" ] || [ "$answer" = "ja" ] || [ "$answer" = "" ]; then
+                THEME_PATH="path/to/theme"
+                sed -i $LINE'i\  - '$THEME_CODE': "'$THEME_PATH'"' .ddev/config.yaml
+                echo -en "${txtgrn}${ICON_SUCCESS} Theme "$THEME_CODE" added to .ddev/config.yaml ${txtrst}\n\n"
+                ((ADDEDTHEMES++))
+            else
+                ((LINE--))
+                echo -en "${txtylw}${ICON_ERROR} Theme "$THEME_CODE" skipped ${txtrst}\n\n"
+            fi
+
+        done
+        echo -en "${txtgrn}${ICON_SUCCESS} $ADDEDTHEMES of $THEME_CODES_DB_COUNT Themes added to .ddev/config.yaml ${txtrst}\n"
+
+    fi
+}
+
+if [ "$1" = "init" ]; then
+    addThemesToConfig
+fi
+
