@@ -83,7 +83,6 @@ function readThemesInConfig() {
                     break
                 fi
             done
-            break
         fi
     done < $PROJECT_CONFIG_FILE
 }
@@ -100,7 +99,43 @@ function countThemesinConfig() {
 
 }
 
+#check all available themes in config.yaml if the path is not "path/to/theme"
+function checkThemePathExists() {
+
+    readThemesInConfig
+
+    if [ -z "$THEMES_IN_CONFIG" ]; then
+        echo -e "\n${txtred}No Themes found in $PROJECT_CONFIG_FILE${txtrst}\n"
+    else
+        echo -e "\n${txtgrn}$(countThemesinConfig) Themes found in $PROJECT_CONFIG_FILE${txtrst}\n"
+        for THEME_CODE in $THEMES_IN_CONFIG; do
+            while read -r line; do
+                # Check whether the line with "Themes:" begins
+                if [[ "$line" =~ ^themes: ]]; then
+                    while read -r next_line; do
+                        # Check whether the next line begins with "-"
+                        if [[ -n "$next_line" && "$next_line" =~ ^- ]]; then
+                            if [[ "$next_line" =~ $THEME_CODE ]]; then
+                                THEME_PATH=$(echo $next_line | cut -d ' ' -f 3 | cut -d '"' -f 2)
+                                if [[ "$THEME_PATH" == "path/to/theme" ]]; then
+                                    echo -e "${txtred}${ICON_ERROR} Theme $THEME_CODE has not been configured yet.${txtrst}"
+                                else
+                                    echo -e "${txtgrn}${ICON_SUCCESS} Theme $THEME_CODE has been correct configured.${txtrst}"
+                                fi
+                            fi
+                        fi
+                    done
+                    break
+                fi
+            done < $PROJECT_CONFIG_FILE
+        done
+    fi
+}
 
 if [[ "$1" = "init" || "$1" = "install" || "$1" = "i" ]]; then
     addThemesToConfig
+fi
+
+if [[ "$1" = "themescheck" || "$1" = "tc" ]]; then
+    checkThemePathExists
 fi
