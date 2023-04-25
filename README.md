@@ -15,7 +15,6 @@ _>> Build all your themes with Magic, build with Woodoo!_
 |<img src="https://img.shields.io/badge/Magento_2.x-in_progress-29B6F6">| 2023 (Priority 1) |
 |<img src="https://img.shields.io/badge/Magento_2_Hyvä_1.2x-in_progress-29B6F6">| 2023 (Priority 2)
 |<img src="https://img.shields.io/badge/Magento_2_Hyvä_Fallback-in_progress-29B6F6">| 2023 (Priority 3)
-|<img src="https://img.shields.io/badge/Magento_2_Hyvä_1.1x-in_progress-29B6F6">| 2023 (Priority 4)
 |<img src="https://img.shields.io/badge/Magento_1 (_MageOne_)-planned-FFFDE7">| not estimated yet
 
 ---
