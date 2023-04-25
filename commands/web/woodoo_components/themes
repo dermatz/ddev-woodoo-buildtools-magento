@@ -109,7 +109,14 @@ function checkThemePathExists() {
     if [ -z "$THEMES_IN_CONFIG" ]; then
         echo -e "\n${txtred}No Themes found in $PROJECT_CONFIG_FILE${txtrst}\n"
     else
-        echo -e "\n${txtgrn}$(countThemesinConfig) Themes found in $PROJECT_CONFIG_FILE${txtrst}\n"
+
+        # Check if only one theme is configured
+        if [[ $(countThemesinConfig) == 1 ]]; then
+            echo -e "\n${txtgrn}$(countThemesinConfig) Theme found in $PROJECT_CONFIG_FILE${txtrst}\n"
+        else
+            echo -e "\n${txtgrn}$(countThemesinConfig) Themes found in $PROJECT_CONFIG_FILE${txtrst}\n"
+        fi
+
         for THEME_CODE in $THEMES_IN_CONFIG; do
             while read -r line; do
                 # Check whether the line with "Themes:" begins
