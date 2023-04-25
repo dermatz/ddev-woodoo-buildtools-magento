@@ -26,7 +26,7 @@ function addThemesToConfig() {
         LINE=4
 
         echo -en "\n${txtcyn}Woodoo has found ${txtpur}$THEME_CODES_DB_COUNT Themes${txtcyn} in your Database.${txtrst}"
-        echo -en "\n${txtcyn}Add the Theme below to $PROJECT_CONFIG_FILE if you want add it to the Build-Process later:${txtrst}\n"
+        echo -en "\n${txtcyn}Add the Theme below to $PROJECT_CONFIG_FILE if you want add it to the Build-Process later:${txtrst}\n\n"
 
         if grep -q "themes:" $PROJECT_CONFIG_FILE; then
             echo -e "\n${txtgrn}${ICON_SUCCESS} Themes-Section already exist in $PROJECT_CONFIG_FILE ${txtrst}\n"
@@ -123,11 +123,16 @@ function checkThemePathExists() {
                                     echo -e "${txtred}${ICON_ERROR} Theme ${txtcyn}$THEME_CODE ${txtred}has not been configured yet.${txtrst}"
                                     THEME_PATHES_VALID=false
                                 else
-                                    # if $THEME_PATHES_VALID not false
-                                    if [[ "$THEME_PATHES_VALID" != false ]]; then
+
+                                    # if $THEME_PATHES_VALID not false and registration.php exists in $THEME_PATH
+                                    if [[ "$THEME_PATHES_VALID" != false && -f $THEME_PATH/registration.php ]]; then
                                         THEME_PATHES_VALID=true
+                                        echo -e "${txtgrn}${ICON_SUCCESS} Theme ${txtcyn}$THEME_CODE ${txtgrn}has been correct configured.${txtrst}"
+                                    else
+                                        THEME_PATHES_VALID=false
+                                        echo -e "${txtred}${ICON_ERROR} Theme ${txtcyn}$THEME_CODE ${txtred}has not been configured correctly.${txtrst}"
                                     fi
-                                    echo -e "${txtgrn}${ICON_SUCCESS} Theme ${txtcyn}$THEME_CODE ${txtgrn}has been correct configured.${txtrst}"
+
                                 fi
                             fi
                         fi
