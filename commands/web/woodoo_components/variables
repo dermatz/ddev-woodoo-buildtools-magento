@@ -11,5 +11,9 @@ PROJECT_ROOT=$DDEV_APPROOT
 PROJECT_ARCH=$GOARCH
 PROJECT_PHP_VERSION=$DDEV_PHP_VERSION
 PROJECT_NODEJS_VERSION=$(node -v)
-LATEST_LTS_VERSION=$(curl -s https://nodejs.org/dist/index.json | jq -r '.[] | select(.lts) | .version' | sort -V | tail -1)
 
+if ping -q -c 1 -W 1 nodejs.org >/dev/null; then
+LATEST_LTS_VERSION=$(curl -s https://nodejs.org/dist/index.json | jq -r '.[] | select(.lts) | .version' | sort -V | tail -1)
+else
+LATEST_LTS_VERSION='not available (connection lost)'
+fi

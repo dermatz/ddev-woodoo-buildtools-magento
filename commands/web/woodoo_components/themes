@@ -120,14 +120,14 @@ function checkThemePathExists() {
                             if [[ "$next_line" =~ $THEME_CODE ]]; then
                                 THEME_PATH=$(echo $next_line | cut -d ' ' -f 3 | cut -d '"' -f 2)
                                 if [[ "$THEME_PATH" == "path/to/theme" ]]; then
-                                    echo -e "${txtred}${ICON_ERROR} Theme $THEME_CODE has not been configured yet.${txtrst}"
+                                    echo -e "${txtred}${ICON_ERROR} Theme ${txtcyn}$THEME_CODE ${txtred}has not been configured yet.${txtrst}"
                                     THEME_PATHES_VALID=false
                                 else
                                     # if $THEME_PATHES_VALID not false
                                     if [[ "$THEME_PATHES_VALID" != false ]]; then
                                         THEME_PATHES_VALID=true
                                     fi
-                                    echo -e "${txtgrn}${ICON_SUCCESS} Theme $THEME_CODE has been correct configured.${txtrst}"
+                                    echo -e "${txtgrn}${ICON_SUCCESS} Theme ${txtcyn}$THEME_CODE ${txtgrn}has been correct configured.${txtrst}"
                                 fi
                             fi
                         fi
