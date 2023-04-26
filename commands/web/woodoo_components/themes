@@ -99,6 +99,20 @@ function countThemesinConfig() {
 
 }
 
+# get all available themes in config.yaml
+function getThemesInConfig() {
+
+    readThemesInConfig
+
+    # get themes line by line
+    if [ -n "$THEMES_IN_CONFIG" ]; then
+        for THEME_CODE in $THEMES_IN_CONFIG; do
+            echo -e "${txtpur}- $THEME_CODE ${txtrst}"
+        done
+    fi
+
+}
+
 #check all available themes in config.yaml if the path is not "path/to/theme"
 function checkThemePathExists() {
 

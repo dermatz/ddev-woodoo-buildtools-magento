@@ -128,7 +128,28 @@ fi
 
 # Build a specific theme (WIP)
 
-# if [[ "$1" == "build" && "$2" != "" || "$1" == "b" && "$2" != "" ]]; then
+if [[ "$1" == "build" && "$2" != "" || "$1" == "b" && "$2" != "" ]]; then
+
+    # get all themes from config.yaml and check if 2nd parameter ($2) is a valid theme code
+    readThemesInConfig
+
+    # check if 2nd parameter ($2) is a valid theme code
+    if [[ ! " ${THEMES_IN_CONFIG[@]} " =~ " ${2} " ]]; then
+        echo -e "\n${txtred}${ICON_ERROR} ${2} is not a valid theme code. Please check your config.yaml${txtrst}"
+
+        echo -e "${txtcyn}\nAvailable Themes in config.yaml:${txtrst}"
+        getThemesInConfig
+        echo -e "\n"
+        exit 0
+    else
+        THEME_TO_BUILD=$(echo $(grep -oP '(?<='$2': ).*' .ddev/config.yaml) | cut -d ' ' -f 1 | sed 's/"//g')
+        checkHyva $THEME_TO_BUILD
+        if [[ "$HYVA" == true ]]; then
+            buildHyva $THEME_TO_BUILD $2
+        else
+            buildMagentoDefault $2
+        fi
+    fi
 
 
-# fi
+fi
