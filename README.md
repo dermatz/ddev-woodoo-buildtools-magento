@@ -12,9 +12,9 @@ _>> Build all your themes with Magic, build with Woodoo!_
 
 |Development Roadmap | Estimated Release
 |-|-|
-|<img src="https://img.shields.io/badge/Magento_2.x-Alpha-Release-8BC34A">| 2023 (Priority 1) |
-|<img src="https://img.shields.io/badge/Magento_2_Hyvä_1.2x-Alpha-Release-8BC34A">| 2023 (Priority 2)
-|<img src="https://img.shields.io/badge/Magento_2_Hyvä_Fallback-Alpha-Release-8BC34A">| 2023 (Priority 3)
+|<img src="https://img.shields.io/badge/Magento_2.x-Alpha_Release-8BC34A">| 2023 (Priority 1) |
+|<img src="https://img.shields.io/badge/Magento_2_Hyvä_1.2x-Alpha_Release-8BC34A">| 2023 (Priority 2)
+|<img src="https://img.shields.io/badge/Magento_2_Hyvä_Fallback-Alpha_Release-8BC34A">| 2023 (Priority 3)
 |<img src="https://img.shields.io/badge/Magento_1 (_MageOne_)-planned-FFFDE7">| not estimated yet
 
 ---
