@@ -77,7 +77,7 @@ if [[ "$1" == "build" || "$1" == "b" ]]; then
             clearCache
             clearStaticFiles
             hyvaConfigGenerate
-            echo -e "\n${txtgrn}${ICON_SUCCESS} Hyvä Build for ${txtpur}$THEME_CODE${txtgrn} finished${txtrst}\n\n\n"
+            echo -e "\n${txtgrn}${ICON_SUCCESS}${bldcyn} Hyvä Theme Build for ${txtpur}$THEME_CODE${txtcyn} finished${txtrst}\n\n\n"
 
         else
 
@@ -107,7 +107,7 @@ if [[ "$1" == "build" || "$1" == "b" ]]; then
             clearCache
             clearStaticFiles
 
-            echo -e "\n${txtgrn}${ICON_SUCCESS} Theme Build for ${txtpur}$THEME_CODE${txtcyn} finished${txtrst}\n\n\n"
+            echo -e "\n${txtgrn}${ICON_SUCCESS}${bldcyn} Theme Build for ${txtpur}$THEME_CODE${txtcyn} finished${txtrst}\n\n\n"
         fi
 
     done
