@@ -17,3 +17,5 @@ if ping -q -c 1 -W 1 nodejs.org >/dev/null; then
 else
     LATEST_LTS_VERSION="Connection to nodejs.org failed"
 fi
+
+HYVA=false
