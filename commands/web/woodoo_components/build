@@ -25,16 +25,25 @@ function checkHyva() {
     fi
 }
 
-
 if [[ "$1" == "build" || "$1" == "b" ]]; then
-
-    echo -e ""
 
     # Show all available themes in config.yaml
     if [[ $(countThemesinConfig) == 1 ]]; then
-       echo -e "${txtgrn}$(countThemesinConfig) Theme available to build${txtrst}"
+       echo -e "${txtgrn}$(countThemesinConfig) Theme available to build${txtrst}\n"
     else
-      echo -e "${txtgrn}$(countThemesinConfig) Themes available to build${txtrst}"
+      echo -e "${txtgrn}$(countThemesinConfig) Themes available to build${txtrst}\n"
+    fi
+
+    # if more then one theme is available, ask if all themes should be build
+    if [[ $(countThemesinConfig) -gt 1 ]]; then
+        echo -en "Build all $(countThemesinConfig) Themes? [y/n] "
+        read -r answer
+        if [ "$answer" = "y" ] || [ "$answer" = "yes" ] || [ "$answer" = "Y" ] || [ "$answer" = "YES" ] || [ "$answer" = "ja" ] || [ "$answer" = "" ]; then
+            echo -e "\n${txtgrn}Build all Themes ...${txtrst}\n"
+        else
+            echo -e "\n${txtylw}stopped!${txtrst}\n"
+            exit 0
+        fi
     fi
 
     # Read all themes in config.yaml
