@@ -6,7 +6,7 @@
 ## ProjectTypes: magento2
 ## ExecRaw: true
 
-source ".ddev/bash/colors.sh"
+source ".ddev/commands/web/woodoo_components/colors"
 
 echo -e "🛠️  ${bldblu}DDEV Woodoo-Buildtools for Magento${txtrst}"
 
