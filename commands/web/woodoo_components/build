@@ -1,64 +1,28 @@
 #!/bin/bash
 #ddev-generated - Do not modify this file; your modifications will be overwritten.
 
+function hyvaConfigGenerate() {
+    ./bin/magento hyva:config:generate
+}
+
 function clearCache() {
     ./bin/magento cache:flush
-    echo -e "${txtgrn}${ICON_SUCCESS} Cache cleared${txtrst}"
+    echo -e "\n${txtgrn}Cache cleared${txtrst}"
 }
 
 function clearStaticFiles() {
     rm -rf ./pub/static/*
     rm -rf ./var/view_preprocessed/*
-    echo -e "${txtgrn}${ICON_SUCCESS} Static files cleared${txtrst}"
+    echo -e "${txtgrn}Static files cleared${txtrst}"
 }
 
-function buildHyva() {
+function checkHyva() {
+    HYVA=flase
     BUILD_PATH=$1
     HYVA_FOLDER=$BUILD_PATH/web/tailwind
-    # if folder web/tailwind exist in $1 and if tailwind.config.js exist in $1/web/tailwind
     if [[ -d "$HYVA_FOLDER" && -f "$HYVA_FOLDER/tailwind.config.js" && -f "$HYVA_FOLDER/package.json" ]]; then
-        echo -e "${txtgrn}${ICON_SUCCESS} Hyvä Theme detected ... Start building Hyvä Tailwind CSS${txtrst}"
-        cd $HYVA_FOLDER
-        npm install
-        npm run build
-        cd -
-        clearCache
-        clearStaticFiles
-        echo -e "\n${txtgrn}${ICON_SUCCESS} Hyva Theme Build finished${txtrst}\n\n\n"
-        BUILD_SUCCEEDED=true
+        HYVA=true
     fi
-}
-
-
-function buildMagento2Default() {
-
-    echo -e "${txtcyn}Start building Magento 2 Theme ... please wait!${txtrst}"
-
-    # check if node_modules exist
-    if [[ ! -d "node_modules" ]]; then
-        npm ci
-    fi
-
-    # check if grunt exist
-    if [[ ! -f "./node_modules/.bin/grunt" ]]; then
-        echo -e "${txtcyn}${ICON_ERROR} Install missing Grunt${txtrst}"
-        npm install grunt
-        npm install grunt -g
-        if [[ ! -f "./node_modules/.bin/grunt" ]]; then
-            echo -e "${txtcyn}${ICON_SUCCESS} Done. ${txtrst}"
-        else
-            echo -e "${txtred}${ICON_ERROR} Could not install grunt. Please check ./node_modules/.bin/ ${txtrst}"
-        fi
-    fi
-
-    ./node_modules/.bin/grunt clean
-    ./node_modules/.bin/grunt less
-
-    clearCache
-    clearStaticFiles
-
-    echo -e "\n${txtgrn}${ICON_SUCCESS} Theme Build finished${txtrst}\n\n\n"
-    BUILD_SUCCEEDED=true
 }
 
 
@@ -79,22 +43,63 @@ if [[ "$1" == "build" || "$1" == "b" ]]; then
     # Build all themes in config.yaml
     for THEME_CODE in $THEMES_IN_CONFIG; do
 
-        BUILD_SUCCEEDED=false
+        THEME_TO_BUILD=$(echo $(grep -oP '(?<='$THEME_CODE': ).*' .ddev/config.yaml) | cut -d ' ' -f 1 | sed 's/"//g')
 
-        # Get the path of the theme
-        FRONTEND_PATH=$(echo $(grep -oP '(?<='$THEME_CODE': ).*' .ddev/config.yaml) | cut -d ' ' -f 1 | sed 's/"//g')
-        echo -e "\n${txtcyn}Start Building ${txtpur}$THEME_CODE${txtcyn} in ${txtpur}$FRONTEND_PATH${txtcyn} ... please wait!${txtrst}"
+        # checks to figure out if it is a Hyva Theme
+        checkHyva $THEME_TO_BUILD
 
-        # Build Hyva Theme if possible
-        buildHyva $FRONTEND_PATH
+        # Try to build as Hyva Theme
+        if [[ "$HYVA" == true ]]; then
+            echo -e "${txtgrn}${ICON_SUCCESS} ${txtpur}$THEME_CODE${txtrst} will be build as Hyva Theme${txtrst}"
+            if [[ ! -d "$THEME_TO_BUILD/web/tailwind/node_modules" ]]; then
+                echo -e "\n${txtylw}Install missing node_modules ... ${txtrst}"
+                cd $THEME_TO_BUILD/web/tailwind
+                npm ci
+                if [[ -d "$THEME_TO_BUILD/web/tailwind/node_modules" ]]; then
+                    cd - > /dev/null
+                    echo -e "${txtgrn}${ICON_SUCCESS} Done. ${txtrst}"
+                else
+                    echo -e "${txtred}${ICON_ERROR} Could not install node_modules. Please check $THEME_TO_BUILD/web/tailwind/node_modules ${txtrst}"
+                fi
+            fi
+            cd $THEME_TO_BUILD/web/tailwind
+            npm run build
+            cd - > /dev/null
+            clearCache
+            clearStaticFiles
+            hyvaConfigGenerate
+            echo -e "\n${txtgrn}${ICON_SUCCESS} Hyvä Build for ${txtpur}$THEME_CODE${txtgrn} finished${txtrst}\n\n\n"
 
-        # skip this theme if build succeeded
-        if [[ "$BUILD_SUCCEEDED" == true ]]; then
-            continue
+        else
+
+            echo -e "${txtcyn}Start building ${txtpur}$THEME_CODE${txtcyn} Theme ... please wait!${txtrst}"
+
+            # check if node_modules exist
+            if [[ ! -d "./node_modules/" ]]; then
+                echo -e "${txtylw}${ICON_ERROR} Install missing Node Dependencies${txtrst}"
+                npm ci
+            fi
+
+            # check if grunt exist
+            if [[ ! -f "./node_modules/.bin/grunt" ]]; then
+                echo -e "${txtcyn}${ICON_ERROR} Install missing Grunt${txtrst}"
+                npm install grunt
+                npm install grunt -g
+                if [[ ! -f "./node_modules/.bin/grunt" ]]; then
+                    echo -e "${txtcyn}${ICON_SUCCESS} Done. ${txtrst}"
+                else
+                    echo -e "${txtred}${ICON_ERROR} Could not install grunt. Please check ./node_modules/.bin/ ${txtrst}"
+                fi
+            fi
+
+            ./node_modules/.bin/grunt clean
+            ./node_modules/.bin/grunt less
+
+            clearCache
+            clearStaticFiles
+
+            echo -e "\n${txtgrn}${ICON_SUCCESS} Theme Build for ${txtpur}$THEME_CODE${txtcyn} finished${txtrst}\n\n\n"
         fi
-
-        # Build Magento 2 Theme
-        buildMagento2Default $FRONTEND_PATH $THEME_CODE
 
     done
 fi
