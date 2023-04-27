@@ -1,10 +1,11 @@
 #!/bin/bash
 #ddev-generated - Do not modify this file; your modifications will be overwritten.
 
-## Description: Woodoo-Buildtools for Magento
+## Description: Run woodoo inside the web container in the root of the project (Use --cwd for another directory)
 ## Usage: woodoo [flags] [args]
-## ProjectTypes: magento2
+## Example: "ddev woodoo install"
 ## ExecRaw: true
+## HostWorkingDir: true
 
 source ".ddev/commands/web/woodoo_components/colors"
 
@@ -18,3 +19,4 @@ source ".ddev/commands/web/woodoo_components/watch"
 
 ## should be last source
 source ".ddev/commands/web/woodoo_components/selftest"
+source ".ddev/commands/web/woodoo_components/help"

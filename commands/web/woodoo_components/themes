@@ -17,6 +17,16 @@ function getMagento2_ThemeStoreCodes() {
     THEME_CODES_DB_COUNT=$(echo $THEME_CODES_DB | wc -w)
 }
 
+function getThemesFromDB() {
+    getMagento2_ThemeStoreCodes
+    if [ -n "$THEME_CODES_DB" ]; then
+        for THEME_CODE in $THEME_CODES_DB; do
+            echo -e "${txtpur}- $THEME_CODE ${txtrst}"
+        done
+    fi
+
+}
+
 function addThemesToConfig() {
     if [ -f $PROJECT_CONFIG_FILE ]; then
 
@@ -126,9 +136,9 @@ function checkThemePathExists() {
 
         # Check if only one theme is configured
         if [[ $(countThemesinConfig) == 1 ]]; then
-            echo -e "\n${txtgrn}$(countThemesinConfig) Theme found in $PROJECT_CONFIG_FILE${txtrst}\n"
+            echo -e "\n${txtgrn}$(countThemesinConfig) Theme added to ${txtcyn}$PROJECT_CONFIG_FILE${txtrst}\n"
         else
-            echo -e "\n${txtgrn}$(countThemesinConfig) Themes found in $PROJECT_CONFIG_FILE${txtrst}\n"
+            echo -e "\n${txtgrn}$(countThemesinConfig) Themes added to ${txtcyn}$PROJECT_CONFIG_FILE${txtrst}\n"
         fi
 
         for THEME_CODE in $THEMES_IN_CONFIG; do
@@ -141,17 +151,17 @@ function checkThemePathExists() {
                             if [[ "$next_line" =~ $THEME_CODE ]]; then
                                 THEME_PATH=$(echo $next_line | cut -d ' ' -f 3 | cut -d '"' -f 2)
                                 if [[ "$THEME_PATH" == "path/to/theme" ]]; then
-                                    echo -e "${txtred}${ICON_ERROR} Theme ${txtcyn}$THEME_CODE ${txtred}has not been configured yet.${txtrst}"
+                                    echo -e "${txtred}${ICON_ERROR} Theme ${txtpur}$THEME_CODE ${txtred}has not been configured yet.${txtrst}"
                                     THEME_PATHES_VALID=false
                                 else
 
                                     # if $THEME_PATHES_VALID not false and registration.php exists in $THEME_PATH
                                     if [[ "$THEME_PATHES_VALID" != false && -f $THEME_PATH/registration.php ]]; then
                                         THEME_PATHES_VALID=true
-                                        echo -e "${txtgrn}${ICON_SUCCESS} Theme ${txtcyn}$THEME_CODE ${txtgrn}has been correct configured.${txtrst}"
+                                        echo -e "${txtgrn}${ICON_SUCCESS} Theme ${txtpur}$THEME_CODE ${txtgrn}has been correct configured.${txtrst}"
                                     else
                                         THEME_PATHES_VALID=false
-                                        echo -e "${txtred}${ICON_ERROR} Theme ${txtcyn}$THEME_CODE ${txtred}has not been configured correctly.${txtrst}"
+                                        echo -e "${txtred}${ICON_ERROR} Theme ${txtpur}$THEME_CODE ${txtred}has not been configured correctly.${txtrst}"
                                     fi
 
                                 fi
@@ -176,6 +186,16 @@ if [[ "$1" = "init" || "$1" = "install" || "$1" = "i" ]]; then
     addThemesToConfig
 fi
 
-if [[ "$1" = "themescheck" || "$1" = "tc" ]]; then
+if [[ "$1" = "themes" && "$2" = "check" ]]; then
     checkThemePathExists
+fi
+
+
+if [[ "$1" = "themes" && "$2" == "" ]]; then
+
+    echo -e "\n${txtgrn}Themes found in Database:\n"
+    getThemesFromDB
+
+    checkThemePathExists
+    echo -e ""
 fi

@@ -1,0 +1,29 @@
+#!/bin/bash
+#ddev-generated - Do not modify this file; your modifications will be overwritten.
+
+if [[ "$1" == "help" || "$1" == "-help" || "$1" == "--help" || "$1" == "--h" || "$1" == "--hilfe" || "$1" == "--rtfm" || "$1" == "--manual" || "$1" == "--doc"  ]]; then
+    readThemesInConfig
+
+    echo -e "${txtgrn}\nUsage: ${txtrst}ddev woodoo [${txtcyn}command${txtrst}] [${txtylw}option${txtrst} or ${txtpur}theme${txtrst}]\n"
+
+    echo -e "${txtcyn}Command:${txtrst}"
+    echo -e "  ${txtcyn}help${txtrst}                  Displays this help page"
+    echo -e "  ${txtcyn}check, selftest${txtrst}       Woodoo Self Test"
+    echo -e "  ${txtcyn}themes${txtrst}                List all available themes that are configured in ${txtcyn}.ddev/config.yaml${txtrst}"
+    echo -e "  ${txtcyn}build${txtrst}                 Builds all themes that are configured in ${txtcyn}.ddev/config.yaml${txtrst}"
+    echo -e "  ${txtcyn}watch${txtrst}                 Watch in Magento 1 standard with Grunt-Watch Task"
+    echo -e "  ${txtcyn}build ${txtpur}theme${txtrst}           Build a specific theme${txtrst}"
+    echo -e "  ${txtcyn}watch ${txtpur}theme${txtrst}           Watch for CSS and JS changes in a specific theme${txtrst}"
+
+    echo -e "${txtylw}\nOption:${txtrst}"
+    echo -e "  ${txtylw}$THEME_CODE${txtrst}   Theme-Code from ${txtcyn}.ddev/config.yaml${txtrst}"
+
+    if [ -n "$THEMES_IN_CONFIG" ]; then
+        echo -e "${txtpur}\nThemes:${txtrst}"
+        for THEME_CODE in $THEMES_IN_CONFIG; do
+            echo -e "  ${txtpur}$THEME_CODE${txtrst}${txtrst}"
+        done
+    fi
+
+    echo -e "\n\nHope this helps a lot! ${bldgrn}Have a nice Dev-Day!${txtrst} 🚀\n\n"
+fi
