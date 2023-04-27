@@ -1,0 +1,60 @@
+#!/bin/bash
+#ddev-generated - Do not modify this file; your modifications will be overwritten.
+
+function watchHyva() {
+    HYVA_PATH=$1
+    HYVA_NAME=$2
+    echo -e "${txtgrn}${ICON_SUCCESS} ${txtpur}$HYVA_NAME${txtcyn} will be build as Hyva Theme${txtrst}"
+    if [[ ! -d "$HYVA_PATH/web/tailwind/node_modules" ]]; then
+        echo -e "\n${txtylw}Install missing node_modules ... ${txtrst}"
+        cd $HYVA_PATH/web/tailwind
+        npm ci
+        if [[ -d "$HYVA_PATH/web/tailwind/node_modules" ]]; then
+            cd - > /dev/null
+            echo -e "${txtgrn}${ICON_SUCCESS} Done. ${txtrst}"
+        else
+            echo -e "${txtred}${ICON_ERROR} Could not install node_modules. Please check $HYVA_PATH/web/tailwind/node_modules ${txtrst}"
+        fi
+    fi
+    cd $HYVA_PATH/web/tailwind
+    npm run watch
+}
+
+
+
+function watchMagento() {
+    echo -e "Currently in development"
+}
+
+
+# Build a specific theme (WIP)
+if [[ "$1" == "watch" && "$2" != "" || "$1" == "w" && "$2" != "" ]]; then
+
+    # get all themes from config.yaml and check if 2nd parameter ($2) is a valid theme code
+    readThemesInConfig
+
+    # check if 2nd parameter ($2) is a valid theme code
+    if [[ ! " ${THEMES_IN_CONFIG[@]} " =~ " ${2} " ]]; then
+        echo -e "\n${txtred}${ICON_ERROR} ${2} is not a valid theme code. Please check your config.yaml${txtrst}"
+
+        echo -e "${txtcyn}\nAvailable Themes to watch in config.yaml:${txtrst}"
+        getThemesInConfig
+        echo -e "\n"
+        exit 0
+    else
+        THEME_TO_BUILD=$(echo $(grep -oP '(?<='$2': ).*' .ddev/config.yaml) | cut -d ' ' -f 1 | sed 's/"//g')
+        checkHyva $THEME_TO_BUILD
+        if [[ "$HYVA" == true ]]; then
+            watchHyva $THEME_TO_BUILD $2
+        else
+            watchMagento $2
+        fi
+    fi
+fi
+
+if [[ "$1" == "watch" && "$2" == "" || "$1" == "w" && "$2" == "" ]]; then
+    # Read all themes in config.yaml
+    echo -e "${txtcyn}\nAvailable Themes to watch in config.yaml:${txtrst}"
+    readThemesInConfig
+    getThemesInConfig
+fi
