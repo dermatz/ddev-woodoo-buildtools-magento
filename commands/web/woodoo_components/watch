@@ -23,7 +23,48 @@ function watchHyva() {
 
 
 function watchMagento() {
-    echo -e "Currently in development"
+    THEME_NAME=$1
+
+    echo -e "${txtcyn}Start Watching ${txtpur}$THEME_NAME${txtcyn} Theme!${txtrst}"
+
+    # check if node_modules exist
+    if [[ ! -d "./node_modules/" ]]; then
+        echo -e "${txtylw}${ICON_ERROR} Install missing Node Dependencies${txtrst}"
+        npm ci
+    fi
+
+    # check if grunt exist
+    if [[ ! -f "./node_modules/.bin/grunt" ]]; then
+        echo -e "${txtcyn}${ICON_ERROR} Install missing Grunt${txtrst}"
+        npm install grunt
+        npm install grunt -g
+        if [[ ! -f "./node_modules/.bin/grunt" ]]; then
+            echo -e "${txtcyn}${ICON_SUCCESS} Done. ${txtrst}"
+        else
+            echo -e "${txtred}${ICON_ERROR} Could not install grunt. Please check ./node_modules/.bin/ ${txtrst}"
+        fi
+    fi
+
+    ./node_modules/.bin/grunt clean
+    ./node_modules/.bin/grunt refresh
+
+    # check if grunt task was successful
+    if [[ $? -eq 0 ]]; then
+        echo -e "${txtgrn}${ICON_SUCCESS} Grunt clean tasks finished. Ready to watch ...${txtrst}\n\n"
+        ./node_modules/.bin/grunt watch $THEME_NAME
+    else
+        echo -e "${txtred}${ICON_ERROR} Grunt task failed. Try to repair it for you.${txtrst}"
+        rm -rf .node_modules
+        npm install
+        ./node_modules/.bin/grunt clean
+        ./node_modules/.bin/grunt refresh
+        if [[ $? -eq 0 ]]; then
+            echo -e "${txtgrn}${ICON_SUCCESS} Grunt clean tasks finished. Ready to watch ...${txtrst}\n\n"
+            ./node_modules/.bin/grunt watch $THEME_NAME
+        else
+            echo -e "${txtred}${ICON_ERROR} Grunt task failed again. Could not repair.${txtrst}"
+        fi
+    fi
 }
 
 
