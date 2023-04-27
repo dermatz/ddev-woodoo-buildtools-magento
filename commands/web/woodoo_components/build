@@ -51,6 +51,25 @@ function buildMagentoDefault() {
     ./node_modules/.bin/grunt clean
     ./node_modules/.bin/grunt less
 
+    # check if grunt task was successful
+    if [[ $? -eq 0 ]]; then
+        echo -e "${txtgrn}${ICON_SUCCESS} Grunt task finished${txtrst}"
+    else
+        echo -e "${txtred}${ICON_ERROR} Grunt task failed. Try to repair it for you.${txtrst}"
+
+        rm -rf .node_modules
+        npm install
+
+        ./node_modules/.bin/grunt clean
+        ./node_modules/.bin/grunt less
+
+        if [[ $? -eq 0 ]]; then
+            echo -e "${txtgrn}${ICON_SUCCESS} Grunt task finished${txtrst}"
+        else
+            echo -e "${txtred}${ICON_ERROR} Grunt task failed again. Could not repair.${txtrst}"
+        fi
+    fi
+
     clearCache
     clearStaticFiles
 
@@ -150,6 +169,5 @@ if [[ "$1" == "build" && "$2" != "" || "$1" == "b" && "$2" != "" ]]; then
             buildMagentoDefault $2
         fi
     fi
-
 
 fi
