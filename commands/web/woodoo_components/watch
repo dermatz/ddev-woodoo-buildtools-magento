@@ -30,7 +30,7 @@ function watchMagento() {
     # check if node_modules exist
     if [[ ! -d "./node_modules/" ]]; then
         echo -e "${txtylw}${ICON_ERROR} Install missing Node Dependencies${txtrst}"
-        npm ci
+        npm install
     fi
 
     # check if grunt exist
@@ -38,6 +38,7 @@ function watchMagento() {
         echo -e "${txtcyn}${ICON_ERROR} Install missing Grunt${txtrst}"
         npm install grunt
         npm install grunt -g
+        npm install grunt-cli -g
         if [[ ! -f "./node_modules/.bin/grunt" ]]; then
             echo -e "${txtcyn}${ICON_SUCCESS} Done. ${txtrst}"
         else
@@ -56,6 +57,9 @@ function watchMagento() {
         echo -e "${txtred}${ICON_ERROR} Grunt task failed. Try to repair it for you.${txtrst}"
         rm -rf .node_modules
         npm install
+        npm install grunt
+        npm install grunt -g
+        npm install grunt-cli -g
         ./node_modules/.bin/grunt clean
         ./node_modules/.bin/grunt refresh
         if [[ $? -eq 0 ]]; then
