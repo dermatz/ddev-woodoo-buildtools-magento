@@ -12,14 +12,14 @@ _>> Build all your themes with Magic, build with Woodoo!_
 
 |Development Roadmap | Estimated Release
 |-|-|
-|<img src="https://img.shields.io/badge/Magento_2.x-Alpha_Release-8BC34A">| 2023 (Priority 1) |
-|<img src="https://img.shields.io/badge/Magento_2_Hyvä_1.2x-Alpha_Release-8BC34A">| 2023 (Priority 2)
-|<img src="https://img.shields.io/badge/Magento_2_Hyvä_Fallback-Alpha_Release-8BC34A">| 2023 (Priority 3)
-|<img src="https://img.shields.io/badge/Magento_1 (_MageOne_)-planned-FFFDE7">| not estimated yet
+|<img src="https://img.shields.io/badge/Magento_2.x-released-FF5722">| released |
+|<img src="https://img.shields.io/badge/Magento_2_Hyvä_1.2x-released-0A23B9">| released |
+|<img src="https://img.shields.io/badge/Magento_2_Hyvä_Fallback-released-0A23B9">| released |
+|<img src="https://img.shields.io/badge/Magento_1 (_MageOne_)-planned-e8486a">| planned 2023 |
 
 ---
 ## Install
-**1 . Get the latest Version of Woodoon with following command in your ddev project root**
+**1 . Get the latest Version (Main-Branch) of Woodoon with following command in your ddev project root**
 ```shell
 ddev get https://github.com/dermatz/ddev-woodoo-buildtools-magento/archive/refs/heads/main.tar.gz
 ```
@@ -27,6 +27,8 @@ ddev get https://github.com/dermatz/ddev-woodoo-buildtools-magento/archive/refs/
 ```shell
 ddev woodoo init
 ```
+**3. Edit .ddev/config.yaml**
+Open and edit `.ddev/config.yaml` and specify pathes to the themes based on your project structure. (E.g. `src/vendor/...` or `app/design/frontend/Vendor/...`)
 
 ## Update Wooodoo
 **Specific Versions**
@@ -34,6 +36,24 @@ If a release is available you can install a specific version by replacing the wo
 
 ```shell
 ddev get https://github.com/dermatz/ddev-woodoo-buildtools-magento/archive/refs/heads/main.tar.gz
+```
+
+## Usage
+```shell
+Usage: ddev woodoo [command] [option, theme]
+
+Command:
+  init                  Setup Woodoo, get all themes from dataabase and write to .ddev/config.yaml
+  help                  Show this help page
+  check, selftest       Woodoo Self Test
+  themes                List all available themes that are configured in .ddev/config.yaml
+  themes                List all available themes that are configured in .ddev/config.yaml
+  build                 Builds all themes that are configured in .ddev/config.yaml
+  build theme           Build a specific theme
+  watch theme           Watch for CSS and JS changes in a specific theme
+
+Option:
+  themecode             Theme-Code from .ddev/config.yaml
 ```
 
 ## Contributing
