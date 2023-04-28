@@ -4,9 +4,9 @@
 function selftest() {
 
     if [ "$WOODOO_VERSION" != "$LATEST_WOODOO_VERSION" ]; then
-        echo -e "${txtcyn}Woodoo Version          = ${txtylw}Woodoo Update $(curl -s https://api.github.com/repos/dermatz/ddev-woodoo-buildtools-magento/releases/latest | grep tag_name | cut -d '"' -f 4) available! (Your Version: $WOODOO_VERSION)${txtrst}"
+        echo -e "${txtcyn}Woodoo Version         = ${txtylw}Woodoo Update $(curl -s https://api.github.com/repos/dermatz/ddev-woodoo-buildtools-magento/releases/latest | grep tag_name | cut -d '"' -f 4) available! (Your Version: $WOODOO_VERSION)${txtrst}"
     else
-        echo -e "${txtcyn}Woodoo Version          = ${txtgrn}$WOODOO_VERSION${txtrst}"
+        echo -e "${txtcyn}Woodoo Version         = ${txtgrn}$WOODOO_VERSION${txtrst}"
     fi
 
     if [ -z "$DDEV_PROJECT_TYPE" ]; then
