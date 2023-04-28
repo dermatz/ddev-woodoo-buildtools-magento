@@ -3,6 +3,7 @@ All notable changes to this project will be documented in this file.
 ---
 ### Upcoming Changes (Main Branch)
 - Change Wording in Selfcheck
+- Update Readme Feature List
 
 ---
 ## Latesest Release
