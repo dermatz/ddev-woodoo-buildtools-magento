@@ -7,11 +7,11 @@
 ## ExecRaw: true
 ## HostWorkingDir: true
 
-source ".ddev/commands/web/woodoo_components/colors"
-
-echo -e "🛠️  ${bldblu}DDEV Woodoo-Buildtools for Magento${txtrst}"
 
 source ".ddev/commands/web/woodoo_components/variables"
+
+echo -e "🛠️  ${bldblu}DDEV Woodoo-Buildtools $WOODOO_VERSION for Magento${txtrst}"
+
 source ".ddev/commands/web/woodoo_components/checks"
 source ".ddev/commands/web/woodoo_components/themes"
 source ".ddev/commands/web/woodoo_components/build"
