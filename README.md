@@ -47,11 +47,7 @@ Open and edit `.ddev/config.yaml` and specify pathes to the themes based on your
 
 ## Update Wooodoo
 **Specific Versions**
-If a release is available you can install a specific version by replacing the word `heads` with `tags` and `main` with the version you want to install eg `v1.0.0.`. You will get the correct link here when it is available.
-
-```shell
-ddev get https://github.com/dermatz/ddev-woodoo-buildtools-magento/archive/refs/heads/main.tar.gz
-```
+If a newer Release is available you can install the specific version in the same way how your installed. Just repeat the Install-Step with `ddev get ...` (see Install instructions).
 
 ## Usage
 ```shell
