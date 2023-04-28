@@ -2,6 +2,7 @@
 All notable changes to this project will be documented in this file.
 ---
 ### Upcoming Changes (Main Branch)
+- Change Wording in Selfcheck
 
 ---
 ## Latesest Release
