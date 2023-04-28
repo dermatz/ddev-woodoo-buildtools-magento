@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 ---
-### Upcoming Changes (Main Branch)
+### Upcoming Changes for 1.2.0
 - Change Wording in Selfcheck
 - Update Readme Feature List and Update instructions
 
