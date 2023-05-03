@@ -30,7 +30,7 @@ _>> Build all your Magento themes at once, with Magic, build with Woodoo!_
 **1 . Get the latest Version (Main-Branch) of Woodoon with following command in your ddev project root**
 #### Latest Stable Version (recommended)
 ```shell
-ddev get https://github.com/dermatz/ddev-woodoo-buildtools-magento/archive/refs/tags/1.1.0.tar.gz
+ddev get https://github.com/dermatz/ddev-woodoo-buildtools-magento/archive/refs/tags/1.1.1.tar.gz
 ```
 #### Latest Developer-Version
 ```shell
