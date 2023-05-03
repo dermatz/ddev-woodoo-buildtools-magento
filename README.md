@@ -45,7 +45,7 @@ ddev woodoo init
 **3. Edit .ddev/config.yaml**
 Open and edit `.ddev/config.yaml` and specify pathes to the themes based on your project structure. (E.g. `src/vendor/...` or `app/design/frontend/Vendor/...`)
 
-## Update Wooodoo
+## Update Woodoo
 **Specific Versions**
 If a newer Release is available you can install the specific version in the same way how your installed. Just repeat the Install-Step with `ddev get ...` (see Install instructions).
 
