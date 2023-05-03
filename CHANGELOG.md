@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 ### Upcoming Changes for 1.2.0
 - Change Wording in Selfcheck
 - Update Readme Feature List and Update instructions
+- Improve Errorhandling in theme path validation (during `ddev woodoo themes`)
 
 ---
 ## Latesest Release

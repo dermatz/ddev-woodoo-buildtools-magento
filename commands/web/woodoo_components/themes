@@ -126,9 +126,9 @@ function getThemesInConfig() {
 #check all available themes in config.yaml if the path is not "path/to/theme"
 function checkThemePathExists() {
 
-    THEME_PATHES_VALID=null
     readThemesInConfig
 
+    PATH_ERROR=false
 
     if [ -z "$THEMES_IN_CONFIG" ]; then
         echo -e "\n${txtred}No Themes found in $PROJECT_CONFIG_FILE${txtrst}\n"
@@ -146,6 +146,7 @@ function checkThemePathExists() {
                 # Check whether the line with "Themes:" begins
                 if [[ "$line" =~ ^themes: ]]; then
                     while read -r next_line; do
+                        THEME_PATHES_VALID=null
                         # Check whether the next line begins with "-"
                         if [[ -n "$next_line" && "$next_line" =~ ^- ]]; then
                             if [[ "$next_line" =~ $THEME_CODE ]]; then
@@ -153,17 +154,17 @@ function checkThemePathExists() {
                                 if [[ "$THEME_PATH" == "path/to/theme" ]]; then
                                     echo -e "${txtred}${ICON_ERROR} Theme ${txtpur}$THEME_CODE ${txtred}has not been configured yet.${txtrst}"
                                     THEME_PATHES_VALID=false
+                                    PATH_ERROR=true
                                 else
-
                                     # if $THEME_PATHES_VALID not false and registration.php exists in $THEME_PATH
                                     if [[ "$THEME_PATHES_VALID" != false && -f $THEME_PATH/registration.php ]]; then
                                         THEME_PATHES_VALID=true
                                         echo -e "${txtgrn}${ICON_SUCCESS} Theme ${txtpur}$THEME_CODE ${txtgrn}has been correct configured.${txtrst}"
                                     else
                                         THEME_PATHES_VALID=false
+                                        PATH_ERROR=true
                                         echo -e "${txtred}${ICON_ERROR} Theme ${txtpur}$THEME_CODE ${txtred}has not been configured correctly.${txtrst}"
                                     fi
-
                                 fi
                             fi
                         fi
@@ -173,11 +174,11 @@ function checkThemePathExists() {
             done < $PROJECT_CONFIG_FILE
         done
         #if checkThemePathExists has an error, it will exit the script
-        if $THEME_PATHES_VALID; then
-            echo -e "\n${txtgrn}${ICON_SUCCESS} All Theme-Paths are valid!${txtrst}\n"
-        else
+        if $PATH_ERROR; then
             echo -e "\n${txtylw}${ICON_WARNING} Some Theme-Paths are invalid! Please check your $PROJECT_CONFIG_FILE ${txtrst}\n"
             exit 0
+        else
+            echo -e "\n${txtgrn}${ICON_SUCCESS} All Theme-Paths are valid!${txtrst}\n"
         fi
     fi
 }
