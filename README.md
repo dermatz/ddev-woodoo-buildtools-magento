@@ -27,12 +27,12 @@ _>> Build all your Magento themes at once, with Magic, build with Woodoo!_
 
 ---
 ## Install
-**1 . Get the latest Version (Main-Branch) of Woodoon with following command in your ddev project root**
-#### Latest Stable Version (recommended)
+**1 . Get the latest Version (Main-Branch) of Woodoo with following command in your ddev project root**
+#### Latest stable version (recommended)
 ```shell
 ddev get https://github.com/dermatz/ddev-woodoo-buildtools-magento/archive/refs/tags/1.1.1.tar.gz
 ```
-#### Latest Developer-Version
+#### Latest developer-version 
 ```shell
 ddev get https://github.com/dermatz/ddev-woodoo-buildtools-magento/archive/refs/heads/main.tar.gz
 ```
@@ -59,7 +59,7 @@ Command:
   check, selftest       Woodoo Self Test
   themes                List all available themes that are configured in .ddev/config.yaml
   themes                List all available themes that are configured in .ddev/config.yaml
-  build                 Builds all themes that are configured in .ddev/config.yaml
+  build                 Build all themes that are configured in .ddev/config.yaml
   build theme           Build a specific theme
   watch theme           Watch for CSS and JS changes in a specific theme
 
