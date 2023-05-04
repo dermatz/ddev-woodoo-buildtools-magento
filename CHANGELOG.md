@@ -2,14 +2,15 @@
 All notable changes to this project will be documented in this file.
 ---
 ### Upcoming Changes for 1.2.0
-- change Wording in README.md and CHANGELOG.md
 
 ---
 ## Latesest Release
 ### 1.1.1
+- **Important Change** Switch command from `ddev woodoo ...` to `ddev frontend ...`
 - update README.md Feature List and Update instructions
+- change Wording in README.md and CHANGELOG.md
 - change Wording in `selfcheck`
-- improve Errorhandling in theme path validation (during `ddev woodoo themes`)
+- improve Errorhandling in theme path validation (during `ddev frontend themes`)
 
 ### 1.1.0
 

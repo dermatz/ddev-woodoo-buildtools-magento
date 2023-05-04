@@ -4,11 +4,11 @@
 if [[ "$1" == "help" || "$1" == "-help" || "$1" == "--help" || "$1" == "--h" || "$1" == "--hilfe" || "$1" == "--rtfm" || "$1" == "--manual" || "$1" == "--doc"  ]]; then
     readThemesInConfig
 
-    echo -e "${txtgrn}\nUsage: ${txtrst}ddev woodoo [${txtcyn}command${txtrst}] [${txtylw}option${txtrst} or ${txtpur}theme${txtrst}]\n"
+    echo -e "${txtgrn}\nUsage: ${txtrst}ddev frontend [${txtcyn}command${txtrst}] [${txtylw}option${txtrst} or ${txtpur}theme${txtrst}]\n"
 
     echo -e "${txtcyn}Command:${txtrst}"
     echo -e "  ${txtcyn}help${txtrst}                  Displays this help page"
-    echo -e "  ${txtcyn}check, selftest${txtrst}       Woodoo Self Test"
+    echo -e "  ${txtcyn}check, selftest${txtrst}       Frontend Self-Test"
     echo -e "  ${txtcyn}themes${txtrst}                List all available themes that are configured in ${txtcyn}.ddev/config.yaml${txtrst}"
     echo -e "  ${txtcyn}build${txtrst}                 Builds all themes that are configured in ${txtcyn}.ddev/config.yaml${txtrst}"
     echo -e "  ${txtcyn}build ${txtpur}theme${txtrst}           Build a specific theme${txtrst}"

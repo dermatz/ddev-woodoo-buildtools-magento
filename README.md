@@ -1,4 +1,4 @@
-# ddev Woodoo-Buildtools for Magento
+# ddev Woodoo Frontend Buildtools for Magento
 [![tests](https://github.com/dermatz/ddev-woodoo-buildtools-magento/actions/workflows/tests.yml/badge.svg)](https://github.com/dermatz/ddev-woodoo-buildtools-magento/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg)
 
 ---
@@ -13,7 +13,7 @@ _>> Build all your Magento themes at once, with Magic, build with Woodoo!_
 |<img src="https://img.shields.io/badge/Magento_2.x-Supported-43A047">| released |
 |<img src="https://img.shields.io/badge/Magento_2_Hyvä_1.2x-Supported-43A047">| released |
 |<img src="https://img.shields.io/badge/Magento_2_Hyvä_Fallback-Supported-43A047">| released |
-|<img src="https://img.shields.io/badge/Magento_1 (_MageOne_)-planned-BDBDBD">| planned 2023 |
+|<img src="https://img.shields.io/badge/Magento_1 (_MageOne_)-planned-FFCA28">| not started yet |
 
 | Features | Status |
 |-|-|
@@ -24,24 +24,30 @@ _>> Build all your Magento themes at once, with Magic, build with Woodoo!_
 |<img src="https://img.shields.io/badge/Hyvä_Fallback_Themes-Supported-43A047">| released |
 |<img src="https://img.shields.io/badge/DDEV Project_Selfcheck-Supported-43A047">| released |
 |<img src="https://img.shields.io/badge/DDEV Get_Installer-Supported-43A047">| released |
+|<img src="https://img.shields.io/badge/Magento_2_Code_Quality_Tools-planned-FFCA28">| not started yet |
 
 ---
 ## Install
-**1 . Get the latest Version (Main-Branch) of Woodoo with following command in your ddev project root**
-#### Latest stable version (recommended)
+**1 . Get the latest Version with following command in your ddev project root**
+##### Latest stable version (recommended)
 ```shell
 ddev get https://github.com/dermatz/ddev-woodoo-buildtools-magento/archive/refs/tags/1.1.1.tar.gz
 ```
-#### Latest developer-version 
+##### Latest Developer-version (Main-Branch) - can be instable!
 ```shell
 ddev get https://github.com/dermatz/ddev-woodoo-buildtools-magento/archive/refs/heads/main.tar.gz
 ```
 ---
 **2. Start Woodoo Init to update your ./ddev/config.yaml**
+
 ```shell
-ddev woodoo init
+ddev frontend init
 ```
+
+- Add all themes you want to build or watch
+
 ----
+
 **3. Edit .ddev/config.yaml**
 Open and edit `.ddev/config.yaml` and specify pathes to the themes based on your project structure. (E.g. `src/vendor/...` or `app/design/frontend/Vendor/...`)
 
@@ -51,7 +57,7 @@ If a newer Release is available you can install the specific version in the same
 
 ## Usage
 ```shell
-Usage: ddev woodoo [command] [option, theme]
+Usage: ddev frontend [command] [option, theme]
 
 Command:
   init                  Setup Woodoo, get all themes from dataabase and write to .ddev/config.yaml
