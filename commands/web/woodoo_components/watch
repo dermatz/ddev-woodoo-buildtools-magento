@@ -4,7 +4,7 @@
 function watchHyva() {
     HYVA_PATH=$1
     HYVA_NAME=$2
-    echo -e "${txtgrn}${ICON_SUCCESS} ${txtpur}$HYVA_NAME${txtcyn} will be build as Hyva Theme${txtrst}"
+    echo -e "${txtgrn}${ICON_SUCCESS} ${txtpur}$HYVA_NAME${txtcyn} will be watch as Hyvä Theme${txtrst}"
     if [[ ! -d "$HYVA_PATH/web/tailwind/node_modules" ]]; then
         echo -e "\n${txtylw}Install missing node_modules ... ${txtrst}"
         cd $HYVA_PATH/web/tailwind
@@ -19,8 +19,6 @@ function watchHyva() {
     cd $HYVA_PATH/web/tailwind
     npm run watch
 }
-
-
 
 function watchMagento() {
     THEME_NAME=$1
@@ -72,7 +70,7 @@ function watchMagento() {
 }
 
 
-# Build a specific theme (WIP)
+# Watch a specific theme (WIP)
 if [[ "$1" == "watch" && "$2" != "" || "$1" == "w" && "$2" != "" ]]; then
 
     # get all themes from config.yaml and check if 2nd parameter ($2) is a valid theme code
@@ -98,8 +96,33 @@ if [[ "$1" == "watch" && "$2" != "" || "$1" == "w" && "$2" != "" ]]; then
 fi
 
 if [[ "$1" == "watch" && "$2" == "" || "$1" == "w" && "$2" == "" ]]; then
-    # Read all themes in config.yaml
-    echo -e "${txtcyn}\nAvailable Themes to watch in config.yaml:${txtrst}"
+
     readThemesInConfig
-    getThemesInConfig
+
+    # Read all themes in config.yaml
+
+     # Show all available themes in config.yaml
+    if [[ $(countThemesinConfig) == 1 ]]; then
+        echo -e "\n${txtgrn}$(countThemesinConfig)${txtcyn} Theme is ready to watch:${txtrst}"
+        for THEME_CODE in $THEMES_IN_CONFIG; do
+
+            THEME_TO_BUILD=$(echo $(grep -oP '(?<='$THEME_CODE': ).*' .ddev/config.yaml) | cut -d ' ' -f 1 | sed 's/"//g')
+
+            # checks to figure out if it is a Hyva Theme
+            checkHyva $THEME_TO_BUILD
+            echo -e "\n${txtgrn}Start watching ...\n${txtrst}"
+
+            # Try to build as Hyva Theme
+            if [[ "$HYVA" == true ]]; then
+                watchHyva $THEME_TO_BUILD $THEME_CODE
+            else
+                watchMagento $THEME_CODE
+            fi
+
+        done
+    else
+        echo -e "\n${txtcyn}Which of the ${txtgrn}$(countThemesinConfig)${txtcyn} Themes you want to watch?\n${txtrst}"
+        getThemesInConfig
+        echo -e "\n\n${txtcyn}Type ${txtgrn}ddev frontend watch ${txtpur}[theme-code]${txtcyn} to watch a specific theme\n\n"
+    fi
 fi
