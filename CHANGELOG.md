@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 ---
 ### Upcoming Changes for 1.2.0
+#### Changes
+- update README.md
+- update CHANGELOG.md
+- 
 #### New Feature
 - run `ddev frontend watch` without theme-code if just 1 theme is added in config.yaml (https://github.com/dermatz/ddev-woodoo-buildtools-magento/issues/2)
 
