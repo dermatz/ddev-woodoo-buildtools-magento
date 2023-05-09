@@ -6,7 +6,7 @@ All notable changes to this project will be documented in this file.
 - run `ddev frontend watch` without theme-code if just 1 theme is added in config.yaml (https://github.com/dermatz/ddev-woodoo-buildtools-magento/issues/2)
 
 ---
-## Latesest Release
+## Latest Release
 ### 1.1.1
 - **Important Change** Switch command from `ddev woodoo ...` to `ddev frontend ...`
 - update README.md Feature List and Update instructions
