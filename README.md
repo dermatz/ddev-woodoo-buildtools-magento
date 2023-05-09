@@ -1,7 +1,8 @@
 # ddev Woodoo Frontend Buildtools for Magento & Hyvä
-[![tests](https://github.com/dermatz/ddev-woodoo-buildtools-magento/actions/workflows/tests.yml/badge.svg)](https://github.com/dermatz/ddev-woodoo-buildtools-magento/actions/workflows/tests.yml) ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg) !
-<img src="https://img.shields.io/github/license/dermatz/ddev-woodoo-buildtools-magento">
-<img src="https://img.shields.io/github/last-commit/dermatz/ddev-woodoo-buildtools-magento">
+[![tests](https://github.com/dermatz/ddev-woodoo-buildtools-magento/actions/workflows/tests.yml/badge.svg)](https://github.com/dermatz/ddev-woodoo-buildtools-magento/actions/workflows/tests.yml) 
+![project is maintained](https://img.shields.io/maintenance/yes/2024.svg) 
+<img src="https://img.shields.io/github/license/dermatz/ddev-woodoo-buildtools-magento"> 
+<img src="https://img.shields.io/github/last-commit/dermatz/ddev-woodoo-buildtools-magento"> 
 
 
 
