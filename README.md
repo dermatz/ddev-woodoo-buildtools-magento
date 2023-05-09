@@ -25,6 +25,11 @@ _>> Build all your Magento themes at once, with Magic, build with Woodoo!_
 |<img src="https://img.shields.io/badge/DDEV Project_Selfcheck-Supported-43A047">| released |
 |<img src="https://img.shields.io/badge/DDEV Get_Installer-Supported-43A047">| released |
 |<img src="https://img.shields.io/badge/Magento_2_Code_Quality_Tools-planned-FFCA28">| not started yet |
+--- 
+
+## Feature request
+Submit your [Feature Request](https://jira.basecom.de/browse/SDAY-706) by adding a new issue and add a label with `feature-request`
+Visit: https://jira.basecom.de/browse/SDAY-706
 
 ---
 ## Install
