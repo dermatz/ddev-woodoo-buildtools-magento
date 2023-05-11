@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 #### Changes
 - update README.md
 - update CHANGELOG.md
+- update CONTRIBUTING.md
 
 #### New Features
 - run `ddev frontend watch` without theme-code if just 1 theme is added in config.yaml (https://github.com/dermatz/ddev-woodoo-buildtools-magento/issues/2)
