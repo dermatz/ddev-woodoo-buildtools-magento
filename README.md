@@ -33,8 +33,7 @@ _>> Build all your Magento themes at once, with Magic, build with Woodoo!_
 --- 
 
 ## Feature request
-Submit your [Feature Request](https://jira.basecom.de/browse/SDAY-706) by adding a new issue and add a label with `feature-request`
-Visit: https://jira.basecom.de/browse/SDAY-706
+Submit your [Feature Request](https://github.com/dermatz/ddev-woodoo-buildtools-magento/issues) by adding a new issue and add a label with `feature-request`.
 
 ---
 ## Install
