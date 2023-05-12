@@ -1,7 +1,7 @@
 #!/bin/bash
 #ddev-generated - Do not modify this file; your modifications will be overwritten.
 
-if [[ "$1" == "help" || "$1" == "-help" || "$1" == "--help" || "$1" == "--h" || "$1" == "--hilfe" || "$1" == "--rtfm" || "$1" == "--manual" || "$1" == "--doc"  ]]; then
+if [[ "$1" == "help" || "$1" == "-help" || "$1" == "--help" || "$1" == "--h" || "$1" == "--hilfe" || "$1" == "--rtfm" || "$1" == "--manual" || "$1" == "--doc" || "$1" == "-h" || "$1" == "h" || "$1" == "man" || "$1" == "info" || "$1" == "information" ]]; then
     readThemesInConfig
 
     echo -e "${txtgrn}\nUsage: ${txtrst}ddev frontend [${txtcyn}command${txtrst}] [${txtylw}option${txtrst} or ${txtpur}theme${txtrst}]\n"
