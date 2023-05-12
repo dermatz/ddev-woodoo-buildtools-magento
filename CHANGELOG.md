@@ -6,13 +6,13 @@ All notable changes to this project will be documented in this file.
 - update README.md
 - update CHANGELOG.md
 - update CONTRIBUTING.md
-- update typo in hyva checks [https://github.com/dermatz/ddev-woodoo-buildtools-magento/pull/9 by [@torhoehn](https://github.com/torhoehn)] 
 
 #### New Features and improvements
 - run `ddev frontend watch` without theme-code if just 1 theme is added in config.yaml (https://github.com/dermatz/ddev-woodoo-buildtools-magento/issues/2)
 - run automaticly `ddev frontend init`if no theme was configured before (https://github.com/dermatz/ddev-woodoo-buildtools-magento/issues/6)
 - add a message to the DDEV Woodoo Command Headline if a Woodoo Update is available (https://github.com/dermatz/ddev-woodoo-buildtools-magento/issues/4)
-
+- update typo in hyva checks [https://github.com/dermatz/ddev-woodoo-buildtools-magento/pull/9 by [@torhoehn](https://github.com/torhoehn)] 
+ 
 ---
 ## Latest Release
 ### 1.1.1
