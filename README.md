@@ -1,8 +1,8 @@
 # [DDEV] Woodoo Frontend Buildtools for Magento & Hyvä
-[![tests](https://github.com/dermatz/ddev-woodoo-buildtools-magento/actions/workflows/tests.yml/badge.svg)](https://github.com/dermatz/ddev-woodoo-buildtools-magento/actions/workflows/tests.yml) 
-![project is maintained](https://img.shields.io/maintenance/yes/2024.svg) 
-<img src="https://img.shields.io/github/license/dermatz/ddev-woodoo-buildtools-magento"> 
-<img src="https://img.shields.io/github/last-commit/dermatz/ddev-woodoo-buildtools-magento"> 
+[![tests](https://github.com/dermatz/ddev-woodoo-buildtools-magento/actions/workflows/tests.yml/badge.svg)](https://github.com/dermatz/ddev-woodoo-buildtools-magento/actions/workflows/tests.yml)
+![project is maintained](https://img.shields.io/maintenance/yes/2024.svg)
+<img src="https://img.shields.io/github/license/dermatz/ddev-woodoo-buildtools-magento">
+<img src="https://img.shields.io/github/last-commit/dermatz/ddev-woodoo-buildtools-magento">
 
 
 
@@ -30,7 +30,7 @@ _>> Build all your Magento themes at once, with Magic, build with Woodoo!_
 |<img src="https://img.shields.io/badge/DDEV Project_Selfcheck-Supported-43A047">| released |
 |<img src="https://img.shields.io/badge/DDEV Get_Installer-Supported-43A047">| released |
 |<img src="https://img.shields.io/badge/Magento_2_Code_Quality_Tools-planned-FFCA28">| not started yet |
---- 
+---
 
 ## Feature request
 Submit your [Feature Request](https://github.com/dermatz/ddev-woodoo-buildtools-magento/issues) by adding a new issue and add a label with `feature-request`.
@@ -40,7 +40,7 @@ Submit your [Feature Request](https://github.com/dermatz/ddev-woodoo-buildtools-
 **1 . Get the latest Version with following command in your ddev project root**
 ##### Latest stable version (recommended)
 ```shell
-ddev get https://github.com/dermatz/ddev-woodoo-buildtools-magento/archive/refs/tags/1.1.1.tar.gz
+ddev get https://github.com/dermatz/ddev-woodoo-buildtools-magento/archive/refs/tags/1.2.0.tar.gz
 ```
 ##### Latest Developer-version (Main-Branch) - can be instable!
 ```shell
@@ -69,16 +69,18 @@ If a newer Release is available you can install the specific version in the same
 Usage: ddev frontend [command] [option, theme]
 
 Command:
-  init                  Setup Woodoo, get all themes from dataabase and write to .ddev/config.yaml
-  help                  Show this help page
+  init                  Initial Woodoo Setup to read all themes from dataabase and write to .ddev/config.yaml
+  help                  Show a help page
   check, selftest       Woodoo Self Test
   themes                List all available themes that are configured in .ddev/config.yaml
   themes                List all available themes that are configured in .ddev/config.yaml
   build                 Build all themes that are configured in .ddev/config.yaml
+  build -f              Builds all themes without yes/no question (force)
   build theme           Build a specific theme
   watch theme           Watch for CSS and JS changes in a specific theme
 
 Option:
+  -f                    Builds all themes without yes/no question (force)
   themecode             Theme-Code from .ddev/config.yaml
 ```
 

@@ -1,26 +1,37 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 ---
-### Upcoming Changes for 1.2.0
+### Upcoming Changes for 1.3.0
+##### This section will be updated after commits or Pull-Request merges
+
+- ...
+
+---
+## Latest Release
+
+### 1.2.0
 #### Changes
 - update README.md
 - update CHANGELOG.md
 - update CONTRIBUTING.md
+- update typo in hyva checks [https://github.com/dermatz/ddev-woodoo-buildtools-magento/pull/9 by [@torhoehn](https://github.com/torhoehn)]
+- update help command
+#### New Features
+- run `ddev frontend watch` without a theme-code, if just 1 theme was added in config.yaml (https://github.com/dermatz/ddev-woodoo-buildtools-magento/issues/2)
+- build/watch command start `init` automaticly if no theme was configured before (https://github.com/dermatz/ddev-woodoo-buildtools-magento/issues/6)
+- add a message to the DDEV Woodoo Command Headline was added, if a Update is available (https://github.com/dermatz/ddev-woodoo-buildtools-magento/issues/4)
+- Build all themes (force) without yes/no question with `ddev frontend build -f` (https://github.com/dermatz/ddev-woodoo-buildtools-magento/issues/1)
 
-#### New Features and improvements
-- run `ddev frontend watch` without theme-code if just 1 theme is added in config.yaml (https://github.com/dermatz/ddev-woodoo-buildtools-magento/issues/2)
-- run automaticly `ddev frontend init`if no theme was configured before (https://github.com/dermatz/ddev-woodoo-buildtools-magento/issues/6)
-- add a message to the DDEV Woodoo Command Headline if a Woodoo Update is available (https://github.com/dermatz/ddev-woodoo-buildtools-magento/issues/4)
-- update typo in hyva checks [https://github.com/dermatz/ddev-woodoo-buildtools-magento/pull/9 by [@torhoehn](https://github.com/torhoehn)] 
- 
 ---
-## Latest Release
+
 ### 1.1.1
 - **Important Change** Switch command from `ddev woodoo ...` to `ddev frontend ...`
 - update README.md Feature List and Update instructions
 - change Wording in README.md and CHANGELOG.md
 - change Wording in `selfcheck`
 - improve Errorhandling in theme path validation (during `ddev frontend themes`)
+
+---
 
 ### 1.1.0
 
