@@ -89,6 +89,7 @@ function readThemesInConfig() {
                 # Check whether the next line begins with "-"
                 if [[ -n "$next_line" && "$next_line" =~ ^- ]]; then
                     THEMES_IN_CONFIG="$THEMES_IN_CONFIG $(echo $next_line | cut -d ' ' -f 2 | cut -d ':' -f 1)"
+
                 else
                     break
                 fi

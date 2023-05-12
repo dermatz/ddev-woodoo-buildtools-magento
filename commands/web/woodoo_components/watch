@@ -74,7 +74,8 @@ function watchMagento() {
 if [[ "$1" == "watch" && "$2" != "" || "$1" == "w" && "$2" != "" ]]; then
 
     # get all themes from config.yaml and check if 2nd parameter ($2) is a valid theme code
-    readThemesInConfig
+    checkThemePathExists
+
 
     # check if 2nd parameter ($2) is a valid theme code
     if [[ ! " ${THEMES_IN_CONFIG[@]} " =~ " ${2} " ]]; then
@@ -97,7 +98,8 @@ fi
 
 if [[ "$1" == "watch" && "$2" == "" || "$1" == "w" && "$2" == "" ]]; then
 
-    readThemesInConfig
+    # Check all themes in config.yaml
+    checkThemePathExists
 
     # Read all themes in config.yaml
     # Show all available themes in config.yaml
