@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 - update README.md
 - update CHANGELOG.md
 - update CONTRIBUTING.md
+- update typo in hyva checks [https://github.com/dermatz/ddev-woodoo-buildtools-magento/pull/9 by [@torhoehn](https://github.com/torhoehn)] 
 
 #### New Features and improvements
 - run `ddev frontend watch` without theme-code if just 1 theme is added in config.yaml (https://github.com/dermatz/ddev-woodoo-buildtools-magento/issues/2)
