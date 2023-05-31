@@ -1,14 +1,18 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 ---
-### Upcoming Changes for 1.3.0
+### Upcoming Changes for 1.4.0
 ##### This section will be updated after commits or Pull-Request merges
 
-- Build-process check if hyva themeversion is > 1.1.19 to change build command (https://github.com/dermatz/ddev-woodoo-buildtools-magento/issues/11 by [@therouv](https://github.com/therouv))
-- Clear cache once after all themes have been built (https://github.com/dermatz/ddev-woodoo-buildtools-magento/issues/12 by [@therouv](https://github.com/therouv))
-
+- ...
 ---
 ## Latest Release
+
+### 1.3.0
+#### New Features (Hyvä 1.1.x Support)
+- Hyvä 1.1.x Support for Build-process: `build` check if hyvä themeversion is > 1.1.x to change build command automaticly (https://github.com/dermatz/ddev-woodoo-buildtools-magento/issues/11 by [@therouv](https://github.com/therouv))
+#### Changes
+- Clear cache once after all themes have been built (https://github.com/dermatz/ddev-woodoo-buildtools-magento/issues/12 by [@therouv](https://github.com/therouv))
 
 ### 1.2.0
 #### Changes
