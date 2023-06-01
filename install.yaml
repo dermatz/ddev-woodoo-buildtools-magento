@@ -4,6 +4,7 @@ pre_install_actions:
 project_files:
 - commands/web/woodoo_components/
 - commands/web/frontend
+- commands/host/frontend-update
 
 post_install_actions:
 

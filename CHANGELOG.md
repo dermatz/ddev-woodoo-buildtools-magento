@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 ### Upcoming Changes for 1.4.0
 ##### This section will be updated after commits or Pull-Request merges
 
-- ...
+- add new __host__ command `ddev frontend-update` to update to the latest release
 ---
 ## Latest Release
 

@@ -1,9 +1,9 @@
 #!/bin/bash
 #ddev-generated - Do not modify this file; your modifications will be overwritten.
 
-## Description: Run the frontend command inside the web container in the root of the project (Use --cwd for another directory)
+## Description: Run the frontend command inside the web container
 ## Usage: frontend [flags] [args]
-## Example: "ddev frontend init"
+## Example: "ddev frontend"
 ## ExecRaw: true
 ## HostWorkingDir: true
 
@@ -12,7 +12,7 @@ source ".ddev/commands/web/woodoo_components/variables"
 echo -e "🛠️  ${bldblu}DDEV Woodoo Frontend Buildtools $WOODOO_VERSION for Magento${txtrst}"
 if [ "$WOODOO_VERSION" != "$LATEST_WOODOO_VERSION" ]; then
     echo -e "🛠️  ${bldylw}Version $LATEST_WOODOO_VERSION available!${txtrst}"
-    echo -e "   ${txtylw}Install update with:   ${txtcyn}ddev get https://github.com/dermatz/ddev-woodoo-buildtools-magento/archive/refs/tags/$LATEST_WOODOO_VERSION.tar.gz${txtrst}"
+    echo -e "   ${txtylw}Install update with:   ${txtcyn}ddev frontend-update${txtrst}"
 fi
 
 source ".ddev/commands/web/woodoo_components/checks"
