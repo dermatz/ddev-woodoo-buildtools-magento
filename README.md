@@ -4,8 +4,6 @@
 <img src="https://img.shields.io/github/license/dermatz/ddev-woodoo-buildtools-magento">
 <img src="https://img.shields.io/github/last-commit/dermatz/ddev-woodoo-buildtools-magento">
 
-
-
 ---
 This ddev add-on helps you to manage your theme build processes in Magento total easy. You can run a build command to build all your themes or a specific theme. Don't matter if the theme is a Magento Standard or Custom Theme, or maybe a Hyva theme. It automatically takes care which type of theme you use and will build it for you. If a dependency is missing, Woodoo will install it.
 
@@ -41,7 +39,7 @@ Submit your [Feature Request](https://github.com/dermatz/ddev-woodoo-buildtools-
 **1 . Get the latest Version with following command in your ddev project root**
 ##### Latest stable version (recommended)
 ```shell
-ddev get https://github.com/dermatz/ddev-woodoo-buildtools-magento/archive/refs/tags/1.3.0.tar.gz
+ddev get https://github.com/dermatz/ddev-woodoo-buildtools-magento/archive/refs/tags/1.3.1.tar.gz
 ```
 ##### Latest Developer-version (Main-Branch) - can be instable!
 ```shell
@@ -73,6 +71,7 @@ Command:
   init                  Initial Woodoo Setup to read all themes from dataabase and write to .ddev/config.yaml
   help                  Show a help page
   check, selftest       Woodoo Self Test
+  frontend-update       Update to the latest Version
   themes                List all available themes that are configured in .ddev/config.yaml
   themes                List all available themes that are configured in .ddev/config.yaml
   build                 Build all themes that are configured in .ddev/config.yaml

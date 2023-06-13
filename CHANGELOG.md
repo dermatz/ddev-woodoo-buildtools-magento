@@ -2,12 +2,15 @@
 All notable changes to this project will be documented in this file.
 ---
 ### Upcoming Changes for 1.4.0
-##### This section will be updated after commits or Pull-Request merges
 
-- add new __host__ command `ddev frontend-update` to update to the latest release
+##### This section will be updated after commits or Pull-Request merges
 ---
 ## Latest Release
 
+### 1.3.1
+- add new __host__ command `ddev frontend-update` to update to the latest release
+- update readme
+- update help
 ### 1.3.0
 #### New Features (Hyvä 1.1.x Support)
 - Hyvä 1.1.x Support for Build-process: `build` check if hyvä themeversion is > 1.1.x to change build command automaticly (https://github.com/dermatz/ddev-woodoo-buildtools-magento/issues/11 by [@therouv](https://github.com/therouv))
