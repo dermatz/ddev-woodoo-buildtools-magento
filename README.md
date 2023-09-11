@@ -9,8 +9,6 @@ This ddev add-on helps you to manage your theme build processes in Magento total
 
 _>> Build all your Magento themes at once, with Magic, build with Woodoo!_
 
-<img src="https://github.com/dermatz/ddev-woodoo-buildtools-magento/blob/main/.github/woodoo.png">
-
 ---
 Special thanks to e3n GmbH for your Support! 
 
