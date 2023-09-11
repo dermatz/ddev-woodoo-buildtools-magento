@@ -10,11 +10,9 @@ This ddev add-on helps you to manage your theme build processes in Magento total
 _>> Build all your Magento themes at once, with Magic, build with Woodoo!_
 
 ---
-
 Special thanks to e3n GmbH for your Support! 
 
 [<img src="https://e3n.de/assets/images/logo/logo.svg" height="50">](https://e3n.de)
-
 ---
 
 | Supported Magento Version| Status |
@@ -94,10 +92,10 @@ Option:
 
 Contributions are welcome! Please read the [Contributing Guidelines](./CONTRIBUTING.md) first.
 Feel free to send your improvements as Pull-Request.
-### Watch out our Contributers & Supporter
-
-[<img src="https://e3n.de/assets/images/logo/logo.svg" height="50">](https://e3n.de)
+### Watch out our Contributers, Tester & Supporter
+- [Thomas Hauschild](https://github.com/Morgy93)
+- [<img src="https://e3n.de/assets/images/logo/logo.svg" height="50">](https://e3n.de)
 
 
 ## License
-[MIT License](./MIT-LICENSES.md) | by [Mathias Elle](https://www.linkedin.com/in/mathias-elle-842783102/) - [(dermatz.de)](https://www.dermatz.de)
+[MIT License](./MIT-LICENSES.md) | by [Mathias Elle](https://www.linkedin.com/in/mathias-elle-842783102/)
