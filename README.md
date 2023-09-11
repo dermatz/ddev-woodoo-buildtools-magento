@@ -11,6 +11,12 @@ _>> Build all your Magento themes at once, with Magic, build with Woodoo!_
 
 ---
 
+Special thanks to e3n GmbH for your Support! 
+
+[<img src="https://e3n.de/assets/images/logo/logo.svg" height="50">](https://e3n.de)
+
+---
+
 | Supported Magento Version| Status |
 |-|-|
 |<img src="https://img.shields.io/badge/Magento_2.x-Supported-43A047">| released |
