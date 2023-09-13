@@ -4,7 +4,8 @@
 function getMagento2_ThemeStoreCodes() {
 
     # check if mysql is installed
-    if ! command -v mysql &> /dev/null; then
+    if ! command -v mysql &> /dev/null
+    then
         echo -e "\n${txtred}mysql could not be found.${txtrst}"
         echo -e "${txtred}Please install mysql.${txtrst}\n"
         exit 1
@@ -23,6 +24,7 @@ function getThemesFromDB() {
             echo -e "${txtpur}- $THEME_CODE ${txtrst}"
         done
     fi
+
 }
 
 function addThemesToConfig() {
@@ -34,38 +36,32 @@ function addThemesToConfig() {
         LINE=4
 
         echo -en "\n${txtcyn}Woodoo has found ${txtpur}$THEME_CODES_DB_COUNT Themes${txtcyn} in your Database.${txtrst}"
-        echo -en "\n${txtcyn}Add the Theme below to $PROJECT_CONFIG_FILE if you want add it to the Build-Process later:${txtrst}\n\n"
 
-        if grep -q "themes:" $PROJECT_CONFIG_FILE; then
-            echo -e "\n${txtgrn}${ICON_SUCCESS} Themes-Section already exist in $PROJECT_CONFIG_FILE ${txtrst}\n"
+        if [[ $THEME_CODES_DB_COUNT -gt 1 ]]; then
+            echo -en "\n${txtcyn}Choose the Themes below which should be added in ${txtpur}$PROJECT_CONFIG_FILE${txtcyn} to watch and build later:${txtrst}\n\n"
+            echo -en "${bldgrn}Tipp:${txtwht} Navigate with ↑ or ↓ keys and press Space to select the Themes you want to add.\n\n"
         else
-            sed -i $LINE'i\themes:' $PROJECT_CONFIG_FILE
+            echo -en "\n${txtcyn}Choose the Theme below which should be added in ${txtpur}$PROJECT_CONFIG_FILE${txtcyn} to watch and build later:${txtrst}\n\n"
+            echo -en "${bldgrn}Tipp:${txtwht} Navigate with ↑ or ↓ keys and press Space to select the Theme you want to add.\n\n"
         fi
 
-        for THEME_CODE in $THEME_CODES_DB; do
+        if ! grep -q "themes:" $PROJECT_CONFIG_FILE; then
+            echo -e "themes:" >> $PROJECT_CONFIG_FILE
+        fi
 
-            ((LINE++))
+        SELECTED_THEMES=$(gum choose --cursor-prefix "[ ] " --unselected-prefix "[ ] " --selected-prefix "[✓] " --no-limit $THEME_CODES_DB)
 
-            # checks if theme is already in config-themes.yaml
+        for THEME_CODE in $SELECTED_THEMES; do
             if grep -q "$THEME_CODE" $PROJECT_CONFIG_FILE; then
                 echo -en "${txtylw}${ICON_ERROR} Theme "$THEME_CODE" already exists (skipped)${txtrst}\n\n"
                 continue
             fi
-
-            echo -en "📎 Add Theme ${txtpur}$THEME_CODE${txtrst}? [y/n] "
-            read -r answer
-            if [ "$answer" = "y" ] || [ "$answer" = "yes" ] || [ "$answer" = "Y" ] || [ "$answer" = "YES" ] || [ "$answer" = "ja" ] || [ "$answer" = "" ]; then
-                THEME_PATH="path/to/theme"
-                sed -i $LINE'i\  - '$THEME_CODE': "'$THEME_PATH'"' $PROJECT_CONFIG_FILE
-                echo -en "${txtgrn}${ICON_SUCCESS} Theme "$THEME_CODE" added!${txtrst}\n\n"
-                ((ADDEDTHEMES++))
-            else
-                ((LINE--))
-                echo -en "${txtylw}${ICON_ERROR} Theme "$THEME_CODE" skipped ${txtrst}\n\n"
-            fi
-
+            THEMEPATH=$(gum input --cursor.foreground "#FF0" --prompt "Theme-Path ($THEME_CODE): " --prompt.foreground="#84CC16" --placeholder "Enter relative path here ...")
+            echo -e "    - ${THEME_CODE}: '${THEMEPATH}'" >> $PROJECT_CONFIG_FILE
+            ((ADDEDTHEMES++))
         done
-        echo -en "${txtgrn}${ICON_SUCCESS} $ADDEDTHEMES of $THEME_CODES_DB_COUNT Themes added to $PROJECT_CONFIG_FILE ${txtrst}\n"
+
+        echo -en "${txtgrn}${ICON_SUCCESS} $ADDEDTHEMES of $THEME_CODES_DB_COUNT Themes saved in $PROJECT_CONFIG_FILE ${txtrst}\n"
 
     fi
 }
@@ -75,11 +71,11 @@ function readThemesInConfig() {
     THEMES_IN_CONFIG=""
 
     if [ ! -f $PROJECT_CONFIG_FILE ]; then
-        echo -e "\n${txtred}No $PROJECT_CONFIG_FILE found.' ${txtrst}\n"
-        exit 0
+        echo -e "\n${txtred}No $PROJECT_CONFIG_FILE found.' first.${txtrst}\n"
+        exit 1
     fi
 
-    # Read config-themes.yaml to get available themes
+    # Read config.yaml to get available themes
     while read -r line; do
         # Check whether the line with "Themes:" begins
         if [[ "$line" =~ ^themes: ]]; then
@@ -96,7 +92,7 @@ function readThemesInConfig() {
     done < $PROJECT_CONFIG_FILE
 }
 
-# Count Themes by reading config-themes.yaml with readThemesInConfig()
+# Count Themes by reading config.yaml with readThemesInConfig()
 function countThemesinConfig() {
 
     readThemesInConfig
@@ -108,7 +104,7 @@ function countThemesinConfig() {
 
 }
 
-# get all available themes in config-themes.yaml
+# get all available themes in config.yaml
 function getThemesInConfig() {
 
     readThemesInConfig
@@ -122,7 +118,7 @@ function getThemesInConfig() {
 
 }
 
-#check all available themes in config-themes.yaml if the path is not "path/to/theme"
+#check all available themes in config.yaml if the path is not "path/to/theme"
 function checkThemePathExists() {
 
     readThemesInConfig
