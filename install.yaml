@@ -6,7 +6,8 @@ project_files:
 - commands/web/frontend
 - commands/host/frontend-update
 
-post_install_actions:
-
 dependencies:
 - Morgy93/ddev-gum
+
+post_install_actions:
+
