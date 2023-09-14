@@ -1,13 +1,9 @@
 name: ddev-woodoo-buildtools-magento
+
 pre_install_actions:
+- ddev get Morgy93/ddev-gum
 
 project_files:
 - commands/web/woodoo_components/
 - commands/web/frontend
 - commands/host/frontend-update
-
-dependencies:
-- Morgy93/ddev-gum
-
-post_install_actions:
-
