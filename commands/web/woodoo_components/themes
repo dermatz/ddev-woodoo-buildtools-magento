@@ -39,31 +39,39 @@ function addThemesToConfig() {
 
         if [[ $THEME_CODES_DB_COUNT -gt 1 ]]; then
             echo -en "\n${txtcyn}Choose the Themes below which should be added in ${txtpur}$PROJECT_CONFIG_FILE${txtcyn} to watch and build later:${txtrst}\n\n"
-            echo -en "${bldgrn}Tipp:${txtwht} Navigate with ↑ or ↓ keys and press Space to select the Themes you want to add.\n\n"
         else
             echo -en "\n${txtcyn}Choose the Theme below which should be added in ${txtpur}$PROJECT_CONFIG_FILE${txtcyn} to watch and build later:${txtrst}\n\n"
-            echo -en "${bldgrn}Tipp:${txtwht} Navigate with ↑ or ↓ keys and press Space to select the Theme you want to add.\n\n"
         fi
 
         if ! grep -q "themes:" $PROJECT_CONFIG_FILE; then
             echo -e "themes:" >> $PROJECT_CONFIG_FILE
         fi
 
-        SELECTED_THEMES=$(gum choose --cursor-prefix "[ ] " --unselected-prefix "[ ] " --selected-prefix "[✓] " --no-limit $THEME_CODES_DB)
+        gum_choose $THEME_CODES_DB
+        SELECTED_THEMES=$GUM_CHOOSE
 
         for THEME_CODE in $SELECTED_THEMES; do
             if grep -q "$THEME_CODE" $PROJECT_CONFIG_FILE; then
-                echo -en "${txtylw}${ICON_ERROR} Theme "$THEME_CODE" already exists (skipped)${txtrst}\n\n"
+                echo -en "${txtylw}${ICON_ERROR} Theme "$THEME_CODE" already exists (skipped)${txtrst}\n"
                 continue
             fi
-            THEMEPATH=$(gum input --cursor.foreground "#FF0" --prompt "Theme-Path ($THEME_CODE): " --prompt.foreground="#84CC16" --placeholder "Enter relative path here ...")
+            THEMEPATH=$(gum input --cursor.foreground "#CCC" --prompt "Enter Theme-Path ($THEME_CODE): " --prompt.foreground="#84CC16" --placeholder "enter relative path")
             echo -e "    - ${THEME_CODE}: '${THEMEPATH}'" >> $PROJECT_CONFIG_FILE
             ((ADDEDTHEMES++))
         done
 
-        echo -en "${txtgrn}${ICON_SUCCESS} $ADDEDTHEMES of $THEME_CODES_DB_COUNT Themes saved in $PROJECT_CONFIG_FILE ${txtrst}\n"
+        echo -en "\n${txtgrn}${ICON_SUCCESS} $ADDEDTHEMES of $THEME_CODES_DB_COUNT Themes saved in $PROJECT_CONFIG_FILE ${txtrst}\n"
 
     fi
+}
+
+function gum_choose() {
+    local PLURAL=""
+    if [[ $# -gt 1 ]]; then
+        local PLURAL="s"
+    fi
+    echo -en "${bldgrn}Tipp:${txtwht} Navigate with ↑ or ↓ keys and press Space to select the option$PLURAL you want to add.\n\n"
+    GUM_CHOOSE=$(gum choose --cursor-prefix "[ ] " --unselected-prefix "[ ] " --selected-prefix "[✓] " --no-limit "$@")
 }
 
 function readThemesInConfig() {
