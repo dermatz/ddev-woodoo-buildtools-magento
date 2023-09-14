@@ -8,3 +8,5 @@ project_files:
 
 post_install_actions:
 
+dependencies:
+- Morgy93/ddev-gum
