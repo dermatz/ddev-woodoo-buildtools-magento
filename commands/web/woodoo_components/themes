@@ -82,12 +82,13 @@ function addThemesToConfig() {
 
         # Counter output
         if [[ $ADDEDTHEMES -gt 0 ]]; then
-            echo -e "\n${txtgrn}${ADDEDTHEMES} Theme(s) added to ${txtpur}$PROJECT_CONFIG_FILE${txtrst}\n"
+            echo -e "\n${txtgrn}${ADDEDTHEMES} Theme(s) added to ${txtpur}$PROJECT_CONFIG_FILE${txtrst}"
         fi
         if [[ $REMOVEDTHEMES -gt 0 ]]; then
-            echo -e "\n${txtred}${REMOVEDTHEMES} Theme(s) removed from ${txtpur}$PROJECT_CONFIG_FILE${txtrst}\n"
+            echo -e "${txtred}${REMOVEDTHEMES} Theme(s) removed from ${txtpur}$PROJECT_CONFIG_FILE${txtrst}"
         fi
 
+        echo -e "\n"
     else
         echo -e "\n${txtred}No $PROJECT_CONFIG_FILE found.'${txtrst}\n"
         exit 1
