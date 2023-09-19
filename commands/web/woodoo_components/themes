@@ -69,7 +69,7 @@ function addThemesToConfig() {
                     continue
                 fi
                 local THEMEPATH=$(gum input --cursor.foreground "#CCC" --prompt "Enter Theme-Path ($THEME_CODE): " --prompt.foreground="#84CC16" --placeholder "enter relative path")
-                echo -e "    - ${THEME_CODE}: ${THEMEPATH}" >> $PROJECT_CONFIG_FILE
+                echo -e "    - ${THEME_CODE}: \"${THEMEPATH}\"" >> $PROJECT_CONFIG_FILE
                 ((ADDEDTHEMES++))
             else
                 if grep -q "$THEME_CODE" $PROJECT_CONFIG_FILE; then
