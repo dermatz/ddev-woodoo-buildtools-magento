@@ -126,19 +126,12 @@ if [[ "$1" == "build" && "$2" == "" || "$1" == "b" && "$2" == "" || "$1" == "bui
 
     # if more then one theme is available, ask if all themes should be build
     if [[ $(countThemesinConfig) -gt 1 && $2 != '-f' ]]; then
-        echo -en "Build all $(countThemesinConfig) Themes? [y/n] "
-        read -r answer
-        if [ "$answer" = "y" ] || [ "$answer" = "yes" ] || [ "$answer" = "Y" ] || [ "$answer" = "YES" ] || [ "$answer" = "ja" ] || [ "$answer" = "" ]; then
-            echo -e "\n${txtgrn}Build all Themes ...${txtrst}\n"
-        else
-            echo -e "\n${txtylw}stopped!${txtrst}\n"
-            exit 0
-        fi
+        THEMES_TO_BUILD=$(gum choose --cursor-prefix "[ ] " --unselected-prefix "[ ] " --selected-prefix "[✓] " --no-limit $THEMES_IN_CONFIG;)
+    else
+        THEMES_TO_BUILD=$THEMES_IN_CONFIG
     fi
 
-    # Build all themes
-    for THEME_CODE in $THEMES_IN_CONFIG; do
-
+    for THEME_CODE in $THEMES_TO_BUILD; do
         THEME_TO_BUILD=$(echo $(grep -oP '(?<='$THEME_CODE': ).*' $PROJECT_CONFIG_FILE) | cut -d ' ' -f 1 | sed 's/"//g')
 
         # checks to figure out if it is a Hyvä Theme
