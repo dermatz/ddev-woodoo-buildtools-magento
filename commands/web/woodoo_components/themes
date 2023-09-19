@@ -211,12 +211,12 @@ if [[ "$1" = "init" || "$1" = "install" || "$1" = "i" ]]; then
     addThemesToConfig
 fi
 
-if [[ "$1" = "themes" && "$2" = "check" ]]; then
+if [[ "$1" = "themes" || "$1" = "theme"  && "$2" = "check" ]]; then
     checkThemePathExists
 fi
 
 
-if [[ "$1" = "themes" && "$2" == "" ]]; then
+if [[ "$1" = "themes" || "$1" = "theme"  && "$2" == "" ]]; then
 
     echo -e "\n${txtgrn}Themes found in Database:\n"
     getThemesFromDB
