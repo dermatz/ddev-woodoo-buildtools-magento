@@ -69,7 +69,7 @@ function addThemesToConfig() {
                     continue
                 fi
                 local THEMEPATH=$(gum input --cursor.foreground "#CCC" --prompt "Enter Theme-Path ($THEME_CODE): " --prompt.foreground="#84CC16" --placeholder "enter relative path")
-                echo -e "    - ${THEME_CODE}: '${THEMEPATH}'" >> $PROJECT_CONFIG_FILE
+                echo -e "    - ${THEME_CODE}: ${THEMEPATH}" >> $PROJECT_CONFIG_FILE
                 ((ADDEDTHEMES++))
             else
                 if grep -q "$THEME_CODE" $PROJECT_CONFIG_FILE; then
@@ -174,7 +174,8 @@ function checkThemePathExists() {
                         if [[ -n "$next_line" && "$next_line" =~ ^- ]]; then
                             if [[ "$next_line" =~ $THEME_CODE ]]; then
                                 THEME_PATH=$(echo $next_line | cut -d ' ' -f 3 | cut -d '"' -f 2)
-                                if [[ "$THEME_PATH" == "path/to/theme" ]]; then
+
+                                if [[ "$THEME_PATH" == "" ]]; then
                                     echo -e "${txtred}${ICON_ERROR} Theme ${txtpur}$THEME_CODE ${txtred}has not been configured yet.${txtrst}"
                                     THEME_PATHES_VALID=false
                                     PATH_ERROR=true
