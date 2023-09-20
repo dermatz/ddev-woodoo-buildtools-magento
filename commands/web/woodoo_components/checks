@@ -19,7 +19,7 @@ function checkForNewThemeConfig() {
         echo -en "${txtblu}What has been changed?${txtrst} You no longer have to add your Themes to ${txtcyn}$OLD_CONFIG_FILE${txtylw}.${txtrst}\n"
         echo -en "${txtblu}What is new?${txtrst} Now all Theme Settings are stored in this new file: ${txtcyn}$PROJECT_CONFIG_FILE${txtrst}\n\n"
 
-        gum confirm "You wish automatic update?" && migrateThemesToNewConfigFile || echo -e "${txtylw}You choose manually update!\n${txtrst}Please create ${txtcyn}${PROJECT_CONFIG_FILE}${txtrst} and add your theme custom themepathes manually.\n"
+        gum confirm "Do you wish to update automatically??" && migrateThemesToNewConfigFile || echo -e "${txtylw}You choosed manual update.\n${txtrst}Please create ${txtcyn}${PROJECT_CONFIG_FILE}${txtrst} and add your theme paths manually.\n"
 
     fi
 }
