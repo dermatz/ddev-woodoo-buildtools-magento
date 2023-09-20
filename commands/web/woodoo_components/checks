@@ -18,16 +18,9 @@ function checkForNewThemeConfig() {
         echo -e "\n${txtylw}👉 Since Woodoo Version 1.4, a new $PROJECT_CONFIG_FILE file is required!${txtrst}"
         echo -en "${txtblu}What has been changed?${txtrst} You no longer have to add your Themes to ${txtcyn}$OLD_CONFIG_FILE${txtylw}.${txtrst}\n"
         echo -en "${txtblu}What is new?${txtrst} Now all Theme Settings are stored in this new file: ${txtcyn}$PROJECT_CONFIG_FILE${txtrst}\n\n"
-        echo -en "${txtgrn}🛠  Copy and cleanup Theme Settings now? [y/n] ${txtrst}"
 
-        read -r answer
+        gum confirm "Do you wish to update automatically??" && migrateThemesToNewConfigFile || echo -e "${txtylw}You choosed manual update.\n${txtrst}Please create ${txtcyn}${PROJECT_CONFIG_FILE}${txtrst} and add your theme paths manually.\n"
 
-        if [ "$answer" = "y" ] || [ "$answer" = "yes" ] || [ "$answer" = "Y" ] || [ "$answer" = "YES" ] || [ "$answer" = "ja" ] || [ "$answer" = "" ]; then
-            migrateThemesToNewConfigFile
-        else
-            echo -e "\n${txtred}Please create $PROJECT_CONFIG_FILE and add your theme pathes manually.${txtrst}\n"
-            exit 1
-        fi
     fi
 }
 
@@ -39,7 +32,7 @@ function migrateThemesToNewConfigFile() {
         echo -e "\n${txtred}Could not create $PROJECT_CONFIG_FILE.${txtrst}\n"
         exit 0
     else
-        echo -e "\n${txtgrn}${ICON_SUCCESS} $PROJECT_CONFIG_FILE created.${txtrst}\n"
+        echo -e "\n${txtgrn}${ICON_SUCCESS} $PROJECT_CONFIG_FILE created.${txtrst}"
     fi
 
     if [ -f $PROJECT_CONFIG_FILE ]; then

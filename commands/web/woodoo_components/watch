@@ -111,9 +111,18 @@ if [[ "$1" == "watch" && "$2" == "" || "$1" == "w" && "$2" == "" ]]; then
 
         addThemesToConfig
 
-    elif [[ $(countThemesinConfig) == 1 ]]; then
         echo -e "\n${txtgrn}$(countThemesinConfig)${txtcyn} Theme is ready to watch:${txtrst}"
-        for THEME_CODE in $THEMES_IN_CONFIG; do
+
+    else
+
+         # if more then one theme is available, ask if all themes should be build
+        if [[ $(countThemesinConfig) -gt 1 && $2 != '-f' ]]; then
+            THEMES_TO_WATCH=$(gum choose --cursor-prefix "[ ] " --unselected-prefix "[ ] " --selected-prefix "[✓] " $THEMES_IN_CONFIG;)
+        else
+            THEMES_TO_WATCH=$THEMES_IN_CONFIG
+        fi
+
+        for THEME_CODE in $THEMES_TO_WATCH; do
 
             THEME_TO_BUILD=$(echo $(grep -oP '(?<='$THEME_CODE': ).*' $PROJECT_CONFIG_FILE) | cut -d ' ' -f 1 | sed 's/"//g')
 
@@ -129,9 +138,5 @@ if [[ "$1" == "watch" && "$2" == "" || "$1" == "w" && "$2" == "" ]]; then
             fi
 
         done
-    else
-        echo -e "\n${txtcyn}Which of the ${txtgrn}$(countThemesinConfig)${txtcyn} Themes you want to watch?\n${txtrst}"
-        getThemesInConfig
-        echo -e "\n\n${txtcyn}Type ${txtgrn}ddev frontend watch ${txtpur}[theme-code]${txtcyn} to watch a specific theme\n\n"
     fi
 fi
