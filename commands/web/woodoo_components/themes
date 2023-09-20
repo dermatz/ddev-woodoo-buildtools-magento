@@ -62,7 +62,6 @@ function addThemesToConfig() {
 
         # Save selected to config file, skip existing ones
         for THEME_CODE in $THEME_CODES_DB; do
-
             # if this THEME_CODE is in SELECTED_THEMES, add to config otherwise remove from config
             if [[ "$SELECTED_THEMES" =~ "$THEME_CODE" ]]; then
                 # skip if theme-code is already in config
