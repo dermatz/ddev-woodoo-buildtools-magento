@@ -47,7 +47,7 @@ function addThemesToConfig() {
             echo -e "themes:" >> $PROJECT_CONFIG_FILE
         fi
 
-        echo -en "${bldgrn}Tipp:${txtwht} Navigate with ↑ or ↓ keys and press Space to select the option$PLURAL you want to add.\n"
+        echo -en "${bldgrn}Tip:${txtwht} Navigate with ↑ or ↓ keys and press space to select the option$PLURAL you want to add.\n"
         echo -en "${bldred}Reset:${txtwht} Reset configfile and remove all themes with <ESC>.\n\n"
 
         # Check if theme-code is already in config to set it as selected
