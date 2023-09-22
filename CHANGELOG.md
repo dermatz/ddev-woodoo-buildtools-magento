@@ -1,15 +1,19 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 ---
-### Upcoming Changes for 1.4.0
+### Upcoming Changes for 1.5.0
+##### This section will be updated after commits or Pull-Request merges
+---
+## Latest Release
+
+### 1.4.0
 - add new Feature to update setup a new ddev config file `.ddev/config-themes.yaml` to store theme specific settings
 - extend `ddev frontend` command to update automaticly theme-settings from `config.yaml` to `config-themes.yaml`
 - improved Codestyle and Codequality
 - add global variables to functions
-
-##### This section will be updated after commits or Pull-Request merges
----
-## Latest Release
+- add new dependencie `Morgy93/ddev-gum` to add global gum support (`ddev restart` required) - [@Morgy93](https://github.com/Morgy93)
+- add Context Menus to `ddev frontend init`, `ddev frontend build` and `ddev frontend watch` commands
+- now you are able to add and remove themes in the context menu to build or watch. The config-file will be updated automaticly.
 
 ### 1.3.1
 - add new __host__ command `ddev frontend-update` to update to the latest release
