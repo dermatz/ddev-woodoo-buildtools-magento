@@ -10,7 +10,7 @@ This ddev add-on helps you to manage your theme build processes in Magento total
 _>> Build all your Magento themes at once, with Magic, build with Woodoo!_
 
 ---
-Special thanks to e3n GmbH for your Support! 
+Special thanks to e3n GmbH for your Support!
 
 [<img src="https://e3n.de/assets/images/logo/logo.svg" height="50">](https://e3n.de)
 ---
@@ -32,7 +32,6 @@ Special thanks to e3n GmbH for your Support!
 |<img src="https://img.shields.io/badge/Hyvä_Fallback_Themes-Supported-43A047">| released |
 |<img src="https://img.shields.io/badge/DDEV Project_Selfcheck-Supported-43A047">| released |
 |<img src="https://img.shields.io/badge/DDEV Get_Installer-Supported-43A047">| released |
-|<img src="https://img.shields.io/badge/Magento_2_Code_Quality_Tools-planned-FFCA28">| not started yet |
 ---
 
 ## Feature request
@@ -43,7 +42,7 @@ Submit your [Feature Request](https://github.com/dermatz/ddev-woodoo-buildtools-
 **1 . Get the latest Version with following command in your ddev project root**
 ##### Latest stable version (recommended)
 ```shell
-ddev get https://github.com/dermatz/ddev-woodoo-buildtools-magento/archive/refs/tags/1.3.1.tar.gz
+ddev get https://github.com/dermatz/ddev-woodoo-buildtools-magento/archive/refs/tags/1.4.0.tar.gz
 ```
 ##### Latest Developer-version (Main-Branch) - can be instable!
 ```shell
