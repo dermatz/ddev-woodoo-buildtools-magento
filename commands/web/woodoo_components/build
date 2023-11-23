@@ -2,17 +2,17 @@
 #ddev-generated - Do not modify this file; your modifications will be overwritten.
 
 function hyvaConfigGenerate() {
-    ./bin/magento hyva:config:generate
+    "$DDEV_COMPOSER_ROOT"//bin/magento hyva:config:generate
 }
 
 function clearCache() {
-    ./bin/magento cache:flush
+    "$DDEV_COMPOSER_ROOT"//bin/magento cache:flush
     echo -e "\n${txtgrn}Cache cleared${txtrst}"
 }
 
 function clearStaticFiles() {
-    rm -rf ./pub/static/*
-    rm -rf ./var/view_preprocessed/*
+    rm -rf "$DDEV_COMPOSER_ROOT"/pub/static/*
+    rm -rf "$DDEV_COMPOSER_ROOT"/var/view_preprocessed/*
     echo -e "${txtgrn}Static files cleared${txtrst}"
 }
 
@@ -22,25 +22,28 @@ function buildMagentoDefault() {
     echo -e "${txtcyn}Start building ${txtpur}$THEME_NAME${txtcyn} Theme ... please wait!${txtrst}"
 
     # check if node_modules exist
-    if [[ ! -d "./node_modules/" ]]; then
+    if [[ ! -d "$DDEV_COMPOSER_ROOT/node_modules/" ]]; then
         echo -e "${txtylw}${ICON_ERROR} Install missing Node Dependencies${txtrst}"
+        cd "$DDEV_COMPOSER_ROOT" || exit
         npm ci
     fi
 
     # check if grunt exist
-    if [[ ! -f "./node_modules/.bin/grunt" ]]; then
+    if [[ ! -f "$DDEV_COMPOSER_ROOT/node_modules/.bin/grunt" ]]; then
         echo -e "\n\n${txtcyn}${ICON_ERROR} Install missing Grunt${txtrst}\n\n"
+
         npm install grunt
         npm install grunt -g
-        if [[ ! -f "./node_modules/.bin/grunt" ]]; then
+
+        if [[ ! -f "$DDEV_COMPOSER_ROOT/node_modules/.bin/grunt" ]]; then
             echo -e "${txtcyn}${ICON_SUCCESS} Done. ${txtrst}"
         else
-            echo -e "${txtred}${ICON_ERROR} Could not install grunt. Please check ./node_modules/.bin/ ${txtrst}"
+            echo -e "${txtred}${ICON_ERROR} Could not install grunt. Please check $DDEV_COMPOSER_ROOT/node_modules/.bin/ ${txtrst}"
         fi
     fi
 
-    ./node_modules/.bin/grunt clean
-    ./node_modules/.bin/grunt less
+    "$DDEV_COMPOSER_ROOT"/node_modules/.bin/grunt clean
+    "$DDEV_COMPOSER_ROOT"/node_modules/.bin/grunt less
 
     # check if grunt task was successful
     if [[ $? -eq 0 ]]; then
@@ -49,11 +52,11 @@ function buildMagentoDefault() {
     else
         echo -e "\n\n${txtred}${ICON_ERROR} Grunt task failed. Try to repair it for you.${txtrst}\n\n"
 
-        rm -rf .node_modules
-        npm install
+        rm -rf "$DDEV_COMPOSER_ROOT"/node_modules
+        npm ci
 
-        ./node_modules/.bin/grunt clean
-        ./node_modules/.bin/grunt less
+        "$DDEV_COMPOSER_ROOT"/node_modules/.bin/grunt clean
+        "$DDEV_COMPOSER_ROOT"/node_modules/.bin/grunt less
 
         if [[ $? -eq 0 ]]; then
             echo -e "${txtgrn}${ICON_SUCCESS} Grunt tasks finished${txtrst}\n\n"
@@ -72,9 +75,9 @@ function buildHyva() {
 
     cd $HYVA_PATH
     hyva_version=$(echo $(grep -oP '(?<="hyva-themes/magento2-default-theme": ").*' composer.json) | cut -d ' ' -f 1 | sed 's/"//g')
-    hyva_version=$(echo $hyva_version | cut -d ',' -f 1)
-    hyva_version=$(echo $hyva_version | cut -d '~' -f 2)
-    hyva_version=$(echo $hyva_version | cut -d '^' -f 1)
+    hyva_version=$(echo "$hyva_version" | cut -d ',' -f 1)
+    hyva_version=$(echo "$hyva_version" | cut -d '~' -f 2)
+    hyva_version=$(echo "$hyva_version" | cut -d '^' -f 1)
 
     cd - > /dev/null
 
@@ -99,7 +102,7 @@ function buildHyva() {
         npm run build-prod
     fi
 
-    cd - > /dev/null
+    cd - > /dev/null || exit
     hyvaConfigGenerate
     echo -e "\n${txtgrn}${ICON_SUCCESS}${bldcyn} Hyvä Theme Build for ${txtpur}$HYVA_NAME${txtcyn} finished${txtrst}\n\n\n"
 }
@@ -126,7 +129,7 @@ if [[ "$1" == "build" && "$2" == "" || "$1" == "b" && "$2" == "" || "$1" == "bui
 
     # if more then one theme is available, ask if all themes should be build
     if [[ $(countThemesinConfig) -gt 1 && $2 != '-f' ]]; then
-        THEMES_TO_BUILD=$(gum choose --cursor-prefix "[ ] " --unselected-prefix "[ ] " --selected-prefix "[✓] " --no-limit $THEMES_IN_CONFIG;)
+        THEMES_TO_BUILD=$(gum choose --cursor-prefix "[ ] " --unselected-prefix "[ ] " --selected-prefix "[✓] " --no-limit "$THEMES_IN_CONFIG";)
     else
         THEMES_TO_BUILD=$THEMES_IN_CONFIG
     fi
@@ -135,13 +138,13 @@ if [[ "$1" == "build" && "$2" == "" || "$1" == "b" && "$2" == "" || "$1" == "bui
         THEME_TO_BUILD=$(echo $(grep -oP '(?<='$THEME_CODE': ).*' $PROJECT_CONFIG_FILE) | cut -d ' ' -f 1 | sed 's/"//g')
 
         # checks to figure out if it is a Hyvä Theme
-        checkHyva $THEME_TO_BUILD
+        checkHyva "$THEME_TO_BUILD"
 
         # Try to build as Hyvä Theme
         if [[ "$HYVA" == true ]]; then
-            buildHyva $THEME_TO_BUILD $THEME_CODE
+            buildHyva "$THEME_TO_BUILD" "$THEME_CODE"
         else
-            buildMagentoDefault $THEME_CODE
+            buildMagentoDefault "$THEME_CODE"
         fi
 
     done
@@ -172,9 +175,9 @@ if [[ "$1" == "build" && "$2" != "" && "$2" != "-f"  || "$1" == "b" && "$2" != "
         checkHyva $THEME_TO_BUILD
 
         if [[ "$HYVA" == true ]]; then
-            buildHyva $THEME_TO_BUILD $2
+            buildHyva "$THEME_TO_BUILD" "$2"
         else
-            buildMagentoDefault $2
+            buildMagentoDefault "$2"
         fi
 
         clearCache

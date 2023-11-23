@@ -14,7 +14,7 @@ function getMagento2_ThemeStoreCodes() {
     THEME_CODES_DB=$(mysql -e "SELECT code FROM theme" | cut -d ' ' -f 2-)
     THEME_CODES_DB=${THEME_CODES_DB#code}
     THEME_CODES_DB=$(echo "$THEME_CODES_DB" | sed '/^$/d')
-    THEME_CODES_DB_COUNT=$(echo $THEME_CODES_DB | wc -w)
+    THEME_CODES_DB_COUNT=$(echo "$THEME_CODES_DB" | wc -w)
 }
 
 function getThemesFromDB() {
@@ -27,7 +27,7 @@ function getThemesFromDB() {
 }
 
 function addThemesToConfig() {
-    if [ -f $PROJECT_CONFIG_FILE ]; then
+    if [ -f "$PROJECT_CONFIG_FILE" ]; then
 
         getMagento2_ThemeStoreCodes
 
@@ -43,8 +43,8 @@ function addThemesToConfig() {
             echo -en "\n${txtcyn}Choose the Theme below which should be added in ${txtpur}$PROJECT_CONFIG_FILE${txtcyn} to watch and build later:${txtrst}\n\n"
         fi
 
-        if ! grep -q "themes:" $PROJECT_CONFIG_FILE; then
-            echo -e "themes:" >> $PROJECT_CONFIG_FILE
+        if ! grep -q "themes:" "$PROJECT_CONFIG_FILE"; then
+            echo -e "themes:" >> "$PROJECT_CONFIG_FILE"
         fi
 
         echo -en "${bldgrn}Tip:${txtwht} Navigate with ↑ or ↓ keys and press space to select the option$PLURAL you want to add.\n"
@@ -53,28 +53,28 @@ function addThemesToConfig() {
         # Check if theme-code is already in config to set it as selected
         local THEMESALLREADYINCONFIG=''
         for THEME_CODES in $THEME_CODES_DB; do
-            if grep -q "$THEME_CODES" $PROJECT_CONFIG_FILE; then
+            if grep -q "$THEME_CODES" "$PROJECT_CONFIG_FILE"; then
                 THEMESALLREADYINCONFIG="$THEMESALLREADYINCONFIG --selected $THEME_CODES"
             fi
         done
 
-        SELECTED_THEMES=$(gum choose --cursor-prefix "[ ] " --unselected-prefix "[ ] " --selected-prefix "[✓] " $THEMESALLREADYINCONFIG --no-limit $THEME_CODES_DB)
+        SELECTED_THEMES=$(gum choose --cursor-prefix "[ ] " --unselected-prefix "[ ] " --selected-prefix "[✓] " "$THEMESALLREADYINCONFIG" --no-limit "$THEME_CODES_DB")
 
         # Save selected to config file, skip existing ones
         for THEME_CODE in $THEME_CODES_DB; do
             # if this THEME_CODE is in SELECTED_THEMES, add to config otherwise remove from config
             if [[ "$SELECTED_THEMES" =~ "$THEME_CODE" ]]; then
                 # skip if theme-code is already in config
-                if grep -q "$THEME_CODE" $PROJECT_CONFIG_FILE; then
+                if grep -q "$THEME_CODE" "$PROJECT_CONFIG_FILE"; then
                     continue
                 fi
                 local THEMEPATH=$(gum input --cursor.foreground "#CCC" --prompt "Enter Theme-Path ($THEME_CODE): " --prompt.foreground="#84CC16" --placeholder "enter relative path")
-                echo -e "    - ${THEME_CODE}: \"${THEMEPATH}\"" >> $PROJECT_CONFIG_FILE
+                echo -e "    - ${THEME_CODE}: \"${THEMEPATH}\"" >> "$PROJECT_CONFIG_FILE"
                 ((ADDEDTHEMES++))
             else
-                if grep -q "$THEME_CODE" $PROJECT_CONFIG_FILE; then
-                    local LINE=$(grep -n "$THEME_CODE" $PROJECT_CONFIG_FILE | cut -d ':' -f 1)
-                    sed -i "${LINE}d" $PROJECT_CONFIG_FILE
+                if grep -q "$THEME_CODE" "$PROJECT_CONFIG_FILE"; then
+                    local LINE=$(grep -n "$THEME_CODE" "$PROJECT_CONFIG_FILE" | cut -d ':' -f 1)
+                    sed -i "${LINE}d" "$PROJECT_CONFIG_FILE"
                     ((REMOVEDTHEMES++))
                 fi
             fi
@@ -99,7 +99,7 @@ function readThemesInConfig() {
 
     THEMES_IN_CONFIG=""
 
-    if [ ! -f $PROJECT_CONFIG_FILE ]; then
+    if [ ! -f "$PROJECT_CONFIG_FILE" ]; then
         echo -e "\n${txtred}No $PROJECT_CONFIG_FILE found.' first.${txtrst}\n"
         exit 1
     fi
@@ -111,13 +111,13 @@ function readThemesInConfig() {
             while read -r next_line; do
                 # Check whether the next line begins with "-"
                 if [[ -n "$next_line" && "$next_line" =~ ^- ]]; then
-                    THEMES_IN_CONFIG="$THEMES_IN_CONFIG $(echo $next_line | cut -d ' ' -f 2 | cut -d ':' -f 1)"
+                    THEMES_IN_CONFIG="$THEMES_IN_CONFIG $(echo "$next_line" | cut -d ' ' -f 2 | cut -d ':' -f 1)"
                 else
                     break
                 fi
             done
         fi
-    done < $PROJECT_CONFIG_FILE
+    done < "$PROJECT_CONFIG_FILE"
 }
 
 # Count Themes by reading config.yaml with readThemesInConfig()

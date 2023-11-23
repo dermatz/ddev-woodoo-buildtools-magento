@@ -6,6 +6,10 @@ All notable changes to this project will be documented in this file.
 ---
 ## Latest Release
 
+### 1.4.1
+- add Support for $DDEV_COMPOSER_ROOT `(e.g., ./magento2/app/design/..)``
+- fix node-modules repair-functions for corrupt grunt installations
+
 ### 1.4.0
 - add new Feature to update setup a new ddev config file `.ddev/config-themes.yaml` to store theme specific settings
 - extend `ddev frontend` command to update automaticly theme-settings from `config.yaml` to `config-themes.yaml`

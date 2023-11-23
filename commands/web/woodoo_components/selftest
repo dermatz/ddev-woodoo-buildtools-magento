@@ -21,6 +21,12 @@ function selftest() {
         echo -e "${txtcyn}Project Architecture   = ${txtgrn}$PROJECT_ARCH${txtrst}"
     fi
 
+    if [ -z "$DDEV_COMPOSER_ROOT" ]; then
+        echo -e "${txtcyn}Project Root           = ${txtylw}not set${txtrst}"
+    else
+        echo -e "${txtcyn}Project Root           = ${txtgrn}$DDEV_COMPOSER_ROOT${txtrst}"
+    fi
+
     if [ -z "$PROJECT_PHP_VERSION" ]; then
         echo -e "${txtcyn}Project PHP Version    = ${txtylw}not set${txtrst}"
     else
