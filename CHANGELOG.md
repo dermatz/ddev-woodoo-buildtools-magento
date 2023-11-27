@@ -6,6 +6,9 @@ All notable changes to this project will be documented in this file.
 ---
 ## Latest Release
 
+### 1.4.2
+- fix line-break in menu selection for build and watch tasks
+
 ### 1.4.1
 - add Support for $DDEV_COMPOSER_ROOT `(e.g., ./magento2/app/design/..)``
 - fix node-modules repair-functions for corrupt grunt installations

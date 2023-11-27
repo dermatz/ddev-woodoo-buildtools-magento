@@ -42,7 +42,7 @@ Submit your [Feature Request](https://github.com/dermatz/ddev-woodoo-buildtools-
 **1 . Get the latest Version with following command in your ddev project root**
 ##### Latest stable version (recommended)
 ```shell
-ddev get https://github.com/dermatz/ddev-woodoo-buildtools-magento/archive/refs/tags/1.4.1.tar.gz
+ddev get https://github.com/dermatz/ddev-woodoo-buildtools-magento/archive/refs/tags/1.4.2.tar.gz
 ```
 ##### Latest Developer-version (Main-Branch) - can be instable!
 ```shell

@@ -129,7 +129,7 @@ if [[ "$1" == "build" && "$2" == "" || "$1" == "b" && "$2" == "" || "$1" == "bui
 
     # if more then one theme is available, ask if all themes should be build
     if [[ $(countThemesinConfig) -gt 1 && $2 != '-f' ]]; then
-        THEMES_TO_BUILD=$(gum choose --cursor-prefix "[ ] " --unselected-prefix "[ ] " --selected-prefix "[✓] " --no-limit "$THEMES_IN_CONFIG";)
+        THEMES_TO_BUILD=$(gum choose --cursor-prefix "[ ] " --unselected-prefix "[ ] " --selected-prefix "[✓] " --no-limit $THEMES_IN_CONFIG;)
     else
         THEMES_TO_BUILD=$THEMES_IN_CONFIG
     fi

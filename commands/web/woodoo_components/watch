@@ -117,7 +117,7 @@ if [[ "$1" == "watch" && "$2" == "" || "$1" == "w" && "$2" == "" ]]; then
 
          # if more then one theme is available, ask if all themes should be build
         if [[ $(countThemesinConfig) -gt 1 && $2 != '-f' ]]; then
-            THEMES_TO_WATCH=$(gum choose --cursor-prefix "[ ] " --unselected-prefix "[ ] " --selected-prefix "[✓] " "$THEMES_IN_CONFIG";)
+            THEMES_TO_WATCH=$(gum choose --cursor-prefix "[ ] " --unselected-prefix "[ ] " --selected-prefix "[✓] " $THEMES_IN_CONFIG;)
         else
             THEMES_TO_WATCH=$THEMES_IN_CONFIG
         fi
