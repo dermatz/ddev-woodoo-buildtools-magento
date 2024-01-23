@@ -58,7 +58,8 @@ function addThemesToConfig() {
             fi
         done
 
-        SELECTED_THEMES=$(gum choose --cursor-prefix "[ ] " --unselected-prefix "[ ] " --selected-prefix "[✓] " "$THEMESALLREADYINCONFIG" --no-limit "$THEME_CODES_DB")
+        THEME_CODES_DB_OPTIONS=$(echo "$THEME_CODES_DB" | tr '\n' ' ')
+        SELECTED_THEMES=$(gum choose --cursor-prefix "[ ] " --unselected-prefix "[ ] " --selected-prefix "[✓] " $THEMESALLREADYINCONFIG --no-limit $THEME_CODES_DB_OPTIONS)
 
         # Save selected to config file, skip existing ones
         for THEME_CODE in $THEME_CODES_DB; do
