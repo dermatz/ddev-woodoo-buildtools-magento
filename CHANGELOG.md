@@ -6,6 +6,9 @@ All notable changes to this project will be documented in this file.
 ---
 ## Latest Release
 
+### 1.4.3
+- fix newline `\n` to gum choose for `ddev frontend init` command - Thanks to [@Morgy93](https://github.com/Morgy93)
+
 ### 1.4.2
 - fix line-break in menu selection for build and watch tasks
 
