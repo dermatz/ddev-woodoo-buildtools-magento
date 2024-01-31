@@ -8,4 +8,9 @@
 ## HostWorkingDir: true
 
 LATEST_WOODOO_VERSION=$(curl -s https://api.github.com/repos/dermatz/ddev-woodoo-buildtools-magento/releases/latest | grep tag_name | cut -d '"' -f 4)
-ddev get https://github.com/dermatz/ddev-woodoo-buildtools-magento/archive/refs/tags/$LATEST_WOODOO_VERSION.tar.gz
+
+if [[ $1 == "-dev" ]]; then
+    ddev get https://github.com/dermatz/ddev-woodoo-buildtools-magento/archive/refs/heads/main.tar.gz
+else
+    ddev get https://github.com/dermatz/ddev-woodoo-buildtools-magento/archive/refs/tags/"${LATEST_WOODOO_VERSION}".tar.gz
+fi
