@@ -1,10 +1,13 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 ---
-### Upcoming Changes for 1.5.0
-##### This section will be updated after commits or Pull-Request merges
----
+
 ## Latest Release
+
+### 1.5.0
+- add command parameter `ddev frontend-update -dev` to install latest dev features from main-branch ( _can be unstable!_ )
+- formating readme.md
+- update codestyle and improved lints ( _Shoutout: trunk.io_ ;-))
 
 ### 1.4.3
 - fix newline `\n` to gum choose for `ddev frontend init` command - Thanks to [@Morgy93](https://github.com/Morgy93)
