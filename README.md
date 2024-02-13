@@ -1,8 +1,6 @@
 # [DDEV] Woodoo Frontend Buildtools for Magento & Hyvä
 
-[![tests](https://github.com/dermatz/ddev-woodoo-buildtools-magento/actions/workflows/tests.yml/badge.svg)](https://github.com/dermatz/ddev-woodoo-buildtools-magento/actions/workflows/tests.yml)
-<img src="https://img.shields.io/github/license/dermatz/ddev-woodoo-buildtools-magento" alt="License Badge (MIT-License)">
-<img src="https://img.shields.io/github/last-commit/dermatz/ddev-woodoo-buildtools-magento" alt="Last commit date Badge">
+[![tests](https://github.com/dermatz/ddev-woodoo-buildtools-magento/actions/workflows/tests.yml/badge.svg)](https://github.com/dermatz/ddev-woodoo-buildtools-magento/actions/workflows/tests.yml) <img src="https://img.shields.io/github/license/dermatz/ddev-woodoo-buildtools-magento" alt="License Badge (MIT-License)"> <img src="https://img.shields.io/github/last-commit/dermatz/ddev-woodoo-buildtools-magento" alt="Last commit date Badge">
 
 ---
 
@@ -16,13 +14,12 @@ Special thanks to e3n GmbH for your Support!
 
 ## [<img src="https://e3n.de/assets/images/logo/logo.svg" height="50" alt="Logo of e3n GmbH & Co.KG in Mainz">](https://e3n.de)
 
-| Supported Versions                                                         | Status   |
-| --------------------------------------------------------------------------------- | -------- |
-| <img src="https://img.shields.io/badge/Magento_2.x-Supported-43A047" alt="Magento 2 Supported">             | ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg) |
-| <img src="https://img.shields.io/badge/Magento_2_Hyvä_(all_Versions)-Supported-43A047" alt="Hyva all Versions supported">    | ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg) |
-| <img src="https://img.shields.io/badge/Magento_2_Hyvä_Fallback-Supported-43A047" alt="Hyvä Fallback is supported"> | ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg) |
-| <img src="https://img.shields.io/badge/MageOS-Supported-43A047" alt="MageOS is supported">                  | ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg) |
-
+| Supported Versions                                                                                                        | Status                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| <img src="https://img.shields.io/badge/Magento_2.x-Supported-43A047" alt="Magento 2 Supported">                           | ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg) |
+| <img src="https://img.shields.io/badge/Magento_2_Hyvä_(all_Versions)-Supported-43A047" alt="Hyva all Versions supported"> | ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg) |
+| <img src="https://img.shields.io/badge/Magento_2_Hyvä_Fallback-Supported-43A047" alt="Hyvä Fallback is supported">        | ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg) |
+| <img src="https://img.shields.io/badge/MageOS-Supported-43A047" alt="MageOS is supported">                                | ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg) |
 
 ---
 
@@ -107,4 +104,5 @@ Feel free to send your improvements as Pull-Request.
 ---
 
 ## License
+
 [MIT License](./MIT-LICENSES.md) | by [Mathias Elle](https://www.linkedin.com/in/mathias-elle-842783102/)
