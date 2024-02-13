@@ -1,54 +1,51 @@
 # [DDEV] Woodoo Frontend Buildtools for Magento & Hyvä
+
 [![tests](https://github.com/dermatz/ddev-woodoo-buildtools-magento/actions/workflows/tests.yml/badge.svg)](https://github.com/dermatz/ddev-woodoo-buildtools-magento/actions/workflows/tests.yml)
-![project is maintained](https://img.shields.io/maintenance/yes/2024.svg)
-<img src="https://img.shields.io/github/license/dermatz/ddev-woodoo-buildtools-magento">
-<img src="https://img.shields.io/github/last-commit/dermatz/ddev-woodoo-buildtools-magento">
+<img src="https://img.shields.io/github/license/dermatz/ddev-woodoo-buildtools-magento" alt="License Badge (MIT-License)">
+<img src="https://img.shields.io/github/last-commit/dermatz/ddev-woodoo-buildtools-magento" alt="Last commit date Badge">
 
 ---
+
 This ddev add-on helps you to manage your theme build processes in Magento total easy. You can run a build command to build all your themes or a specific theme. Don't matter if the theme is a Magento Standard or Custom Theme, or maybe a Hyva theme. It automatically takes care which type of theme you use and will build it for you. If a dependency is missing, Woodoo will install it.
 
 _>> Build all your Magento themes at once, with Magic, build with Woodoo!_
 
 ---
+
 Special thanks to e3n GmbH for your Support!
 
-[<img src="https://e3n.de/assets/images/logo/logo.svg" height="50">](https://e3n.de)
----
+## [<img src="https://e3n.de/assets/images/logo/logo.svg" height="50" alt="Logo of e3n GmbH & Co.KG in Mainz">](https://e3n.de)
 
-| Supported Magento Version| Status |
-|-|-|
-|<img src="https://img.shields.io/badge/Magento_2.x-Supported-43A047">| released |
-|<img src="https://img.shields.io/badge/Magento_2_Hyvä_1.2.x-Supported-43A047">| released |
-|<img src="https://img.shields.io/badge/Magento_2_Hyvä_1.1.x-Supported-43A047">| released |
-|<img src="https://img.shields.io/badge/Magento_2_Hyvä_Fallback-Supported-43A047">| released |
-|<img src="https://img.shields.io/badge/MageOS-Supported-43A047">| released |
+| Supported Versions                                                         | Status   |
+| --------------------------------------------------------------------------------- | -------- |
+| <img src="https://img.shields.io/badge/Magento_2.x-Supported-43A047" alt="Magento 2 Supported">             | ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg) |
+| <img src="https://img.shields.io/badge/Magento_2_Hyvä_(all_Versions)-Supported-43A047" alt="Hyva all Versions supported">    | ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg) |
+| <img src="https://img.shields.io/badge/Magento_2_Hyvä_Fallback-Supported-43A047" alt="Hyvä Fallback is supported"> | ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg) |
+| <img src="https://img.shields.io/badge/MageOS-Supported-43A047" alt="MageOS is supported">                  | ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg) |
 
-| Features | Status |
-|-|-|
-|<img src="https://img.shields.io/badge/Magento_2_Grunt_Watch_Tasks-Supported-43A047">| released |
-|<img src="https://img.shields.io/badge/Magento_2_Grunt_Build_Tasks-Supported-43A047">| released |
-|<img src="https://img.shields.io/badge/Hyvä_1.2.x_Build_Task-Supported-43A047">| released |
-|<img src="https://img.shields.io/badge/Hyvä_1.2.x_Watch_Task-Supported-43A047">| released |
-|<img src="https://img.shields.io/badge/Hyvä_Fallback_Themes-Supported-43A047">| released |
-|<img src="https://img.shields.io/badge/DDEV Project_Selfcheck-Supported-43A047">| released |
-|<img src="https://img.shields.io/badge/DDEV Get_Installer-Supported-43A047">| released |
----
-
-## Feature request
-Submit your [Feature Request](https://github.com/dermatz/ddev-woodoo-buildtools-magento/issues) by adding a new issue and add a label with `feature-request`.
 
 ---
-## Install
+
+## Getting Started
+
+### Installation
+
 **1 . Get the latest Version with following command in your ddev project root**
+
 ##### Latest stable version (recommended)
+
 ```shell
 ddev get https://github.com/dermatz/ddev-woodoo-buildtools-magento/archive/refs/tags/1.4.3.tar.gz
 ```
+
 ##### Latest Developer-version (Main-Branch) - can be instable!
+
 ```shell
 ddev get https://github.com/dermatz/ddev-woodoo-buildtools-magento/archive/refs/heads/main.tar.gz
 ```
+
 ---
+
 **2. Start Woodoo Init to update your ./ddev/config.yaml**
 
 ```shell
@@ -57,16 +54,18 @@ ddev frontend init
 
 - Add all themes you want to build or watch
 
-----
+---
 
 **3. Edit .ddev/config.yaml**
 Open and edit `.ddev/config.yaml` and specify pathes to the themes based on your project structure. (E.g. `src/vendor/...` or `app/design/frontend/Vendor/...`)
 
 ## Update Woodoo
+
 **Specific Versions**
 If a newer Release is available you can install the specific version in the same way how your installed. Just repeat the Install-Step with `ddev get ...` (see Install instructions).
 
 ## Usage
+
 ```shell
 Usage: ddev frontend [command] [option, theme]
 
@@ -87,14 +86,25 @@ Option:
   themecode             Theme-Code from .ddev/config.yaml
 ```
 
+## Feature request
+
+Submit your [Feature Request](https://github.com/dermatz/ddev-woodoo-buildtools-magento/issues) by adding a new issue and add a label with `feature-request`.
+
+---
+
 ## Contributing
 
 Contributions are welcome! Please read the [Contributing Guidelines](./CONTRIBUTING.md) first.
 Feel free to send your improvements as Pull-Request.
+
+---
+
 ### Watch out our Contributers, Tester & Supporter
+
 - [Thomas Hauschild](https://github.com/Morgy93)
 - [<img src="https://e3n.de/assets/images/logo/logo.svg" height="50">](https://e3n.de)
 
+---
 
 ## License
 [MIT License](./MIT-LICENSES.md) | by [Mathias Elle](https://www.linkedin.com/in/mathias-elle-842783102/)
