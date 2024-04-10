@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file.
 ---
 
 ## Latest Release
+### 1.5.1
+- fix hyvä version check and output in frontend build command
+- add a check to try to update node_modules in theme if packages are outdated
 
 ### 1.5.0
 - add command parameter `ddev frontend-update -dev` to install latest dev features from main-branch ( _can be unstable!_ )
