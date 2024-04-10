@@ -75,11 +75,17 @@ function buildHyva() {
 
     cd $HYVA_PATH
     hyva_version=$(echo $(grep -oP '(?<="hyva-themes/magento2-default-theme": ").*' composer.json) | cut -d ' ' -f 1 | sed 's/"//g')
-    hyva_version=$(echo "$hyva_version" | cut -d ',' -f 1)
-    hyva_version=$(echo "$hyva_version" | cut -d '~' -f 2)
-    hyva_version=$(echo "$hyva_version" | cut -d '^' -f 1)
+    hyva_version=$(echo ${hyva_version} | sed 's/\^//g' | sed 's/,//g' | sed 's/\*//g')
 
     cd - > /dev/null
+
+    # check if node_modules needs to be updated
+    if [[ -d "$HYVA_PATH/web/tailwind/node_modules" ]]; then
+        cd $HYVA_PATH/web/tailwind
+        echo -e "\n${txtylw}Check for Update to node_modules ... ${txtrst}\n"
+        npm outdated --silent || npm ci
+        cd - >/dev/null
+    fi
 
     echo -e "${txtgrn}${ICON_SUCCESS} ${txtpur}$HYVA_NAME${txtcyn} will be build as Hyvä ${txtpur}$hyva_version${txtcyn} Theme${txtrst}"
     if [[ ! -d "$HYVA_PATH/web/tailwind/node_modules" ]]; then
