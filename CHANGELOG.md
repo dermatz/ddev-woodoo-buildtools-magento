@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file.
 ---
 
 ## Latest Release
+### 1.5.2
+- improve npm dependency update check messages
+
 ### 1.5.1
 - fix hyvä version check and output in frontend build command
 - add a check to try to update node_modules in theme if packages are outdated

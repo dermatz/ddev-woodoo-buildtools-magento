@@ -82,8 +82,9 @@ function buildHyva() {
     # check if node_modules needs to be updated
     if [[ -d "$HYVA_PATH/web/tailwind/node_modules" ]]; then
         cd $HYVA_PATH/web/tailwind
-        echo -e "\n${txtylw}Check for Update to node_modules ... ${txtrst}\n"
+        echo -e "\n${txtcyn}Check for node_modules Updates ... ${txtrst}\n"
         npm outdated --silent || npm ci
+        echo -e "${txtgrn}Update-Check Done.${txtrst}\n"
         cd - >/dev/null
     fi
 
