@@ -17,7 +17,7 @@ Special thanks to e3n GmbH for your Support!
 | Supported Versions                                                                                                        | Status                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
 | <img src="https://img.shields.io/badge/Magento_2.x-Supported-43A047" alt="Magento 2 Supported">                           | ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg) |
-| <img src="https://img.shields.io/badge/Magento_2_Hyvä_(all_Versions)-Supported-43A047" alt="Hyva all Versions supported"> | ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg) |
+| <img src="https://img.shields.io/badge/Magento_2_Hyvä_(all_Versions)-Supported-43A047" alt="All Hyvä Versions supported"> | ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg) |
 | <img src="https://img.shields.io/badge/Magento_2_Hyvä_Fallback-Supported-43A047" alt="Hyvä Fallback is supported">        | ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg) |
 | <img src="https://img.shields.io/badge/MageOS-Supported-43A047" alt="MageOS is supported">                                | ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg) |
 
@@ -32,7 +32,7 @@ Special thanks to e3n GmbH for your Support!
 ##### Latest stable version (recommended)
 
 ```shell
-ddev get https://github.com/dermatz/ddev-woodoo-buildtools-magento/archive/refs/tags/1.5.2.tar.gz
+ddev get https://github.com/dermatz/ddev-woodoo-buildtools-magento/archive/refs/tags/1.6.0.tar.gz
 ```
 
 ##### Latest Developer-version (Main-Branch) - can be instable!
@@ -67,20 +67,21 @@ If a newer Release is available you can install the specific version in the same
 Usage: ddev frontend [command] [option, theme]
 
 Command:
-  init                  Initial Woodoo Setup to read all themes from dataabase and write to .ddev/config.yaml
-  help                  Show a help page
-  check, selftest       Woodoo Self Test
-  frontend-update       Update to the latest Version
-  themes                List all available themes that are configured in .ddev/config.yaml
-  themes                List all available themes that are configured in .ddev/config.yaml
-  build                 Build all themes that are configured in .ddev/config.yaml
-  build -f              Builds all themes without yes/no question (force)
-  build theme           Build a specific theme
-  watch theme           Watch for CSS and JS changes in a specific theme
+  init, install           Initial Woodoo Setup to read all themes from dataabase and write to .ddev/config.yaml
+  help                    Show a help page
+  version, --version, -v  Show version
+  check, selftest, test   Woodoo Self Test
+  frontend-update         Update to the latest stable Version
+  frontend-update -dev    Update to the latest development Version (can be buggy!)
+  themes                  List all available themes that are configured in .ddev/config.yaml
+  build                   Build all themes that are configured in .ddev/config.yaml
+  build -f                Builds all themes without yes/no question (force)
+  build Vendor/theme      Build a specific theme
+  watch Vendor/theme      Watch for CSS and JS changes in a specific theme
 
 Option:
-  -f                    Builds all themes without yes/no question (force)
-  themecode             Theme-Code from .ddev/config.yaml
+  -f                      Builds all themes without yes/no question (force)
+  themecode               Theme-Code from .ddev/config.yaml
 ```
 
 ## Feature request
@@ -99,7 +100,7 @@ Feel free to send your improvements as Pull-Request.
 ### Watch out our Contributers, Tester & Supporter
 
 - [Thomas Hauschild](https://github.com/Morgy93)
-- [<img src="https://e3n.de/assets/images/logo/logo.svg" height="50">](https://e3n.de)
+- [<img src="https://e3n.de/assets/images/logo/logo.svg" height="50" alt="Logo for E-Commerce Agency e3n based in Mainz">](https://e3n.de)
 
 ---
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 #ddev-generated - Do not modify this file; your modifications will be overwritten.
-WOODOO_VERSION="1.5.2"
+WOODOO_VERSION="1.6.0"
 LATEST_WOODOO_VERSION=$(curl -s https://api.github.com/repos/dermatz/ddev-woodoo-buildtools-magento/releases/latest | grep tag_name | cut -d '"' -f 4)
 
 PROJECT_CONFIG_FILE=".ddev/config-themes.yaml"
@@ -10,9 +10,9 @@ ICON_SUCCESS="✔"
 ICON_ERROR="✖"
 ICON_WARNING="!"
 
-PROJECT_ROOT=$DDEV_APPROOT
-PROJECT_ARCH=$GOARCH
-PROJECT_PHP_VERSION=$DDEV_PHP_VERSION
+PROJECT_ROOT=${DDEV_APPROOT}
+PROJECT_ARCH=${GOARCH}
+PROJECT_PHP_VERSION=${DDEV_PHP_VERSION}
 PROJECT_NODEJS_VERSION=$(node -v)
 
 GUM_CHOOSE=""
@@ -24,7 +24,6 @@ else
 fi
 
 HYVA=false
-
 
 ####################################################################################################
 # Terminal Colors
@@ -62,13 +61,13 @@ undcyn='\033[4;36m' # Cyan
 undwht='\033[4;37m' # White
 
 # Background
-bakblk='\033[40m'   # Black
-bakred='\033[41m'   # Red
-bakgrn='\033[42m'   # Green
-bakylw='\033[43m'   # Yellow
-bakblu='\033[44m'   # Blue
-bakpur='\033[45m'   # Purple
-bakcyn='\033[46m'   # Cyan
-bakwht='\033[47m'   # White
+bakblk='\033[40m' # Black
+bakred='\033[41m' # Red
+bakgrn='\033[42m' # Green
+bakylw='\033[43m' # Yellow
+bakblu='\033[44m' # Blue
+bakpur='\033[45m' # Purple
+bakcyn='\033[46m' # Cyan
+bakwht='\033[47m' # White
 
-txtrst='\033[0m'    # Text Reset
+txtrst='\033[0m' # Text Reset

@@ -154,15 +154,17 @@ function checkThemePathExists() {
 
     PATH_ERROR=false
 
-    if [ -z "$THEMES_IN_CONFIG" ]; then
-        echo -e "\n${txtred}No Themes found in $PROJECT_CONFIG_FILE${txtrst}\n"
+    if [[ -z "${THEMES_IN_CONFIG}" ]]; then
+        echo -e "\n${txtred}No Themes found in ${PROJECT_CONFIG_FILE}}${txtrst}\n"
     else
 
-        # Check if only one theme is configured
-        if [[ $(countThemesinConfig) == 1 ]]; then
-            echo -e "\n${txtgrn}$(countThemesinConfig) Theme added to ${txtcyn}$PROJECT_CONFIG_FILE${txtrst}\n"
-        else
-            echo -e "\n${txtgrn}$(countThemesinConfig) Themes added to ${txtcyn}$PROJECT_CONFIG_FILE${txtrst}\n"
+        if [[ "$1" != "silent" ]]; then
+            # Check if only one theme is configured
+            if [[ $(countThemesinConfig) == 1 ]]; then
+                echo -e "\n${txtgrn}$(countThemesinConfig) Theme added to ${txtcyn}$PROJECT_CONFIG_FILE${txtrst}\n"
+            else
+                echo -e "\n${txtgrn}$(countThemesinConfig) Themes added to ${txtcyn}$PROJECT_CONFIG_FILE${txtrst}\n"
+            fi
         fi
 
         for THEME_CODE in $THEMES_IN_CONFIG; do
@@ -177,14 +179,18 @@ function checkThemePathExists() {
                                 THEME_PATH=$(echo $next_line | cut -d ' ' -f 3 | cut -d '"' -f 2)
 
                                 if [[ "$THEME_PATH" == "" ]]; then
-                                    echo -e "${txtred}${ICON_ERROR} Theme ${txtpur}$THEME_CODE ${txtred}has not been configured yet.${txtrst}"
+                                    if [[ "$1" != "silent" ]]; then
+                                        echo -e "${txtred}${ICON_ERROR} Theme ${txtpur}$THEME_CODE ${txtred}has not been configured yet.${txtrst}"
+                                    fi
                                     THEME_PATHES_VALID=false
                                     PATH_ERROR=true
                                 else
                                     # if $THEME_PATHES_VALID not false and registration.php exists in $THEME_PATH
                                     if [[ "$THEME_PATHES_VALID" != false && -f $THEME_PATH/registration.php ]]; then
                                         THEME_PATHES_VALID=true
-                                        echo -e "${txtgrn}${ICON_SUCCESS} Theme ${txtpur}$THEME_CODE ${txtgrn}has been correct configured.${txtrst}"
+                                        if [[ "$1" != "silent" ]]; then
+                                            echo -e "${txtgrn}${ICON_SUCCESS} Theme ${txtpur}$THEME_CODE ${txtgrn}has been correct configured.${txtrst}"
+                                        fi
                                     else
                                         THEME_PATHES_VALID=false
                                         PATH_ERROR=true

@@ -3,6 +3,14 @@ All notable changes to this project will be documented in this file.
 ---
 
 ## Latest Release
+### 1.6.0
+- add `version` and `--version` argument to show version. - Thanks to [@Morgy93](https://github.com/Morgy93)
+- add health check to bats test - Thanks to [@Morgy93](https://github.com/Morgy93)
+- add `.editorconfig` to comply with current indent config for trunk CI check - Thanks to [@Morgy93](https://github.com/Morgy93)
+- fix bash linting issues
+- add silent mode for watch task to minify the text output to focus on the important parts
+- update help texts
+
 ### 1.5.2
 - improve npm dependency update check messages
 

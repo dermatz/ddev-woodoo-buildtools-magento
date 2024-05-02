@@ -3,50 +3,50 @@
 
 function selftest() {
 
-    if [ "$WOODOO_VERSION" != "$LATEST_WOODOO_VERSION" ]; then
-        echo -e "${txtcyn}Woodoo Version         = ${txtylw}Woodoo Update $(curl -s https://api.github.com/repos/dermatz/ddev-woodoo-buildtools-magento/releases/latest | grep tag_name | cut -d '"' -f 4) available! (Your Version: $WOODOO_VERSION)${txtrst}"
+    if [[ ${WOODOO_VERSION} != "${LATEST_WOODOO_VERSION}" ]]; then
+        echo -e "${txtcyn}Woodoo Version         = ${txtylw}Woodoo Update $(curl -s https://api.github.com/repos/dermatz/ddev-woodoo-buildtools-magento/releases/latest | grep tag_name | cut -d '"' -f 4) available! (Your Version: ${WOODOO_VERSION})${txtrst}"
     else
-        echo -e "${txtcyn}Woodoo Version         = ${txtgrn}$WOODOO_VERSION${txtrst}"
+        echo -e "${txtcyn}Woodoo Version         = ${txtgrn}${WOODOO_VERSION}${txtrst}"
     fi
 
-    if [ -z "$DDEV_PROJECT_TYPE" ]; then
+    if [[ -z ${DDEV_PROJECT_TYPE} ]]; then
         echo -e "${txtcyn}Project Type           = ${txtylw}not set${txtrst}"
     else
         echo -e "${txtcyn}Project Type           = ${txtgrn}${DDEV_PROJECT_TYPE^}${txtrst}"
     fi
 
-    if [ -z "$PROJECT_ARCH" ]; then
+    if [[ -z ${PROJECT_ARCH} ]]; then
         echo -e "${txtcyn}Project Architecture   = ${txtylw}not set${txtrst}"
     else
-        echo -e "${txtcyn}Project Architecture   = ${txtgrn}$PROJECT_ARCH${txtrst}"
+        echo -e "${txtcyn}Project Architecture   = ${txtgrn}${PROJECT_ARCH}${txtrst}"
     fi
 
-    if [ -z "$DDEV_COMPOSER_ROOT" ]; then
+    if [[ -z ${DDEV_COMPOSER_ROOT} ]]; then
         echo -e "${txtcyn}Project Root           = ${txtylw}not set${txtrst}"
     else
-        echo -e "${txtcyn}Project Root           = ${txtgrn}$DDEV_COMPOSER_ROOT${txtrst}"
+        echo -e "${txtcyn}Project Root           = ${txtgrn}${DDEV_COMPOSER_ROOT}${txtrst}"
     fi
 
-    if [ -z "$PROJECT_PHP_VERSION" ]; then
+    if [[ -z ${PROJECT_PHP_VERSION} ]]; then
         echo -e "${txtcyn}Project PHP Version    = ${txtylw}not set${txtrst}"
     else
-        echo -e "${txtcyn}Project PHP Version    = ${txtgrn}$PROJECT_PHP_VERSION${txtrst}"
+        echo -e "${txtcyn}Project PHP Version    = ${txtgrn}${PROJECT_PHP_VERSION}${txtrst}"
     fi
 
-    if [ -z "$PROJECT_NODEJS_VERSION" ]; then
+    if [[ -z ${PROJECT_NODEJS_VERSION} ]]; then
         echo -e "${txtcyn}Project PHP Version    = ${txtylw}not set${txtrst}"
     else
-        if [ "$PROJECT_NODEJS_VERSION" != "$LATEST_LTS_VERSION" ]; then
-            echo -e "${txtcyn}Project NODE Version   = ${txtgrn}$PROJECT_NODEJS_VERSION${txtylw} (latest LTS: $LATEST_LTS_VERSION, see nodejs.org)${txtrst} "
+        if [[ ${PROJECT_NODEJS_VERSION} != "${LATEST_LTS_VERSION}" ]]; then
+            echo -e "${txtcyn}Project NODE Version   = ${txtgrn}${PROJECT_NODEJS_VERSION}${txtylw} (latest LTS: ${LATEST_LTS_VERSION}, see nodejs.org)${txtrst} "
         else
-            echo -e "${txtcyn}Project NODE Version   = ${txtgrn}$PROJECT_NODEJS_VERSION${txtrst}"
+            echo -e "${txtcyn}Project NODE Version   = ${txtgrn}${PROJECT_NODEJS_VERSION}${txtrst}"
         fi
     fi
 
     checkThemePathExists
 }
 
-if [[ "$1" = "selftest" || "$1" = "test" || "$1" = "check" ]]; then
+if [[ $1 == "selftest" || $1 == "test" || $1 == "check" ]]; then
     echo -e ""
     selftest
     echo -e ""

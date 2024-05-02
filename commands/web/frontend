@@ -12,7 +12,7 @@ source ".ddev/commands/web/woodoo_components/variables"
 
 echo -e "${bldblu}DDEV Woodoo Frontend Buildtools ${WOODOO_VERSION} for Magento ${txtrst}"
 
-if [[ $1 == "version" || $1 == "--version" ]]; then
+if [[ $1 == "version" || $1 == "--version" || $1 == "-v" ]]; then
     exit 0
 fi
 

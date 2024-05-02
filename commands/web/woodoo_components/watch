@@ -4,26 +4,27 @@
 function watchHyva() {
     HYVA_PATH=$1
     HYVA_NAME=$2
-    echo -e "${txtgrn}${ICON_SUCCESS} ${txtpur}$HYVA_NAME${txtcyn} will be watch as Hyvä Theme${txtrst}"
-    if [[ ! -d "$HYVA_PATH/web/tailwind/node_modules" ]]; then
+
+    echo -e "${txtgrn}${ICON_SUCCESS} ${txtpur}${HYVA_NAME}${txtcyn} will be watched as a Hyvä Theme${txtrst}"
+    if [[ ! -d "${HYVA_PATH}/web/tailwind/node_modules" ]]; then
         echo -e "\n${txtylw}Install missing node_modules ... ${txtrst}"
-        cd "$HYVA_PATH"/web/tailwind || exit
+        cd "${HYVA_PATH}"/web/tailwind || exit
         npm ci
-        if [[ -d "$HYVA_PATH/web/tailwind/node_modules" ]]; then
+        if [[ -d "${HYVA_PATH}/web/tailwind/node_modules" ]]; then
             cd - > /dev/null || exit
             echo -e "${txtgrn}${ICON_SUCCESS} Done. ${txtrst}"
         else
-            echo -e "${txtred}${ICON_ERROR} Could not install node_modules. Please check $HYVA_PATH/web/tailwind/node_modules ${txtrst}"
+            echo -e "${txtred}${ICON_ERROR} Could not install node_modules. Please check ${HYVA_PATH}/web/tailwind/node_modules ${txtrst}"
         fi
     fi
-    cd "$HYVA_PATH"/web/tailwind || exit
+    cd "${HYVA_PATH}"/web/tailwind || exit
     npm run watch
 }
 
 function watchMagento() {
     THEME_NAME=$1
 
-    echo -e "${txtcyn}Start Watching ${txtpur}$THEME_NAME${txtcyn} Theme!${txtrst}"
+    echo -e "${txtcyn}Start Watching ${txtpur}${THEME_NAME}${txtcyn} Theme!${txtrst}"
 
     # check if node_modules exist
     if [[ ! -d "$DDEV_COMPOSER_ROOT/node_modules/" ]]; then
@@ -50,7 +51,7 @@ function watchMagento() {
     # check if grunt task was successful
     if [[ $? -eq 0 ]]; then
         echo -e "${txtgrn}${ICON_SUCCESS} Grunt clean tasks finished. Ready to watch ...${txtrst}\n\n"
-        "$DDEV_COMPOSER_ROOT"/node_modules/.bin/grunt watch "$THEME_NAME"
+        "$DDEV_COMPOSER_ROOT"/node_modules/.bin/grunt watch "${THEME_NAME}"
     else
         echo -e "${txtred}${ICON_ERROR} Grunt task failed. Try to repair it for you.${txtrst}"
         rm -rf "$DDEV_COMPOSER_ROOT"/node_modules
@@ -62,7 +63,7 @@ function watchMagento() {
         "$DDEV_COMPOSER_ROOT"/node_modules/.bin/grunt refresh
         if [[ $? -eq 0 ]]; then
             echo -e "${txtgrn}${ICON_SUCCESS} Grunt clean tasks finished. Ready to watch ...${txtrst}\n\n"
-            "$DDEV_COMPOSER_ROOT"/node_modules/.bin/grunt watch "$THEME_NAME"
+            "$DDEV_COMPOSER_ROOT"/node_modules/.bin/grunt watch "${THEME_NAME}"
         else
             echo -e "${txtred}${ICON_ERROR} Grunt task failed again. Could not repair.${txtrst}"
         fi
@@ -74,22 +75,21 @@ function watchMagento() {
 if [[ "$1" == "watch" && "$2" != "" || "$1" == "w" && "$2" != "" ]]; then
 
     # get all themes from config-themes.yaml and check if 2nd parameter ($2) is a valid theme code
-    checkThemePathExists
+    checkThemePathExists silent
 
 
     # check if 2nd parameter ($2) is a valid theme code
     if [[ ! " ${THEMES_IN_CONFIG[@]} " =~ " ${2} " ]]; then
         echo -e "\n${txtred}${ICON_ERROR} ${2} is not a valid theme code. Please check your config.yaml${txtrst}"
-
-        echo -e "${txtcyn}\nAvailable Themes to watch in $PROJECT_CONFIG_FILE:${txtrst}"
+        echo -e "${txtcyn}\nAvailable Themes to watch in ${PROJECT_CONFIG_FILE}:${txtrst}"
         getThemesInConfig
         echo -e "\n"
         exit 0
     else
         THEME_TO_BUILD=$(echo $(grep -oP '(?<='$2': ).*' $PROJECT_CONFIG_FILE) | cut -d ' ' -f 1 | sed 's/"//g')
-        checkHyva "$THEME_TO_BUILD"
-        if [[ "$HYVA" == true ]]; then
-            watchHyva "$THEME_TO_BUILD" "$2"
+        checkHyva "${THEME_TO_BUILD}"
+        if [[ "${HYVA}" == true ]]; then
+            watchHyva "${THEME_TO_BUILD}" "$2"
         else
             watchMagento "$2"
         fi
@@ -99,7 +99,7 @@ fi
 if [[ "$1" == "watch" && "$2" == "" || "$1" == "w" && "$2" == "" ]]; then
 
     # Check all themes in config.yaml
-    checkThemePathExists
+    checkThemePathExists silent
 
     # Read all themes in config.yaml
     # Show all available themes in config.yaml
