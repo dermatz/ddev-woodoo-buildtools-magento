@@ -32,7 +32,7 @@ Special thanks to e3n GmbH for your Support!
 ##### Latest stable version (recommended)
 
 ```shell
-ddev get https://github.com/dermatz/ddev-woodoo-buildtools-magento/archive/refs/tags/1.6.0.tar.gz
+ddev get https://github.com/dermatz/ddev-woodoo-buildtools-magento/archive/refs/tags/1.6.1.tar.gz
 ```
 
 ##### Latest Developer-version (Main-Branch) - can be instable!
@@ -49,7 +49,7 @@ ddev get https://github.com/dermatz/ddev-woodoo-buildtools-magento/archive/refs/
 ddev frontend init
 ```
 
-- Add all themes you want to build or watch
+-   Add all themes you want to build or watch
 
 ---
 
@@ -99,11 +99,12 @@ Feel free to send your improvements as Pull-Request.
 
 ### Watch out our Contributers, Tester & Supporter
 
-- [Thomas Hauschild](https://github.com/Morgy93)
-- [<img src="https://e3n.de/assets/images/logo/logo.svg" height="50" alt="Logo for E-Commerce Agency e3n based in Mainz">](https://e3n.de)
+-   [Thomas Hauschild](https://github.com/Morgy93)
+-   [<img src="https://e3n.de/assets/images/logo/logo.svg" height="50" alt="Logo for E-Commerce Agency e3n based in Mainz">](https://e3n.de)
 
 ---
 
 ## License
 
 [MIT License](./MIT-LICENSES.md) | by [Mathias Elle](https://www.linkedin.com/in/mathias-elle-842783102/)
+

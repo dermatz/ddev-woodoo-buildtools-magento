@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 ### 1.6.1
 - fix support to repair broken watch task by missing dependencies in magento 1 projects
 - improve code quality by fixing bash linting issues
+- remove `-v` shortcode for Version output. Instead it will output the verbose output later
 
 ### 1.6.0
 - add `version` and `--version` argument to show version. - Thanks to [@Morgy93](https://github.com/Morgy93)
@@ -34,7 +35,7 @@ All notable changes to this project will be documented in this file.
 - fix line-break in menu selection for build and watch tasks
 
 ### 1.4.1
-- add Support for $DDEV_COMPOSER_ROOT `(e.g., ./magento2/app/design/..)``
+- add Support for $DDEV_COMPOSER_ROOT `(e.g., ./magento2/app/design/..)`
 - fix node-modules repair-functions for corrupt grunt installations
 
 ### 1.4.0
