@@ -2,69 +2,69 @@
 #ddev-generated - Do not modify this file; your modifications will be overwritten.
 
 function hyvaConfigGenerate() {
-    "$DDEV_COMPOSER_ROOT"//bin/magento hyva:config:generate
+    "${DDEV_COMPOSER_ROOT}"//bin/magento hyva:config:generate
 }
 
 function clearCache() {
-    "$DDEV_COMPOSER_ROOT"//bin/magento cache:flush
+    "${DDEV_COMPOSER_ROOT}"//bin/magento cache:flush
     echo -e "\n${txtgrn}Cache cleared${txtrst}"
 }
 
 function clearStaticFiles() {
-    rm -rf "$DDEV_COMPOSER_ROOT"/pub/static/*
-    rm -rf "$DDEV_COMPOSER_ROOT"/var/view_preprocessed/*
+    rm -rf "${DDEV_COMPOSER_ROOT}"/pub/static/*
+    rm -rf "${DDEV_COMPOSER_ROOT}"/var/view_preprocessed/*
     echo -e "${txtgrn}Static files cleared${txtrst}"
 }
 
 function buildMagentoDefault() {
     THEME_NAME=$1
 
-    echo -e "${txtcyn}Start building ${txtpur}$THEME_NAME${txtcyn} Theme ... please wait!${txtrst}"
+    echo -e "${txtcyn}Start building ${txtpur}${THEME_NAME}${txtcyn} Theme ... please wait!\n${txtrst}"
 
     # check if node_modules exist
-    if [[ ! -d "$DDEV_COMPOSER_ROOT/node_modules/" ]]; then
+    if [[ ! -d "${DDEV_COMPOSER_ROOT}/node_modules/" ]]; then
         echo -e "${txtylw}${ICON_ERROR} Install missing Node Dependencies${txtrst}"
-        cd "$DDEV_COMPOSER_ROOT" || exit
+        cd "${DDEV_COMPOSER_ROOT}" || exit
         npm ci
     fi
 
     # check if grunt exist
-    if [[ ! -f "$DDEV_COMPOSER_ROOT/node_modules/.bin/grunt" ]]; then
+    if [[ ! -f "${DDEV_COMPOSER_ROOT}/node_modules/.bin/grunt" ]]; then
         echo -e "\n\n${txtcyn}${ICON_ERROR} Install missing Grunt${txtrst}\n\n"
 
         npm install grunt
-        npm install grunt -g
+        sudo npm install grunt -g
 
-        if [[ ! -f "$DDEV_COMPOSER_ROOT/node_modules/.bin/grunt" ]]; then
+        if [[ ! -f "${DDEV_COMPOSER_ROOT}/node_modules/.bin/grunt" ]]; then
             echo -e "${txtcyn}${ICON_SUCCESS} Done. ${txtrst}"
         else
-            echo -e "${txtred}${ICON_ERROR} Could not install grunt. Please check $DDEV_COMPOSER_ROOT/node_modules/.bin/ ${txtrst}"
+            echo -e "${txtred}${ICON_ERROR} Could not install grunt. Please check ${DDEV_COMPOSER_ROOT}/node_modules/.bin/ ${txtrst}"
         fi
     fi
 
-    "$DDEV_COMPOSER_ROOT"/node_modules/.bin/grunt clean
-    "$DDEV_COMPOSER_ROOT"/node_modules/.bin/grunt less
+    "${DDEV_COMPOSER_ROOT}"/node_modules/.bin/grunt clean
+    "${DDEV_COMPOSER_ROOT}"/node_modules/.bin/grunt less
 
     # check if grunt task was successful
     if [[ $? -eq 0 ]]; then
         echo -e "${txtgrn}${ICON_SUCCESS} Grunt tasks finished${txtrst}\n\n"
-        echo -e "\n${txtgrn}${ICON_SUCCESS}${bldcyn} Theme Build for ${txtpur}$THEME_NAME${txtcyn} finished${txtrst}\n\n\n"
+        echo -e "\n${txtgrn}${ICON_SUCCESS}${bldcyn} Theme Build for ${txtpur}${THEME_NAME}${txtcyn} finished${txtrst}\n\n\n"
     else
-        echo -e "\n\n${txtred}${ICON_ERROR} Grunt task failed. Try to repair it for you.${txtrst}\n\n"
+        echo -e "\n\n${tsxtred}${ICON_ERROR} Grunt task failed. Try to repair it for you.${txtrst}\n\n"
 
-        rm -rf "$DDEV_COMPOSER_ROOT"/node_modules
+        rm -rf "${DDEV_COMPOSER_ROOT}"/node_modules
         npm ci
 
-        "$DDEV_COMPOSER_ROOT"/node_modules/.bin/grunt clean
-        "$DDEV_COMPOSER_ROOT"/node_modules/.bin/grunt less
+        "${DDEV_COMPOSER_ROOT}"/node_modules/.bin/grunt clean
+        "${DDEV_COMPOSER_ROOT}"/node_modules/.bin/grunt less
 
         if [[ $? -eq 0 ]]; then
             echo -e "${txtgrn}${ICON_SUCCESS} Grunt tasks finished${txtrst}\n\n"
-            echo -e "\n${txtgrn}${ICON_SUCCESS}${bldcyn} Theme Build for ${txtpur}$THEME_NAME${txtcyn} finished${txtrst}\n\n\n"
+            echo -e "\n${txtgrn}${ICON_SUCCESS}${bldcyn} Theme Build for ${txtpur}${THEME_NAME}${txtcyn} finished${txtrst}\n\n\n"
         else
             echo -e "\n\n${bakred}\n\n  ${ICON_ERROR} Grunt task failed again. Could not repair.\n${txtrst}\n\n"
             echo -e "${txtgrn}${txtcyn} Please fix errors above and try again.${txtrst}"
-            echo -e "\n${txtgrn}${ICON_ERROR}${bldcyn} Theme Build for ${txtpur}$THEME_NAME${txtcyn} failed.${txtrst}\n\n"
+            echo -e "\n${txtgrn}${ICON_ERROR}${bldcyn} Theme Build for ${txtpur}${THEME_NAME}${txtcyn} failed.${txtrst}\n\n"
         fi
     fi
 }
@@ -77,7 +77,7 @@ function buildHyva() {
     hyva_version=$(echo $(grep -oP '(?<="hyva-themes/magento2-default-theme": ").*' composer.json) | cut -d ' ' -f 1 | sed 's/"//g')
     hyva_version=$(echo ${hyva_version} | sed 's/\^//g' | sed 's/,//g' | sed 's/\*//g')
 
-    cd - > /dev/null
+    cd - >/dev/null
 
     # check if node_modules needs to be updated
     if [[ -d "$HYVA_PATH/web/tailwind/node_modules" ]]; then
@@ -94,7 +94,7 @@ function buildHyva() {
         cd $HYVA_PATH/web/tailwind
         npm ci
         if [[ -d "$HYVA_PATH/web/tailwind/node_modules" ]]; then
-            cd - > /dev/null
+            cd - >/dev/null
             echo -e "${txtgrn}${ICON_SUCCESS} Done. ${txtrst}"
         else
             echo -e "${txtred}${ICON_ERROR} Could not install node_modules. Please check $HYVA_PATH/web/tailwind/node_modules ${txtrst}"
@@ -109,13 +109,13 @@ function buildHyva() {
         npm run build-prod
     fi
 
-    cd - > /dev/null || exit
+    cd - >/dev/null || exit
     hyvaConfigGenerate
     echo -e "\n${txtgrn}${ICON_SUCCESS}${bldcyn} Hyvä Theme Build for ${txtpur}$HYVA_NAME${txtcyn} finished${txtrst}\n\n\n"
 }
 
 # Build all themes in config-themes.yaml
-if [[ "$1" == "build" && "$2" == "" || "$1" == "b" && "$2" == "" || "$1" == "build" && "$2" == "-f" || "$1" == "b" && "$2" == "-f" ]]; then
+if [[ $1 == "build" && $2 == "" || $1 == "b" && $2 == "" || $1 == "build" && $2 == "-f" || $1 == "b" && $2 == "-f" ]]; then
 
     # Check all themes in config-themes.yaml
     checkThemePathExists
@@ -129,14 +129,14 @@ if [[ "$1" == "build" && "$2" == "" || "$1" == "b" && "$2" == "" || "$1" == "bui
         addThemesToConfig
 
     elif [[ $(countThemesinConfig) == 1 ]]; then
-       echo -e "${txtgrn}$(countThemesinConfig) Theme available to build${txtrst}\n"
+        echo -e "${txtgrn}$(countThemesinConfig) Theme available to build${txtrst}\n"
     else
-      echo -e "${txtgrn}$(countThemesinConfig) Themes available to build${txtrst}\n"
+        echo -e "${txtgrn}$(countThemesinConfig) Themes available to build${txtrst}\n"
     fi
 
     # if more then one theme is available, ask if all themes should be build
     if [[ $(countThemesinConfig) -gt 1 && $2 != '-f' ]]; then
-        THEMES_TO_BUILD=$(gum choose --cursor-prefix "[ ] " --unselected-prefix "[ ] " --selected-prefix "[✓] " --no-limit $THEMES_IN_CONFIG;)
+        THEMES_TO_BUILD=$(gum choose --cursor-prefix "[ ] " --unselected-prefix "[ ] " --selected-prefix "[✓] " --no-limit $THEMES_IN_CONFIG)
     else
         THEMES_TO_BUILD=$THEMES_IN_CONFIG
     fi
@@ -148,7 +148,7 @@ if [[ "$1" == "build" && "$2" == "" || "$1" == "b" && "$2" == "" || "$1" == "bui
         checkHyva "$THEME_TO_BUILD"
 
         # Try to build as Hyvä Theme
-        if [[ "$HYVA" == true ]]; then
+        if [[ $HYVA == true ]]; then
             buildHyva "$THEME_TO_BUILD" "$THEME_CODE"
         else
             buildMagentoDefault "$THEME_CODE"
@@ -161,10 +161,8 @@ if [[ "$1" == "build" && "$2" == "" || "$1" == "b" && "$2" == "" || "$1" == "bui
 
 fi
 
-
-
 # Build a specific Theme
-if [[ "$1" == "build" && "$2" != "" && "$2" != "-f"  || "$1" == "b" && "$2" != "" && "$2" != "-f" ]]; then
+if [[ $1 == "build" && $2 != "" && $2 != "-f" || $1 == "b" && $2 != "" && $2 != "-f" ]]; then
 
     # Check get all themes from config-themes.yaml
     checkThemePathExists
@@ -181,7 +179,7 @@ if [[ "$1" == "build" && "$2" != "" && "$2" != "-f"  || "$1" == "b" && "$2" != "
 
         checkHyva $THEME_TO_BUILD
 
-        if [[ "$HYVA" == true ]]; then
+        if [[ $HYVA == true ]]; then
             buildHyva "$THEME_TO_BUILD" "$2"
         else
             buildMagentoDefault "$2"
@@ -192,3 +190,4 @@ if [[ "$1" == "build" && "$2" != "" && "$2" != "-f"  || "$1" == "b" && "$2" != "
 
     fi
 fi
+
