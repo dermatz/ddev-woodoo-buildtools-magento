@@ -105,7 +105,7 @@ if [[ $1 == "watch" && $2 == "" || $1 == "w" && $2 == "" ]]; then
     if [[ $(countThemesinConfig) -lt 1 ]]; then
 
         echo -e "${txtred}No Theme available to build${txtrst}\n"
-        echo -e "${txtgrn}Add a Theme to $PROJECT_CONFIG_FILE${txtrst}\n"
+        echo -e "${txtgrn}Add a Theme to ${PROJECT_CONFIG_FILE}${txtrst}\n"
 
         addThemesToConfig
 
@@ -117,7 +117,7 @@ if [[ $1 == "watch" && $2 == "" || $1 == "w" && $2 == "" ]]; then
         if [[ $(countThemesinConfig) -gt 1 && $2 != '-f' ]]; then
             # shellcheck disable=SC2086 disable=SC2250
             THEMES_TO_WATCH=$(gum choose --cursor-prefix "[ ] " --unselected-prefix "[ ] " --selected-prefix "[✓] " $THEMES_IN_CONFIG)
-        elses
+        else
             THEMES_TO_WATCH=${THEMES_IN_CONFIG}
         fi
 
@@ -127,7 +127,7 @@ if [[ $1 == "watch" && $2 == "" || $1 == "w" && $2 == "" ]]; then
 
             # checks to figure out if it is a Hyva Theme
             checkHyva "${THEME_TO_BUILD}"
-            echo -e "\n${txtgrn}Start watching ...\n${txtrst}"
+            echo -e "\n${txtgrn}Start watching ${THEME_CODE} ...\n\n${txtrst}"
 
             # Try to build as Hyva Theme
             if [[ $HYVA == true ]]; then
@@ -139,5 +139,7 @@ if [[ $1 == "watch" && $2 == "" || $1 == "w" && $2 == "" ]]; then
         done
     fi
 fi
+
+
 
 
