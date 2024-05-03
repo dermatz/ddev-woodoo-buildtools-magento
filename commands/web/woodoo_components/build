@@ -74,37 +74,41 @@ function buildHyva() {
     HYVA_PATH=$1
     HYVA_NAME=$2
 
-    cd $HYVA_PATH
+    cd "${HYVA_PATH}" || exit
+    # trunk-ignore(shellcheck/SC2046)
     hyva_version=$(echo $(grep -oP '(?<="hyva-themes/magento2-default-theme": ").*' composer.json) | cut -d ' ' -f 1 | sed 's/"//g')
-    hyva_version=$(echo ${hyva_version} | sed 's/\^//g' | sed 's/,//g' | sed 's/\*//g')
+    # trunk-ignore(shellcheck/SC2312)
+    hyva_version=$(echo "${hyva_version}" | sed 's/\^//g' | sed 's/,//g' | sed 's/\*//g')
 
-    cd - >/dev/null
+    cd - >/dev/null || exit
 
     # check if node_modules needs to be updated
-    if [[ -d "$HYVA_PATH/web/tailwind/node_modules" ]]; then
-        cd $HYVA_PATH/web/tailwind
+    if [[ -d "${HYVA_PATH}/web/tailwind/node_modules" ]]; then
+        cd "${HYVA_PATH}"/web/tailwind || exit
         echo -e "\n${txtcyn}Check for node_modules Updates ... ${txtrst}\n"
         npm outdated --silent || npm ci
         echo -e "${txtgrn}Update-Check Done.${txtrst}\n"
-        cd - >/dev/null
+        cd - >/dev/null || exit
     fi
 
-    echo -e "${txtgrn}${ICON_SUCCESS} ${txtpur}$HYVA_NAME${txtcyn} will be build as Hyvä ${txtpur}$hyva_version${txtcyn} Theme${txtrst}"
-    if [[ ! -d "$HYVA_PATH/web/tailwind/node_modules" ]]; then
+    echo -e "${txtgrn}${ICON_SUCCESS} ${txtpur}${HYVA_NAME}${txtcyn} will be build as Hyvä ${txtpur}${hyva_version}${txtcyn} Theme${txtrst}"
+    if [[ ! -d "${HYVA_PATH}/web/tailwind/node_modules" ]]; then
         echo -e "\n${txtylw}Install missing node_modules ... ${txtrst}"
-        cd $HYVA_PATH/web/tailwind
+        cd "${HYVA_PATH}"/web/tailwind || exit
         npm ci
-        if [[ -d "$HYVA_PATH/web/tailwind/node_modules" ]]; then
-            cd - >/dev/null
+
+        if [[ -d "./node_modules" ]]; then
             echo -e "${txtgrn}${ICON_SUCCESS} Done. ${txtrst}"
+            cd - >/dev/null || exit
         else
-            echo -e "${txtred}${ICON_ERROR} Could not install node_modules. Please check $HYVA_PATH/web/tailwind/node_modules ${txtrst}"
+            echo -e "${txtred}${ICON_ERROR} Could not install node_modules. Please check ${HYVA_PATH}/web/tailwind/node_modules ${txtrst}"
+            cd - >/dev/null || exit
         fi
     fi
 
-    cd $HYVA_PATH/web/tailwind
+    cd "${HYVA_PATH}"/web/tailwind || exit
 
-    if [[ $hyva_version > 1.2.0 ]]; then
+    if [[ ${hyva_version} > 1.2.0 ]]; then
         npm run build
     else
         npm run build-prod
@@ -112,7 +116,7 @@ function buildHyva() {
 
     cd - >/dev/null || exit
     hyvaConfigGenerate
-    echo -e "\n${txtgrn}${ICON_SUCCESS}${bldcyn} Hyvä Theme Build for ${txtpur}$HYVA_NAME${txtcyn} finished${txtrst}\n\n\n"
+    echo -e "\n${txtgrn}${ICON_SUCCESS}${bldcyn} Hyvä Theme Build for ${txtpur}${HYVA_NAME}${txtcyn} finished${txtrst}\n\n\n"
 }
 
 # Build all themes in config-themes.yaml
@@ -122,20 +126,25 @@ if [[ $1 == "build" && $2 == "" || $1 == "b" && $2 == "" || $1 == "build" && $2 
     checkThemePathExists
 
     # Show all available themes in config-themes.yaml
+
+    # trunk-ignore(shellcheck/SC2312)
     if [[ $(countThemesinConfig) -lt 1 ]]; then
 
         echo -e "${txtred}No Theme available to build${txtrst}\n"
-        echo -e "${txtgrn}Add a Theme to ${txtcyn}$PROJECT_CONFIG_FILE${txtrst}${txtrst}\n"
+        echo -e "${txtgrn}Add a Theme to ${txtcyn}${PROJECT_CONFIG_FILE}${txtrst}${txtrst}\n"
 
         addThemesToConfig
-
+        # trunk-ignore(shellcheck/SC2312)
     elif [[ $(countThemesinConfig) == 1 ]]; then
+        # trunk-ignore(shellcheck/SC2312)
         echo -e "${txtgrn}$(countThemesinConfig) Theme available to build${txtrst}\n"
     else
+        # trunk-ignore(shellcheck/SC2312)
         echo -e "${txtgrn}$(countThemesinConfig) Themes available to build${txtrst}\n"
     fi
 
     # if more then one theme is available, ask if all themes should be build
+    # trunk-ignore(shellcheck/SC2312)
     if [[ $(countThemesinConfig) -gt 1 && $2 != '-f' ]]; then
         THEMES_TO_BUILD=$(gum choose --cursor-prefix "[ ] " --unselected-prefix "[ ] " --selected-prefix "[✓] " --no-limit $THEMES_IN_CONFIG)
     else
@@ -146,7 +155,7 @@ if [[ $1 == "build" && $2 == "" || $1 == "b" && $2 == "" || $1 == "build" && $2 
         THEME_TO_BUILD=$(echo $(grep -oP '(?<='$THEME_CODE': ).*' $PROJECT_CONFIG_FILE) | cut -d ' ' -f 1 | sed 's/"//g')
 
         # checks to figure out if it is a Hyvä Theme
-        checkHyva "$THEME_TO_BUILD"
+        checkHyva "${THEME_TO_BUILD}"
 
         # Try to build as Hyvä Theme
         if [[ $HYVA == true ]]; then
@@ -191,4 +200,12 @@ if [[ $1 == "build" && $2 != "" && $2 != "-f" || $1 == "b" && $2 != "" && $2 != 
 
     fi
 fi
+
+
+
+
+
+
+
+
 
