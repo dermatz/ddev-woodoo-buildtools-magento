@@ -18,7 +18,6 @@ function clearStaticFiles() {
 
 function buildMagentoDefault() {
     THEME_NAME=$1
-
     echo -e "${txtcyn}Start building ${txtpur}${THEME_NAME}${txtcyn} Theme ... please wait!\n${txtrst}"
 
     # check if node_modules exist
@@ -46,6 +45,7 @@ function buildMagentoDefault() {
     "${DDEV_COMPOSER_ROOT}"/node_modules/.bin/grunt less
 
     # check if grunt task was successful
+    # trunk-ignore(shellcheck/SC2181)
     if [[ $? -eq 0 ]]; then
         echo -e "${txtgrn}${ICON_SUCCESS} Grunt tasks finished${txtrst}\n\n"
         echo -e "\n${txtgrn}${ICON_SUCCESS}${bldcyn} Theme Build for ${txtpur}${THEME_NAME}${txtcyn} finished${txtrst}\n\n\n"
@@ -58,6 +58,7 @@ function buildMagentoDefault() {
         "${DDEV_COMPOSER_ROOT}"/node_modules/.bin/grunt clean
         "${DDEV_COMPOSER_ROOT}"/node_modules/.bin/grunt less
 
+        # trunk-ignore(shellcheck/SC2181)
         if [[ $? -eq 0 ]]; then
             echo -e "${txtgrn}${ICON_SUCCESS} Grunt tasks finished${txtrst}\n\n"
             echo -e "\n${txtgrn}${ICON_SUCCESS}${bldcyn} Theme Build for ${txtpur}${THEME_NAME}${txtcyn} finished${txtrst}\n\n\n"
