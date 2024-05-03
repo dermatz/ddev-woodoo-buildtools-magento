@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 ---
 
 ## Latest Release
+### 1.6.1
+- fix support to repair broken watch task by missing dependencies in magento 1 projects
+- improve code quality by fixing bash linting issues
+
 ### 1.6.0
 - add `version` and `--version` argument to show version. - Thanks to [@Morgy93](https://github.com/Morgy93)
 - add health check to bats test - Thanks to [@Morgy93](https://github.com/Morgy93)

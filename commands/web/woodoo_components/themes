@@ -128,7 +128,7 @@ function countThemesinConfig() {
 
     if [ -n "$THEMES_IN_CONFIG" ]; then
         THEMES_COUNT=$(echo $THEMES_IN_CONFIG | wc -w)
-        echo $THEMES_COUNT
+        echo "$THEMES_COUNT"
     fi
 
 }
@@ -144,7 +144,6 @@ function getThemesInConfig() {
             echo -e "${txtpur}- $THEME_CODE ${txtrst}"
         done
     fi
-
 }
 
 #check all available themes in config.yaml if the path is not "path/to/theme"
