@@ -130,8 +130,8 @@ if [[ $1 == "watch" && $2 == "" || $1 == "w" && $2 == "" ]]; then
             echo -e "\n${txtgrn}Start watching ${THEME_CODE} ...\n\n${txtrst}"
 
             # Try to build as Hyva Theme
-            if [[ $HYVA == true ]]; then
-                watchHyva "${THEME_TO_BUILD}" "$THEME_CODE"
+            if [[ ${HYVA} == true ]]; then
+                watchHyva "${THEME_TO_BUILD}" "${THEME_CODE}"
             else
                 watchMagento "${THEME_CODE}"
             fi
@@ -139,6 +139,7 @@ if [[ $1 == "watch" && $2 == "" || $1 == "w" && $2 == "" ]]; then
         done
     fi
 fi
+
 
 
 
