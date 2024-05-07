@@ -11,6 +11,7 @@ All notable changes to this project will be documented in this file.
 -   improve build process with shorter CLI ouputs
 -   improve code quality by fixing linting issues
 -   improve changelog formatting
+-   set `HostWorkingDir` to `false` [#24](https://github.com/dermatz/ddev-woodoo-buildtools-magento/pull/24) - Thanks to [@Morgy93]
 
 ---
 
