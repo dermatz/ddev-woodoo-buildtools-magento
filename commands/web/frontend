@@ -5,7 +5,7 @@
 ## Usage: frontend [flags] [args]
 ## Example: "ddev frontend"
 ## ExecRaw: true
-## HostWorkingDir: true
+## HostWorkingDir: false
 
 # shellcheck source=woodoo_components/variables
 source ".ddev/commands/web/woodoo_components/variables"
