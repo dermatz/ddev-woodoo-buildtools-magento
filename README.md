@@ -32,7 +32,7 @@ Special thanks to e3n GmbH for your Support!
 ##### Latest stable version (recommended)
 
 ```shell
-ddev get https://github.com/dermatz/ddev-woodoo-buildtools-magento/archive/refs/tags/1.6.2.tar.gz
+ddev get https://github.com/dermatz/ddev-woodoo-buildtools-magento/archive/refs/tags/1.6.3.tar.gz
 ```
 
 ##### Latest Developer-version (Main-Branch) - can be instable!
@@ -107,5 +107,3 @@ Feel free to send your improvements as Pull-Request.
 ## License
 
 [MIT License](./MIT-LICENSES.md) | by [Mathias Elle](https://www.linkedin.com/in/mathias-elle-842783102/)
-
-

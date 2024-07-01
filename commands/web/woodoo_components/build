@@ -74,11 +74,21 @@ function buildHyva() {
     HYVA_PATH=$1
     HYVA_NAME=$2
 
-    cd "${HYVA_PATH}" || exit
-    # trunk-ignore(shellcheck/SC2046)
-    hyva_version=$(echo $(grep -oP '(?<="hyva-themes/magento2-default-theme": ").*' composer.json) | cut -d ' ' -f 1 | sed 's/"//g')
-    # trunk-ignore(shellcheck/SC2312)
-    hyva_version=$(echo "${hyva_version}" | sed 's/\^//g' | sed 's/,//g' | sed 's/\*//g')
+    if [[ ! -f ${HYVA_PATH}composer.json ]]; then
+        echo -e "${txtred}${ICON_ERROR} Could not find composer.json in Theme (${HYVA_PATH})"
+        echo -e "${txtylw}${ICON_ARROW_RIGHT} Use composer.josn from Magento-Root instead${txtrst}"
+        cd "${DDEV_COMPOSER_ROOT}" || exit
+        # trunk-ignore(shellcheck/SC2312)
+        hyva_version=$(grep -oP '(?<="hyva-themes/magento2-default-theme": ").*' composer.json | cut -d ' ' -f 1 | sed 's/"//g')
+    else
+        # trunk-ignore(shellcheck/SC2046)
+        # trunk-ignore(shellcheck/SC2005)
+        # trunk-ignore(shellcheck/SC2312)
+        hyva_version=$(echo $(grep -oP '(?<="hyva-themes/magento2-default-theme": ").*' composer.json) | cut -d ' ' -f 1 | sed 's/"//g')
+    fi
+
+    # trunk-ignore(shellcheck/SC2001)
+    hyva_version=$(echo "${hyva_version}" | sed 's/,//g')
 
     cd - >/dev/null || exit
 
@@ -96,7 +106,6 @@ function buildHyva() {
         echo -e "\n${txtylw}Install missing node_modules ... ${txtrst}"
         cd "${HYVA_PATH}"/web/tailwind || exit
         npm ci
-
         if [[ -d "./node_modules" ]]; then
             echo -e "${txtgrn}${ICON_SUCCESS} Done. ${txtrst}"
             cd - >/dev/null || exit
@@ -196,12 +205,3 @@ if [[ $1 == "build" && $2 != "" && $2 != "-f" || $1 == "b" && $2 != "" && $2 != 
 
     fi
 fi
-
-
-
-
-
-
-
-
-

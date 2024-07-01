@@ -6,6 +6,10 @@ All notable changes to this project will be documented in this file.
 
 ## Latest Release
 
+### 1.6.3
+
+-   add fallback if no composer.json was found in theme. Use Magento default in project root instead.
+
 ### 1.6.2
 
 -   improve build process with shorter CLI ouputs
