@@ -32,7 +32,7 @@ Special thanks to e3n GmbH for your Support!
 ##### Latest stable version (recommended)
 
 ```shell
-ddev get https://github.com/dermatz/ddev-woodoo-buildtools-magento/archive/refs/tags/1.6.3.tar.gz
+ddev get dermatz/ddev-woodoo-buildtools-magento
 ```
 
 ##### Latest Developer-version (Main-Branch) - can be instable!

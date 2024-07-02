@@ -6,6 +6,10 @@ All notable changes to this project will be documented in this file.
 
 ## Latest Release
 
+### 1.6.4
+-   updating wording - Thanks to @andreas-penner-basecom
+-   changed wget command to install latest version
+
 ### 1.6.3
 
 -   add fallback if no composer.json was found in theme. Use Magento default in project root instead.

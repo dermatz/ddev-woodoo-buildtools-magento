@@ -76,7 +76,7 @@ function buildHyva() {
 
     if [[ ! -f ${HYVA_PATH}composer.json ]]; then
         echo -e "${txtred}${ICON_ERROR} Could not find composer.json in Theme (${HYVA_PATH})"
-        echo -e "${txtylw}${ICON_ARROW_RIGHT} Use composer.josn from Magento-Root instead${txtrst}"
+        echo -e "${txtylw}${ICON_ARROW_RIGHT} Use composer.json from Magento-Root instead${txtrst}"
         cd "${DDEV_COMPOSER_ROOT}" || exit
         # trunk-ignore(shellcheck/SC2312)
         hyva_version=$(grep -oP '(?<="hyva-themes/magento2-default-theme": ").*' composer.json | cut -d ' ' -f 1 | sed 's/"//g')
