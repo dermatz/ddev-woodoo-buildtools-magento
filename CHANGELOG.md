@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.
 ---
 
 ## Latest Release
+### 1.6.5
+-   fix an issue when reading `..theme/composer.json` to determine which Hyva version to use through composer.json
+-   add some GitHub Status-Badges to `README.md`
 
 ### 1.6.4
 -   updating wording - Thanks to @andreas-penner-basecom

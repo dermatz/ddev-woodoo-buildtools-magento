@@ -1,8 +1,11 @@
-# [DDEV] Woodoo Frontend Buildtools for Magento & Hyvä
+# [DDEV] Woodoo Frontend Buildtools for Magento & Hyvä <img src="https://img.shields.io/github/v/release/dermatz/ddev-woodoo-buildtools-magento">
 
-[![tests](https://github.com/dermatz/ddev-woodoo-buildtools-magento/actions/workflows/tests.yml/badge.svg)](https://github.com/dermatz/ddev-woodoo-buildtools-magento/actions/workflows/tests.yml) <img src="https://img.shields.io/github/license/dermatz/ddev-woodoo-buildtools-magento" alt="License Badge (MIT-License)"> <img src="https://img.shields.io/github/last-commit/dermatz/ddev-woodoo-buildtools-magento" alt="Last commit date Badge">
+[![tests](https://github.com/dermatz/ddev-woodoo-buildtools-magento/actions/workflows/tests.yml/badge.svg)](https://github.com/dermatz/ddev-woodoo-buildtools-magento/actions/workflows/tests.yml) <img src="https://img.shields.io/librariesio/github/dermatz/ddev-woodoo-buildtools-magento" alt="Dependencies"> <img src="https://img.shields.io/github/last-commit/dermatz/ddev-woodoo-buildtools-magento" alt="Last commit date Badge"> <img src="https://img.shields.io/github/sponsors/dermatz" alt="Sponsors">
 
 ---
+
+https://img.shields.io/github/license/dermatz/ddev-woodoo-buildtools-magento
+
 
 This ddev add-on helps you to manage your theme build processes in Magento total easy. You can run a build command to build all your themes or a specific theme. Don't matter if the theme is a Magento Standard or Custom Theme, or maybe a Hyva theme. It automatically takes care which type of theme you use and will build it for you. If a dependency is missing, Woodoo will install it.
 
