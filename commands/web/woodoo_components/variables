@@ -18,6 +18,7 @@ PROJECT_NODEJS_VERSION=$(node -v)
 
 GUM_CHOOSE=""
 
+# Check network connectivity
 if ping -q -c 1 -W 1 nodejs.org >/dev/null; then
     LATEST_LTS_VERSION=$(curl -s https://nodejs.org/dist/index.json | jq -r '.[] | select(.lts) | .version' | sort -V | tail -1)
 else
