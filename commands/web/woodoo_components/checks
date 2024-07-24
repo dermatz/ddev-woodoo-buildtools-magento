@@ -1,6 +1,11 @@
 #!/bin/bash
 #ddev-generated - Do not modify this file; your modifications will be overwritten.
 
+
+# Function to check if Hyva theme is present in the specified build path
+# Parameters:
+#   $1: The build path
+
 function checkHyva() {
     HYVA=false
     local BUILD_PATH=$1
@@ -10,17 +15,18 @@ function checkHyva() {
     fi
 }
 
+
+# Function to read themes from config-themes.yaml and store them in THEMES_IN_CONFIG variable
+# Parameters:
+#   None
+
 function readThemesInConfig() {
-
     THEMES_IN_CONFIG=""
-
     if [[ ! -f ${PROJECT_CONFIG_FILE} ]]; then
         echo -e "\n${txtred}No ${PROJECT_CONFIG_FILE} found.' first.${txtrst}\n"
         exit 1
     fi
-
     while read -r line; do
-
         # Check whether the line with "Themes:" begins
         if [[ ${line} =~ ^themes: ]]; then
             while read -r next_line; do
@@ -35,7 +41,23 @@ function readThemesInConfig() {
     done <"${PROJECT_CONFIG_FILE}"
 }
 
-#check all available themes in config-themes.yaml if the path is set and not the default "path/to/theme"
+
+# Function to check if theme paths exist in the configuration file
+#
+# Parameters:
+#   $1 (optional) - If set to "silent", suppresses the output messages
+#
+# Description:
+#   This function reads the themes from the config-themes.yaml file and checks if the theme paths are configured correctly.
+#   It iterates through each theme code and checks if the corresponding theme path is configured and if the registration.php file exists in the theme path.
+#   If any theme path is not configured correctly, it sets the PATH_ERROR flag to true and exits the script.
+#   If all theme paths are valid, it prints a success message.
+#
+# Example usage:
+#   checkThemePathExists
+#   checkThemePathExists silent
+#
+
 function checkThemePathExists() {
 
     # get all themes from config-themes.yaml
@@ -46,7 +68,6 @@ function checkThemePathExists() {
     if [[ -z ${THEMES_IN_CONFIG} ]]; then
         echo -e "\n${txtred}No Themes found in ${PROJECT_CONFIG_FILE}}${txtrst}\n"
     else
-
         if [[ $1 != "silent" ]]; then
             # Check if only 1 theme is configured
             if [[ $(countThemesinConfig) == 1 ]]; then
@@ -55,7 +76,6 @@ function checkThemePathExists() {
                 echo -e "\n${txtgrn}$(countThemesinConfig) Themes added to ${txtcyn}${PROJECT_CONFIG_FILE}${txtrst}\n"
             fi
         fi
-
         for THEME_CODE in ${THEMES_IN_CONFIG}; do
             while read -r line; do
                 # Check whether the line with "Themes:" begins
