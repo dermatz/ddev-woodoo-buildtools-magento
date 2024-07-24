@@ -96,30 +96,6 @@ function addThemesToConfig() {
     fi
 }
 
-function readThemesInConfig() {
-
-    THEMES_IN_CONFIG=""
-
-    if [[ ! -f "${PROJECT_CONFIG_FILE}" ]]; then
-        echo -e "\n${txtred}No ${PROJECT_CONFIG_FILE} found.' first.${txtrst}\n"
-        exit 1
-    fi
-
-    # Read $PROJECT_CONFIG_FILE to get available themes
-    while read -r line; do
-        # Check whether the line with "Themes:" begins
-        if [[ "$line" =~ ^themes: ]]; then
-            while read -r next_line; do
-                # Check whether the next line begins with "-"
-                if [[ -n "${next_line}" && "${next_line}" =~ ^- ]]; then
-                    THEMES_IN_CONFIG="${THEMES_IN_CONFIG} $(echo "${next_line}" | cut -d ' ' -f 2 | cut -d ':' -f 1)"
-                else
-                    break
-                fi
-            done
-        fi
-    done < "$PROJECT_CONFIG_FILE"
-}
 
 # Count Themes by reading config.yaml with readThemesInConfig()
 function countThemesinConfig() {
@@ -143,74 +119,6 @@ function getThemesInConfig() {
         for THEME_CODE in ${THEMES_IN_CONFIG}; do
             echo -e "${txtpur}- ${THEME_CODE} ${txtrst}"
         done
-    fi
-}
-
-#check all available themes in config.yaml if the path is not "path/to/theme"
-function checkThemePathExists() {
-
-    readThemesInConfig
-
-    PATH_ERROR=false
-
-    if [[ -z "${THEMES_IN_CONFIG}" ]]; then
-        echo -e "\n${txtred}No Themes found in ${PROJECT_CONFIG_FILE}}${txtrst}\n"
-    else
-
-        if [[ "$1" != "silent" ]]; then
-            # Check if only 1 theme is configured
-            if [[ $(countThemesinConfig) == 1 ]]; then
-                echo -e "\n${txtgrn}$(countThemesinConfig) Theme added to ${txtcyn}$PROJECT_CONFIG_FILE${txtrst}\n"
-            else
-                echo -e "\n${txtgrn}$(countThemesinConfig) Themes added to ${txtcyn}$PROJECT_CONFIG_FILE${txtrst}\n"
-            fi
-        fi
-
-        for THEME_CODE in $THEMES_IN_CONFIG; do
-            while read -r line; do
-                # Check whether the line with "Themes:" begins
-                if [[ "$line" =~ ^themes: ]]; then
-                    while read -r next_line; do
-                        THEME_PATHES_VALID=null
-                        # Check whether the next line begins with "-"
-                        if [[ -n "$next_line" && "$next_line" =~ ^- ]]; then
-                            if [[ "$next_line" =~ $THEME_CODE ]]; then
-                                THEME_PATH=$(echo $next_line | cut -d ' ' -f 3 | cut -d '"' -f 2)
-
-                                if [[ "$THEME_PATH" == "" ]]; then
-                                    if [[ "$1" != "silent" ]]; then
-                                        echo -e "${txtred}${ICON_ERROR} Theme ${txtpur}$THEME_CODE ${txtred}has not been configured yet.${txtrst}"
-                                    fi
-                                    THEME_PATHES_VALID=false
-                                    PATH_ERROR=true
-                                else
-                                    # if $THEME_PATHES_VALID not false and registration.php exists in $THEME_PATH
-                                    if [[ "$THEME_PATHES_VALID" != false && -f $THEME_PATH/registration.php ]]; then
-                                        THEME_PATHES_VALID=true
-                                        if [[ "$1" != "silent" ]]; then
-                                            echo -e "${txtgrn}${ICON_SUCCESS} Theme ${txtpur}$THEME_CODE ${txtgrn}has been correct configured.${txtrst}"
-                                        fi
-                                    else
-                                        THEME_PATHES_VALID=false
-                                        PATH_ERROR=true
-                                        echo -e "${txtred}${ICON_ERROR} Theme ${txtpur}$THEME_CODE ${txtred}has not been configured correctly.${txtrst}"
-                                    fi
-                                fi
-                            fi
-                        fi
-                    done
-                    break
-                fi
-            done < $PROJECT_CONFIG_FILE
-        done
-
-        # if checkThemePathExists has an error, it will exit the script
-        if $PATH_ERROR; then
-            echo -e "\n${txtylw}${ICON_WARNING} Some Theme-Paths are invalid! Please check your $PROJECT_CONFIG_FILE ${txtrst}\n"
-            exit 0
-        else
-            echo -e "\n${txtgrn}${ICON_SUCCESS} All Theme-Paths are valid!${txtrst}\n"
-        fi
     fi
 }
 
