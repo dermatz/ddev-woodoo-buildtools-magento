@@ -34,7 +34,7 @@ jobs:
 
     strategy:
       matrix:
-        ddev_version: [stable, HEAD]
+        ddev_version: [HEAD]
 #        ddev_version: [stable, edge, HEAD, PR]
       fail-fast: false
 
@@ -81,6 +81,8 @@ jobs:
 
     - name: tests
       run: bats tests
+    - name: dependencies
+      run: bats dependencies
 
     # keepalive-workflow adds a dummy commit if there's no other action here, keeps
     # GitHub from turning off tests after 60 days
