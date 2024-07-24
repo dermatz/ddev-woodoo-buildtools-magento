@@ -32,13 +32,13 @@ function buildMagentoDefault() {
     fi
 
     # check if grunt exist
-    if ! command -v grunt &> /dev/null; then
+    if ! command -v grunt &>/dev/null; then
         echo -e "\n\n${txtcyn}${ICON_ERROR} Install missing Grunt${txtrst}\n\n"
 
         npm install grunt
         sudo npm install grunt -g
 
-        if ! command -v grunt &> /dev/null; then
+        if ! command -v grunt &>/dev/null; then
             echo -e "${txtred}${ICON_ERROR} Could not install grunt. Please check your installation.${txtrst}"
         else
             echo -e "${txtcyn}${ICON_SUCCESS} Grunt installed successfully.${txtrst}"
