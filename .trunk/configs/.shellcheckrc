@@ -7,3 +7,4 @@ source-path=SCRIPTDIR
 
 disable=SC2154
 disable=SC2312
+disable=SC2001
