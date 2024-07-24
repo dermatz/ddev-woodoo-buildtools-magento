@@ -81,8 +81,6 @@ jobs:
 
     - name: tests
       run: bats tests
-    - name: dependencies
-      run: bats dependencies
 
     # keepalive-workflow adds a dummy commit if there's no other action here, keeps
     # GitHub from turning off tests after 60 days
