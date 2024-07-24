@@ -1,7 +1,6 @@
 #!/bin/bash
 #ddev-generated - Do not modify this file; your modifications will be overwritten.
 
-
 # Function to check if Hyva theme is present in the specified build path
 # Parameters:
 #   $1: The build path
@@ -14,7 +13,6 @@ function checkHyva() {
         HYVA=true
     fi
 }
-
 
 # Function to read themes from config-themes.yaml and store them in THEMES_IN_CONFIG variable
 # Parameters:
@@ -40,7 +38,6 @@ function readThemesInConfig() {
         fi
     done <"${PROJECT_CONFIG_FILE}"
 }
-
 
 # Function to check if theme paths exist in the configuration file
 #
