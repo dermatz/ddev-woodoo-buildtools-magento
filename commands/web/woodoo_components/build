@@ -84,10 +84,11 @@ function buildMagentoDefault() {
 
 # Builds the Hyvä theme specified by the first argument and the theme code by the second argument
 # HYVA_PATH is the path to the Hyvä theme directory
-# HYVA_NAME is the theme name (code) of the theme
+# TEMP_THEME_NAME is the theme name (code) of the theme
 
 function getInstalledHyvaVersion() {
     HYVA_VERSION=""
+    local TEMP_THEME_NAME=$2
 
     # Check if a composer.json exists in the theme directory
     # If not, use the composer.json from the Magento root directory to get the Hyvä version
@@ -102,6 +103,7 @@ function getInstalledHyvaVersion() {
     fi
 
     HYVA_VERSION=$(echo "${HYVA_VERSION}" | sed 's/,//g')
+    echo -e "${txtgrn}${ICON_ARROW_RIGHT} ${txtpur}${TEMP_THEME_NAME}${txtcyn} is a Hyvä ${txtpur}${HYVA_VERSION}${txtcyn} Theme${txtrst}\n"
     cd - >/dev/null || exit
 }
 
@@ -109,7 +111,7 @@ function getInstalledHyvaVersion() {
 function checkNpmOutdatedPackages() {
     if [[ -d "$1/web/tailwind/node_modules" ]]; then
         cd "$1/web/tailwind" || exit
-        echo -e "\n${txtcyn}${ICON_ARROW_RIGHT} Check for outdated dependencies ... ${txtrst}\n"
+        echo -e "${txtcyn}${ICON_ARROW_RIGHT} Check for outdated dependencies ... ${txtrst}\n"
         npm outdated --silent || npm ci
         echo -e "${txtcyn}${ICON_SUCCESS} Dependencies check done.${txtrst}"
         cd - >/dev/null || exit
@@ -139,11 +141,9 @@ function buildHyva() {
     local HYVA_NAME=$2
     local HYVA_VERSION=""
 
-    getInstalledHyvaVersion "${HYVA_PATH}"
+    getInstalledHyvaVersion "${HYVA_PATH}" "${HYVA_NAME}"
     checkNodeModules "${HYVA_PATH}"
     checkNpmOutdatedPackages "${HYVA_PATH}"
-
-    echo -e "\n${txtgrn}${ICON_ARROW_RIGHT} ${txtpur}${HYVA_NAME}${txtcyn} will be build as Hyvä ${txtpur}${HYVA_VERSION}${txtcyn} Theme${txtrst}"
 
     cd "${HYVA_PATH}"/web/tailwind || exit
 
@@ -183,6 +183,7 @@ if [[ ($1 == "build" || $1 == "b") && ($2 == "" || $2 == "-f") ]]; then
         THEMES_TO_BUILD=${THEMES_IN_CONFIG}
     fi
 
+    # Build all themes available in config-themes.yaml
     for THEME_CODE in ${THEMES_TO_BUILD}; do
         THEME_TO_BUILD=$(echo $(grep -oP '(?<='$THEME_CODE': ).*' $PROJECT_CONFIG_FILE) | cut -d ' ' -f 1 | sed 's/"//g')
 
@@ -198,8 +199,9 @@ if [[ ($1 == "build" || $1 == "b") && ($2 == "" || $2 == "-f") ]]; then
 
     done
 
-    clearCache
+    # Clear Magento Cache and Static Files
     clearStaticFiles
+    clearCache
 
 fi
 
@@ -210,19 +212,19 @@ if [[ ($1 == "build" || $1 == "b") && $2 != "" && $2 != "-f" ]]; then
     checkThemePathExists
 
     # check if 2nd parameter ($2) is a valid theme code
-    if [[ ! " ${THEMES_IN_CONFIG[@]} " =~ " ${2} " ]]; then
-        echo -e "\n${txtred}${ICON_ERROR} ${2} is not a valid theme-code. Please check your $PROJECT_CONFIG_FILE${txtrst}"
-        echo -e "${txtcyn}\nAvailable Themes in $PROJECT_CONFIG_FILE:${txtrst}"
+    if [[ ! " ${THEMES_IN_CONFIG[*]} " =~ ${2} ]]; then
+        echo -e "\n${txtred}${ICON_ERROR} ERROR! ${undred}${2}${txtred} is not listed in ${undred}${PROJECT_CONFIG_FILE}${txtred}. Please check again or choose one of these:${txtrst}"
+        echo -e "${txtcyn}\nAvailable Themes:${txtrst}"
         getThemesInConfig
         echo -e "\n"
         exit 0
     else
-        THEME_TO_BUILD=$(echo $(grep -oP '(?<='$2': ).*' $PROJECT_CONFIG_FILE) | cut -d ' ' -f 1 | sed 's/"//g')
+        THEME_TO_BUILD=$(grep -oP "(?<=${2}: ).*" "${PROJECT_CONFIG_FILE}" | cut -d ' ' -f 1 | tr -d '"')
 
-        checkHyva $THEME_TO_BUILD
+        checkHyva "${THEME_TO_BUILD}"
 
-        if [[ $HYVA == true ]]; then
-            buildHyva "$THEME_TO_BUILD" "$2"
+        if [[ ${HYVA} == true ]]; then
+            buildHyva "${THEME_TO_BUILD}" "$2"
         else
             buildMagentoDefault "$2"
         fi
