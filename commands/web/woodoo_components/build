@@ -3,6 +3,7 @@
 
 # Generates the Hyvä theme configuration
 function hyvaConfigGenerate() {
+    echo -e "\n${txtcyn}${ICON_ARROW_RIGHT} Generate Hyvä Configuration ... ${txtrst}"
     "${DDEV_COMPOSER_ROOT}"/bin/magento hyva:config:generate
 }
 
@@ -16,6 +17,13 @@ function clearCache() {
 function clearStaticFiles() {
     rm -rf "${DDEV_COMPOSER_ROOT}"/pub/static/* "${DDEV_COMPOSER_ROOT}"/var/view_preprocessed/*
     echo -e "${txtgrn}Magento Static files cleared${txtrst}"
+}
+
+# Runs the necessary Grunt tasks from project root to build the theme
+# DDEV_COMPOSER_ROOT is the path to the project root directory
+function runGruntTasks() {
+    "${DDEV_COMPOSER_ROOT}"/node_modules/.bin/grunt clean
+    "${DDEV_COMPOSER_ROOT}"/node_modules/.bin/grunt less
 }
 
 # Builds the Magento theme specified by the first argument
@@ -74,67 +82,86 @@ function buildMagentoDefault() {
     fi
 }
 
-function runGruntTasks() {
-    "${DDEV_COMPOSER_ROOT}"/node_modules/.bin/grunt clean
-    "${DDEV_COMPOSER_ROOT}"/node_modules/.bin/grunt less
+# Builds the Hyvä theme specified by the first argument and the theme code by the second argument
+# HYVA_PATH is the path to the Hyvä theme directory
+# HYVA_NAME is the theme name (code) of the theme
+
+function getInstalledHyvaVersion() {
+    HYVA_VERSION=""
+
+    # Check if a composer.json exists in the theme directory
+    # If not, use the composer.json from the Magento root directory to get the Hyvä version
+    if [[ ! -f "${DDEV_COMPOSER_ROOT}/$1/composer.json" ]]; then
+        echo -e "${txtylw}${ICON_WARNING} Could not find composer.json in Theme ($1)"
+        echo -e "${txtcyn}${ICON_ARROW_RIGHT} Use composer.json from Magento-Root instead${txtrst}"
+        cd "${DDEV_COMPOSER_ROOT}" || exit
+        HYVA_VERSION=$(grep -oP '(?<="hyva-themes/magento2-default-theme": ").*' composer.json | cut -d ' ' -f 1 | sed 's/"//g')
+    else
+        cd "${DDEV_COMPOSER_ROOT}/$1" || exit
+        HYVA_VERSION=$(echo $(grep -oP '(?<="hyva-themes/magento2-default-theme": ").*' composer.json) | cut -d ' ' -f 1 | sed 's/"//g')
+    fi
+
+    HYVA_VERSION=$(echo "${HYVA_VERSION}" | sed 's/,//g')
+    cd - >/dev/null || exit
+}
+
+# check if node_modules needs to be updated
+function checkNpmOutdatedPackages() {
+    if [[ -d "$1/web/tailwind/node_modules" ]]; then
+        cd "$1/web/tailwind" || exit
+        echo -e "\n${txtcyn}${ICON_ARROW_RIGHT} Check for outdated dependencies ... ${txtrst}\n"
+        npm outdated --silent || npm ci
+        echo -e "${txtcyn}${ICON_SUCCESS} Dependencies check done.${txtrst}"
+        cd - >/dev/null || exit
+    fi
+}
+
+# check if all dependencies are up to date in node_modules folder
+function checkNodeModules() {
+    if [[ ! -d "$1/web/tailwind/node_modules" ]]; then
+        echo -e "\n${txtylw}${ICON_WARNING} Install missing npm dependencies (node_modules) ... ${txtrst}"
+        cd "$1/web/tailwind" || exit
+        npm ci
+        if [[ -d "./node_modules" ]]; then
+            echo -e "\n${txtcyn}${ICON_SUCCESS} npm dependencies installed.${txtrst}"
+            cd - >/dev/null || exit
+        else
+            echo -e "${txtred}${ICON_ERROR} Could not install npm dependencies. Please check $1/web/tailwind/node_modules ${txtrst}"
+            cd - >/dev/null || exit
+        fi
+    else
+        echo -e "${txtcyn}${ICON_SUCCESS} node_modules folder found.${txtrst}"
+    fi
 }
 
 function buildHyva() {
-    HYVA_PATH=$1
-    HYVA_NAME=$2
+    local HYVA_PATH=$1
+    local HYVA_NAME=$2
+    local HYVA_VERSION=""
 
-    if [[ ! -f "${DDEV_COMPOSER_ROOT}/${HYVA_PATH}/composer.json" ]]; then
-        echo -e "${txtred}${ICON_ERROR} Could not find composer.json in Theme (${HYVA_PATH})"
-        echo -e "${txtylw}${ICON_ARROW_RIGHT} Use composer.json from Magento-Root instead${txtrst}"
-        cd "${DDEV_COMPOSER_ROOT}" || exit
-        hyva_version=$(grep -oP '(?<="hyva-themes/magento2-default-theme": ").*' composer.json | cut -d ' ' -f 1 | sed 's/"//g')
-    else
-        cd "${DDEV_COMPOSER_ROOT}/${HYVA_PATH}" || exit
-        hyva_version=$(echo $(grep -oP '(?<="hyva-themes/magento2-default-theme": ").*' composer.json) | cut -d ' ' -f 1 | sed 's/"//g')
-    fi
+    getInstalledHyvaVersion "${HYVA_PATH}"
+    checkNodeModules "${HYVA_PATH}"
+    checkNpmOutdatedPackages "${HYVA_PATH}"
 
-    hyva_version=$(echo "${hyva_version}" | sed 's/,//g')
-
-    cd - >/dev/null || exit
-
-    # check if node_modules needs to be updated
-    if [[ -d "${HYVA_PATH}/web/tailwind/node_modules" ]]; then
-        cd "${HYVA_PATH}"/web/tailwind || exit
-        echo -e "\n${txtcyn}Check for node_modules Updates ... ${txtrst}\n"
-        npm outdated --silent || npm ci
-        echo -e "${txtgrn}Update-Check Done.${txtrst}\n"
-        cd - >/dev/null || exit
-    fi
-
-    echo -e "${txtgrn}${ICON_SUCCESS} ${txtpur}${HYVA_NAME}${txtcyn} will be build as Hyvä ${txtpur}${hyva_version}${txtcyn} Theme${txtrst}"
-    if [[ ! -d "${HYVA_PATH}/web/tailwind/node_modules" ]]; then
-        echo -e "\n${txtylw}Install missing node_modules ... ${txtrst}"
-        cd "${HYVA_PATH}"/web/tailwind || exit
-        npm ci
-        if [[ -d "./node_modules" ]]; then
-            echo -e "${txtgrn}${ICON_SUCCESS} Done. ${txtrst}"
-            cd - >/dev/null || exit
-        else
-            echo -e "${txtred}${ICON_ERROR} Could not install node_modules. Please check ${HYVA_PATH}/web/tailwind/node_modules ${txtrst}"
-            cd - >/dev/null || exit
-        fi
-    fi
+    echo -e "\n${txtgrn}${ICON_ARROW_RIGHT} ${txtpur}${HYVA_NAME}${txtcyn} will be build as Hyvä ${txtpur}${HYVA_VERSION}${txtcyn} Theme${txtrst}"
 
     cd "${HYVA_PATH}"/web/tailwind || exit
 
-    if [[ ${hyva_version} > 1.2.0 ]]; then
+    # check if Hyvä version is greater than 1.2.0 to run the correct build command
+    if [[ $(echo "${HYVA_VERSION}" | awk -F. '{print $1"."$2"."$3}') > 1.2.0 ]]; then
         npm run build
     else
         npm run build-prod
     fi
 
     cd - >/dev/null || exit
+
     hyvaConfigGenerate
-    echo -e "\n${txtgrn}${ICON_SUCCESS}${bldcyn} Hyvä Theme Build for ${txtpur}${HYVA_NAME}${txtcyn} finished${txtrst}\n\n\n"
+    echo -e "\n${txtgrn}${ICON_SUCCESS}${bldcyn} Hyvä Theme ${txtpur}(v${HYVA_VERSION})${txtcyn} build for ${txtpur}${HYVA_NAME}${txtcyn} done!${txtrst}\n\n\n"
 }
 
 # Build all themes in config-themes.yaml
-if [[ $1 == "build" && $2 == "" || $1 == "b" && $2 == "" || $1 == "build" && $2 == "-f" || $1 == "b" && $2 == "-f" ]]; then
+if [[ ($1 == "build" || $1 == "b") && ($2 == "" || $2 == "-f") ]]; then
 
     # Check all themes in config-themes.yaml to create a list of available themes
     checkThemePathExists silent
