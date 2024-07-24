@@ -5,7 +5,9 @@ function checkHyva() {
     HYVA=false
     local BUILD_PATH=$1
     local HYVA_FOLDER=${BUILD_PATH}/web/tailwind
-    if [[ -d "${HYVA_FOLDER}" && -f "${HYVA_FOLDER}/tailwind.config.js" && -f "${HYVA_FOLDER}/package.json" ]]; then
+    if [[ -d ${HYVA_FOLDER} && -f "${HYVA_FOLDER}/tailwind.config.js" && -f "${HYVA_FOLDER}/package.json" ]]; then
+        # trunk-ignore(shellcheck/SC2034)
         HYVA=true
     fi
 }
+
