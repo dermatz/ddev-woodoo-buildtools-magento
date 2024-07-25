@@ -2,28 +2,21 @@
 #ddev-generated - Do not modify this file; your modifications will be overwritten.
 
 function watchHyva() {
-    HYVA_PATH=$1
-    HYVA_NAME=$2
+
+    local HYVA_PATH=$1
+    local HYVA_NAME=$2
 
     echo -e "${txtgrn}${ICON_SUCCESS} ${txtpur}${HYVA_NAME}${txtcyn} will be watched as a Hyvä Theme${txtrst}"
-    if [[ ! -d "${HYVA_PATH}/web/tailwind/node_modules" ]]; then
-        echo -e "\n${txtylw}Install missing node_modules ... ${txtrst}"
-        cd "${HYVA_PATH}"/web/tailwind || exit
-        npm ci
-        if [[ -d "${HYVA_PATH}/web/tailwind/node_modules" ]]; then
-            cd - >/dev/null || exit
-            echo -e "${txtgrn}${ICON_SUCCESS} Done. ${txtrst}"
-        else
-            echo -e "${txtred}${ICON_ERROR} Could not install node_modules. Please check ${HYVA_PATH}/web/tailwind/node_modules ${txtrst}"
-        fi
-    fi
+
+    checkNodeModules "${HYVA_PATH}"
+    checkNpmOutdatedPackages "${HYVA_PATH}"
+
     cd "${HYVA_PATH}"/web/tailwind || exit
     npm run watch
 }
 
 function watchMagento() {
-    THEME_NAME=$1
-
+    local THEME_NAME=$1
     echo -e "${txtcyn}Start Watching ${txtpur}${THEME_NAME}${txtcyn} Theme!${txtrst}"
 
     # check if node_modules exist
@@ -35,9 +28,7 @@ function watchMagento() {
     # check if grunt exist
     if [[ ! -f "${DDEV_COMPOSER_ROOT}/node_modules/.bin/grunt" ]]; then
         echo -e "${txtcyn}${ICON_ERROR} Install missing Grunt${txtrst}"
-        npm install grunt
-        sudo npm install grunt -g
-        sudo npm install grunt-cli -g
+        installGrunt
         if [[ ! -f "${DDEV_COMPOSER_ROOT}/node_modules/.bin/grunt" ]]; then
             echo -e "${txtcyn}${ICON_SUCCESS} Done. ${txtrst}"
         else
@@ -56,11 +47,12 @@ function watchMagento() {
         echo -e "${txtred}${ICON_ERROR} Grunt task failed. ${txtcyn}Try to repair it for you.${txtrst}"
         rm -rf "${DDEV_COMPOSER_ROOT}"/node_modules
         echo "${txtcyn}Reinstalling node_modules and running grunt tasks again ...${txtrst}"
-        npm install
-        sudo npm install grunt -g
-        sudo npm install grunt-cli -g
+
+        installGrunt
+
         "${DDEV_COMPOSER_ROOT}"/node_modules/.bin/grunt clean
         "${DDEV_COMPOSER_ROOT}"/node_modules/.bin/grunt refresh
+
         if [[ $? -eq 0 ]]; then
             echo -e "${txtgrn}${ICON_SUCCESS} Grunt clean tasks finished. Ready to watch ...${txtrst}\n\n"
             "${DDEV_COMPOSER_ROOT}"/node_modules/.bin/grunt watch "${THEME_NAME}"
@@ -70,7 +62,7 @@ function watchMagento() {
     fi
 }
 
-# Watch a specific theme (WIP)
+# Watch a specific theme
 if [[ $1 == "watch" && $2 != "" || $1 == "w" && $2 != "" ]]; then
 
     # get all themes from config-themes.yaml and check if 2nd parameter ($2) is a valid theme code
@@ -78,8 +70,8 @@ if [[ $1 == "watch" && $2 != "" || $1 == "w" && $2 != "" ]]; then
 
     # check if 2nd parameter ($2) is a valid theme code
     if [[ ! " ${THEMES_IN_CONFIG[@]} " =~ " ${2} " ]]; then
-        echo -e "\n${txtred}${ICON_ERROR} ${2} is not a valid theme code. Please check your config.yaml${txtrst}"
-        echo -e "${txtcyn}\nAvailable Themes to watch in ${PROJECT_CONFIG_FILE}:${txtrst}"
+        echo -e "\n${txtred}${ICON_ERROR} ${2} is not a valid theme code. Please check your ${undcyn}${PROJECT_CONFIG_FILE}${txtrst}"
+        echo -e "${txtcyn}\nAvailable Themes to watch in ${undcyn}${PROJECT_CONFIG_FILE}:${txtrst}"
         getThemesInConfig
         echo -e "\n"
         exit 0
@@ -99,18 +91,12 @@ if [[ $1 == "watch" && $2 == "" || $1 == "w" && $2 == "" ]]; then
     # Check all themes in config.yaml
     checkThemePathExists silent
 
-    # Read all themes in config.yaml
-    # Show all available themes in config.yaml
-
+    # check if themes are available in config-themes.yaml
     if [[ $(countThemesinConfig) -lt 1 ]]; then
-
         echo -e "${txtred}No Theme available to build${txtrst}\n"
         echo -e "${txtgrn}Add a Theme to ${PROJECT_CONFIG_FILE}${txtrst}\n"
-
         addThemesToConfig
-
         echo -e "\n${txtgrn}$(countThemesinConfig)${txtcyn} Theme is ready to watch:${txtrst}"
-
     else
 
         # if more then one theme is available, ask if all themes should be build
@@ -122,7 +108,6 @@ if [[ $1 == "watch" && $2 == "" || $1 == "w" && $2 == "" ]]; then
         fi
 
         for THEME_CODE in ${THEMES_TO_WATCH}; do
-
             THEME_TO_BUILD=$(echo $(grep -oP '(?<='$THEME_CODE': ).*' $PROJECT_CONFIG_FILE) | cut -d ' ' -f 1 | sed 's/"//g')
 
             # checks to figure out if it is a Hyva Theme
@@ -135,12 +120,6 @@ if [[ $1 == "watch" && $2 == "" || $1 == "w" && $2 == "" ]]; then
             else
                 watchMagento "${THEME_CODE}"
             fi
-
         done
     fi
 fi
-
-
-
-
-

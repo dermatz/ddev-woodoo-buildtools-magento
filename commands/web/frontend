@@ -22,6 +22,7 @@ if [[ ${WOODOO_VERSION} != "${LATEST_WOODOO_VERSION}" ]]; then
     echo -e "✅ ${txtgrn}Install update with: ${txtcyn}ddev frontend-update${txtrst}"
 fi
 
+source ".ddev/commands/web/woodoo_components/functions"
 source ".ddev/commands/web/woodoo_components/checks"
 source ".ddev/commands/web/woodoo_components/themes"
 source ".ddev/commands/web/woodoo_components/build"
