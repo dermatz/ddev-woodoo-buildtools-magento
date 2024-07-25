@@ -4,7 +4,7 @@
 
 ---
 
-This ddev add-on helps you to manage your theme build processes in Magento total easy. You can run a build command to build all your themes or a specific theme. Don't matter if the theme is a Magento Standard or Custom Theme, or maybe a Hyva theme. It automatically takes care which type of theme you use and will build it for you. If a dependency is missing, Woodoo will install it.
+This ddev add-on helps you to manage your theme build processes in Magento easily. You can run a build command to build all your themes or a specific theme. It doesn't matter if the theme is a Magento Standard Theme, a Custom Theme, or a Hyva theme. It automatically takes care of which type of theme you use and builds it for you. If a dependency is missing, Woodoo will install it.
 
 _>> Build all your Magento themes at once, with Magic, build with Woodoo!_
 
@@ -79,15 +79,15 @@ Command:
   version, --version    Show version
   check, selftest       Frontend Self-Test
   frontend-update       Update to the latest Version (stable Version)
-  frontend-update -dev  Update to the latest Main-Branch Version (not recommented)
+  frontend-update -dev  Update to the latest Main-Branch Version (not recommended)
   themes                List all available themes that are configured in .ddev/config-themes.yaml
   build                 Builds all themes that are configured in .ddev/config-themes.yaml
-  build -f              Builds all configured themes without yes/no question
+  build -f              Builds all configured themes without yes/no confirmation
   build theme           Build a specific theme
   watch theme           Watch for CSS and JS changes in a specific theme
 
 Option:
-  -f                    Force the build command to run without yes/no question
+  -f                    Force the build command to run without yes/no confirmation
 ```
 
 ## Feature request
