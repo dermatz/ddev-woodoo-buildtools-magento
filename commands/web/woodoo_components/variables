@@ -1,5 +1,6 @@
 #!/bin/bash
 #ddev-generated - Do not modify this file; your modifications will be overwritten.
+
 WOODOO_VERSION="1.6.5"
 LATEST_WOODOO_VERSION=$(curl -s https://api.github.com/repos/dermatz/ddev-woodoo-buildtools-magento/releases/latest | grep tag_name | cut -d '"' -f 4)
 
@@ -15,21 +16,19 @@ PROJECT_ARCH=${GOARCH}
 PROJECT_PHP_VERSION=${DDEV_PHP_VERSION}
 PROJECT_NODEJS_VERSION=$(node -v)
 
+HYVA=false
 GUM_CHOOSE=""
 
-# Check network connectivity
+# Check network connectivity and get latest LTS Node.js version
 if ping -q -c 1 -W 1 nodejs.org >/dev/null; then
     LATEST_LTS_VERSION=$(curl -s https://nodejs.org/dist/index.json | jq -r '.[] | select(.lts) | .version' | sort -V | tail -1)
 else
     LATEST_LTS_VERSION="Connection to nodejs.org failed"
 fi
 
-HYVA=false
-
-####################################################################################################
-# Terminal Colors
-# See: https://github.com/hootsuite/pre-commit-php/blob/master/pre_commit_hooks/helpers/colors.sh
-####################################################################################################
+###################################################################################################################
+# Terminal Colors | See: https://github.com/hootsuite/pre-commit-php/blob/master/pre_commit_hooks/helpers/colors.sh
+###################################################################################################################
 
 # Regular
 txtblk='\033[0;30m' # Black
@@ -71,4 +70,5 @@ bakpur='\033[45m' # Purple
 bakcyn='\033[46m' # Cyan
 bakwht='\033[47m' # White
 
+# reset color to default
 txtrst='\033[0m' # Text Reset
