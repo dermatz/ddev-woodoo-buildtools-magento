@@ -20,6 +20,8 @@ if [[ ${found} == true ]]; then
     echo -e "${txtcyn}Command:${txtrst}"
     echo -e "  ${bldcyn}init, install${txtrst}         Initial Woodoo Setup to read all themes from dataabase and write to ${txtcyn}${PROJECT_CONFIG_FILE}${txtrst}"
     echo -e "  ${txtcyn}help, -help, -h${txtrst}       Displays this help page"
+    echo -e "  ${bldcyn}init, install${txtrst}         Initial Woodoo Setup to read all themes from database and write to ${txtcyn}${PROJECT_CONFIG_FILE}${txtrst}"
+    echo -e "  ${txtcyn}help${txtrst}                  Displays this help page"
     echo -e "  ${txtcyn}version, --version${txtrst}    Show version${txtrst}"
     echo -e "  ${txtcyn}check, selftest${txtrst}       Frontend Self-Test"
     echo -e "  ${txtcyn}frontend-update${txtrst}       Update to the latest Version (stable Version)"
