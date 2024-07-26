@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 ---
 
 ## Latest Release
+### 1.7.0
+-   updated `README.md` - Thanks to [@t-muir] & [@Morgy93]
+-   updated Supporter in `README.md` - Thanks to [@tniebergall]
+-   updated `.trunk` linter settings
+-   fixed shell linting issues in several files
+-   improved `ddev frontend` Command with ddev system information
+-   improved Hyva Taks sort order ( _NPM Check > Node_Modules Check > reinstall if requrired > Build > Cache refresh_ ..)
+-   refactored grunt task functions for default Magento projects
+-   refactored Hyva build functions
+-   move all repeatable tasks/functions into new `functions` file
+-   move all repeatable checks into `checks` file
+-   remove "whats new" hint for older Woodoo Versions (comes with 1.4.0)
+-   add `.vscode` settings file
+
+This release has __no braking changes__ and is fully compatible with existing `.ddev/config-themes.yaml`
+
 ### 1.6.5
 -   fix an issue when reading `..theme/composer.json` to determine which Hyva version to use through composer.json
 -   add some GitHub Status-Badges to `README.md`
