@@ -7,7 +7,7 @@ if [[ $1 == "help" || $1 == "-help" || $1 == "--help" || $1 == "--h" || $1 == "-
     echo -e "${txtgrn}\nUsage: ${txtrst}ddev frontend [${txtcyn}command${txtrst}] [${txtylw}option${txtrst} or ${txtpur}theme${txtrst}]\n"
 
     echo -e "${txtcyn}Command:${txtrst}"
-    echo -e "  ${bldcyn}init, install${txtrst}         Initial Woodoo Setup to read all themes from dataabase and write to ${txtcyn}${PROJECT_CONFIG_FILE}${txtrst}"
+    echo -e "  ${bldcyn}init, install${txtrst}         Initial Woodoo Setup to read all themes from database and write to ${txtcyn}${PROJECT_CONFIG_FILE}${txtrst}"
     echo -e "  ${txtcyn}help${txtrst}                  Displays this help page"
     echo -e "  ${txtcyn}version, --version${txtrst}    Show version${txtrst}"
     echo -e "  ${txtcyn}check, selftest${txtrst}       Frontend Self-Test"
