@@ -79,7 +79,7 @@ Usage: ddev frontend [command] [option or theme]
 
 Command:
   init, install         Initial Woodoo Setup to read all themes from dataabase and write to .ddev/config-themes.yaml
-  help, -help, -h       Displays this help page
+  help, -help, -h       Displays help page
   version, --version    Show version
   check, selftest       Frontend Self-Test
   frontend-update       Update to the latest Version (stable Version)
