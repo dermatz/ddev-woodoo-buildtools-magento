@@ -23,7 +23,7 @@ if [[ ${found} == true ]]; then
     echo -e "  ${txtcyn}version, --version${txtrst}    Show version${txtrst}"
     echo -e "  ${txtcyn}check, selftest${txtrst}       Frontend Self-Test"
     echo -e "  ${txtcyn}frontend-update${txtrst}       Update to the latest Version (stable Version)"
-    echo -e "  ${txtcyn}frontend-update -dev${txtrst}  Update to the latest Main-Branch Version (not recommented)"
+    echo -e "  ${txtcyn}frontend-update -dev${txtrst}  Update to the latest Main-Branch Version (not recommended)"
     echo -e "  ${txtcyn}themes${txtrst}                List all available themes that are configured in ${txtcyn}${PROJECT_CONFIG_FILE}${txtrst}"
     echo -e "  ${txtcyn}build${txtrst}                 Builds all themes that are configured in ${txtcyn}${PROJECT_CONFIG_FILE}${txtrst}"
     echo -e "  ${txtcyn}build ${txtylw}-f${txtrst}              Builds all configured themes without yes/no confirmation"
