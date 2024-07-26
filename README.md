@@ -10,6 +10,10 @@ _>> Build all your Magento themes at once, with Magic, build with Woodoo!_
 
 ---
 
+Special thanks to e3n GmbH & Co. KG for your Support!
+
+## [<img src="https://e3n.de/assets/images/logo/logo.svg" height="50" alt="Logo of e3n - E-Commerce Agency based in Mainz">](https://e3n.de)
+
 | Supported Versions                                                                                                        | Status                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
 | <img src="https://img.shields.io/badge/Magento_2.x-Supported-43A047" alt="Magento 2 Supported">                           | ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg) |
@@ -106,7 +110,7 @@ Feel free to send your improvements as [Pull request](https://github.com/dermatz
 ### Watch out our Contributers, Tester & Supporter
 
 -   [Thomas Hauschild](https://github.com/Morgy93)
--   [<img src="https://e3n.de/assets/images/logo/logo.svg" height="50" alt="Logo for E-Commerce Agency e3n based in Mainz">](https://e3n.de)
+-   [<img src="https://e3n.de/assets/images/logo/logo.svg" height="50" alt="Logo of e3n - E-Commerce Agency based in Mainz">](https://e3n.de)
 
 ---
 
