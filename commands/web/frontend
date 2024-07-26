@@ -9,7 +9,6 @@
 
 # shellcheck source=woodoo_components/variables
 source ".ddev/commands/web/woodoo_components/variables"
-
 echo -e "${bldblu}DDEV Woodoo Frontend Buildtools ${WOODOO_VERSION} for Magento ${txtrst}"
 
 if [[ $1 == "version" || $1 == "--version" ]]; then
@@ -20,8 +19,10 @@ if [[ ${WOODOO_VERSION} != "${LATEST_WOODOO_VERSION}" ]]; then
     echo -e "🧱 ${txtcyn}Installed Version ${bldred}${WOODOO_VERSION}${txtrst}"
     echo -e "⭐️ ${txtcyn}The newer Version ${bldgrn}${LATEST_WOODOO_VERSION} is available!${txtrst}"
     echo -e "✅ ${txtgrn}Install update with: ${txtcyn}ddev frontend-update${txtrst}"
+    selftest
 fi
 
+source ".ddev/commands/web/woodoo_components/functions"
 source ".ddev/commands/web/woodoo_components/checks"
 source ".ddev/commands/web/woodoo_components/themes"
 source ".ddev/commands/web/woodoo_components/build"

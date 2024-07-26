@@ -4,10 +4,7 @@
 
 ---
 
-https://img.shields.io/github/license/dermatz/ddev-woodoo-buildtools-magento
-
-
-This ddev add-on helps you to manage your theme build processes in Magento total easy. You can run a build command to build all your themes or a specific theme. Don't matter if the theme is a Magento Standard or Custom Theme, or maybe a Hyva theme. It automatically takes care which type of theme you use and will build it for you. If a dependency is missing, Woodoo will install it.
+This ddev add-on helps you to manage your theme build processes in Magento easily. You can run a build command to build all your themes or a specific theme. It doesn't matter if the theme is a Magento Standard Theme, a Custom Theme, or a Hyva theme. It automatically takes care of which type of theme you use and builds it for you. If a dependency is missing, Woodoo will install it.
 
 _>> Build all your Magento themes at once, with Magic, build with Woodoo!_
 
@@ -38,7 +35,7 @@ Special thanks to e3n GmbH & Co. KG for your Support!
 ddev get dermatz/ddev-woodoo-buildtools-magento
 ```
 
-##### Latest Developer-version (Main-Branch) - can be instable!
+##### Latest Developer-Preview (Main-Branch - unreleased) - can be instable!
 
 ```shell
 ddev get https://github.com/dermatz/ddev-woodoo-buildtools-magento/archive/refs/heads/main.tar.gz
@@ -46,45 +43,55 @@ ddev get https://github.com/dermatz/ddev-woodoo-buildtools-magento/archive/refs/
 
 ---
 
-**2. Start Woodoo Init to update your ./ddev/config.yaml**
+**2. Start Woodoo INIT to update your ./ddev/config.yaml**
+
+Automatically connect to your ddev database to list all available themes and add these to `.ddev/config-themes.yaml`. Add theme path if possible (can be edit later)
 
 ```shell
 ddev frontend init
 ```
 
--   Add all themes you want to build or watch
-
 ---
 
-**3. Edit .ddev/config.yaml**
-Open and edit `.ddev/config.yaml` and specify pathes to the themes based on your project structure. (E.g. `src/vendor/...` or `app/design/frontend/Vendor/...`)
+**3. Edit theme path in .ddev/config-themes.yaml**
+Open `.ddev/config-themes.yaml` and specify relative path to the theme based on your project structure. (E.g. `src/themeVendor/theme ...` or `app/design/frontend/themeVendor/theme/ ...`)
 
-## Update Woodoo
+## Update Woodoo to latest stable Version
 
-**Specific Versions**
-If a newer Release is available you can install the specific version in the same way how your installed. Just repeat the Install-Step with `ddev get ...` (see Install instructions).
+If a newer Release is available you will be notified in you ClI about new versions. To update use `ddev frontend-update` for the latest stable Version.
+
+```shell
+  ddev frontend-update
+```
+
+## Get Developer Preview
+
+If you want to get the latest developer preview (can be instable) use `ddev frontend-update -dev`
+
+```shell
+  ddev frontend-update -dev
+```
 
 ## Usage
 
 ```shell
-Usage: ddev frontend [command] [option, theme]
+Usage: ddev frontend [command] [option or theme]
 
 Command:
-  init, install           Initial Woodoo Setup to read all themes from dataabase and write to .ddev/config.yaml
-  help                    Show a help page
-  version, --version, -v  Show version
-  check, selftest, test   Woodoo Self Test
-  frontend-update         Update to the latest stable Version
-  frontend-update -dev    Update to the latest development Version (can be buggy!)
-  themes                  List all available themes that are configured in .ddev/config.yaml
-  build                   Build all themes that are configured in .ddev/config.yaml
-  build -f                Builds all themes without yes/no question (force)
-  build Vendor/theme      Build a specific theme
-  watch Vendor/theme      Watch for CSS and JS changes in a specific theme
+  init, install         Initial Woodoo Setup to read all themes from dataabase and write to .ddev/config-themes.yaml
+  help, -help, -h       Displays help page
+  version, --version    Show version
+  check, selftest       Frontend Self-Test
+  frontend-update       Update to the latest Version (stable Version)
+  frontend-update -dev  Update to the latest Main-Branch Version (not recommended)
+  themes                List all available themes that are configured in .ddev/config-themes.yaml
+  build                 Builds all themes that are configured in .ddev/config-themes.yaml
+  build -f              Builds all configured themes without yes/no confirmation
+  build theme           Build a specific theme
+  watch theme           Watch for CSS and JS changes in a specific theme
 
 Option:
-  -f                      Builds all themes without yes/no question (force)
-  themecode               Theme-Code from .ddev/config.yaml
+  -f                    Force the build command to run without yes/no confirmation
 ```
 
 ## Feature request
@@ -96,7 +103,7 @@ Submit your [Feature Request](https://github.com/dermatz/ddev-woodoo-buildtools-
 ## Contributing
 
 Contributions are welcome! Please read the [Contributing Guidelines](./CONTRIBUTING.md) first.
-Feel free to send your improvements as Pull-Request.
+Feel free to send your improvements as [Pull request](https://github.com/dermatz/ddev-woodoo-buildtools-magento/pulls).
 
 ---
 
