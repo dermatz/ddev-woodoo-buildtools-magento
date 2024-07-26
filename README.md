@@ -13,9 +13,9 @@ _>> Build all your Magento themes at once, with Magic, build with Woodoo!_
 
 ---
 
-Special thanks to e3n GmbH for your Support!
+Special thanks to e3n GmbH & Co. KG for your Support!
 
-## [<img src="https://e3n.de/assets/images/logo/logo.svg" height="50" alt="Logo of e3n GmbH & Co.KG in Mainz">](https://e3n.de)
+## [<img src="https://e3n.de/assets/images/logo/logo.svg" height="50" alt="Logo of e3n - E-Commerce Agency based in Mainz">](https://e3n.de)
 
 | Supported Versions                                                                                                        | Status                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
@@ -103,7 +103,7 @@ Feel free to send your improvements as Pull-Request.
 ### Watch out our Contributers, Tester & Supporter
 
 -   [Thomas Hauschild](https://github.com/Morgy93)
--   [<img src="https://e3n.de/assets/images/logo/logo.svg" height="50" alt="Logo for E-Commerce Agency e3n based in Mainz">](https://e3n.de)
+-   [<img src="https://e3n.de/assets/images/logo/logo.svg" height="50" alt="Logo of e3n - E-Commerce Agency based in Mainz">](https://e3n.de)
 
 ---
 
