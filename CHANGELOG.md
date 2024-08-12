@@ -11,6 +11,7 @@ All notable changes to this project will be documented in this file.
 -   updated `commands/web/woodoo_components/help` to list the aliases 'ddev f' and 'ddev fe' for the frontend commands
 -   refactored 'commands/web/woodoo_components/functions` to add all woodoo functions to this file
 -   remove `commands/web/woodoo_components/checks` (was moved to `functions`)
+-   remove not valid characters in `.vscode/settings.json`
 -   add housekeeping task to `install.yaml` to `pre_install_actions` and remove old checks file if exists
 
 ---
