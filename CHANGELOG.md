@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-## UNRELEASED
+## UNRELEASED 1.8.0
 
 -   added alias annotations for 'ddev f' and 'ddev fe' commands in `commands/web/frontend` (_requires DDEV >= 1.23.4_)
 -   updated `README.md` to mention the aliases 'ddev f' and 'ddev fe' for the frontend commands
