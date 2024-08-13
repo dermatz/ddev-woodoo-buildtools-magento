@@ -24,7 +24,6 @@ if [[ ${WOODOO_VERSION} != "${LATEST_WOODOO_VERSION}" ]]; then
 fi
 
 source ".ddev/commands/web/woodoo_components/functions"
-source ".ddev/commands/web/woodoo_components/checks"
 source ".ddev/commands/web/woodoo_components/themes"
 source ".ddev/commands/web/woodoo_components/build"
 source ".ddev/commands/web/woodoo_components/watch"
