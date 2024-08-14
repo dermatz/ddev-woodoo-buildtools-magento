@@ -97,6 +97,39 @@ Aliases:
   f, fe
 ```
 
+## Usage Examples
+
+Here are some usage examples to help you get started:
+
+### Building All Themes
+
+To build all themes configured in `.ddev/config-themes.yaml`, run:
+
+```shell
+ddev frontend build
+```
+
+### Building a Specific Theme
+
+To build a specific theme, use the theme code as an argument:
+
+```shell
+ddev frontend build <theme_code>
+```
+
+### Watching for Changes
+
+To watch for CSS and JS changes in a specific theme, use:
+
+```shell
+ddev frontend watch <theme_code>
+```
+
+## Troubleshooting Tips
+
+-   Ensure that your theme paths in `.ddev/config-themes.yaml` are correct and relative to your project root.
+-   If you encounter any issues, try running `ddev frontend selftest` to perform a self-check and identify potential problems.
+
 ## Feature request
 
 Submit your [Feature Request](https://github.com/dermatz/ddev-woodoo-buildtools-magento/issues) by adding a new issue and add a label with `feature-request`.
