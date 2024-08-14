@@ -139,8 +139,9 @@ Feel free to send your improvements as [Pull request](https://github.com/dermatz
 
 ### Watch out our Contributers, Tester & Supporter
 
--   [e3n GmbH & Co. KG - E-Commerce Agency based in Mainz](https://e3n.de)
--   [Thomas Hauschild @Morgy93](https://github.com/Morgy93)
+-   [e3n GmbH & Co. KG - E-Commerce Agency based in Mainz | e3n.de](https://e3n.de)
+-   [Thomas Hauschild | @Morgy93](https://github.com/Morgy93)
+-   [Tom Muir | @t-muir](https://github.com/t-muir)
 
 ---
 
