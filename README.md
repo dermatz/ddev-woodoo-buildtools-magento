@@ -8,17 +8,11 @@ This ddev add-on helps you to manage your theme build processes in Magento easil
 
 _>> Build all your Magento themes at once, with Magic, build with Woodoo!_
 
----
-
-Special thanks to e3n GmbH & Co. KG for your Support!
-
-## [<img src="https://e3n.de/assets/images/logo/logo.svg" height="50" alt="Logo of e3n - E-Commerce Agency based in Mainz">](https://e3n.de)
-
 | Supported Versions                                                                                                        | Status                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
-| <img src="https://img.shields.io/badge/Magento_2.x-Supported-43A047" alt="Magento 2 Supported">                           | ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg) |
 | <img src="https://img.shields.io/badge/Magento_2_Hyvä_(all_Versions)-Supported-43A047" alt="All Hyvä Versions supported"> | ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg) |
 | <img src="https://img.shields.io/badge/Magento_2_Hyvä_Fallback-Supported-43A047" alt="Hyvä Fallback is supported">        | ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg) |
+| <img src="https://img.shields.io/badge/Magento_2.x-Supported-43A047" alt="Magento 2 Supported">                           | ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg) |
 | <img src="https://img.shields.io/badge/MageOS-Supported-43A047" alt="MageOS is supported">                                | ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg) |
 
 ---
@@ -145,8 +139,8 @@ Feel free to send your improvements as [Pull request](https://github.com/dermatz
 
 ### Watch out our Contributers, Tester & Supporter
 
--   [Thomas Hauschild](https://github.com/Morgy93)
--   [<img src="https://e3n.de/assets/images/logo/logo.svg" height="50" alt="Logo of e3n - E-Commerce Agency based in Mainz">](https://e3n.de)
+-   [e3n GmbH & Co. KG - E-Commerce Agency based in Mainz](https://e3n.de)
+-   [Thomas Hauschild @Morgy93](https://github.com/Morgy93)
 
 ---
 
