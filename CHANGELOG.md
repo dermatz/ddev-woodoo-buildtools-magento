@@ -4,7 +4,13 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-## UNRELEASED 1.8.0
+## UNRELEASED 1.9.0
+
+---
+
+## Latest Release
+
+### 1.8.0
 
 -   added alias annotations for 'ddev f' and 'ddev fe' commands in `commands/web/frontend` (_requires DDEV >= 1.23.4_) [@Morgy93]
 -   updated `README.md` to mention the aliases 'ddev f' and 'ddev fe' for the frontend commands [@Morgy93]
@@ -15,9 +21,6 @@ All notable changes to this project will be documented in this file.
 -   remove not valid characters in `.vscode/settings.json`
 -   add housekeeping task to `install.yaml` to `pre_install_actions` and remove old checks file if exists
 
----
-
-## Latest Release
 
 ### 1.7.0
 
