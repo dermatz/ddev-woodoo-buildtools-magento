@@ -24,8 +24,8 @@ If applicable, add screenshots to help explain your problem.
 **Environment (please complete the following information):**
  - DDEV Version
  - Magento Version
- - OS: [e.g. MacOS, Linux, ...]
- - Browser [e.g. chrome, safari]
+- Terminal Name [e.G. Iterm, Powershell, ... ]
+ - OS: [e.g. MacOS, Linux, ... ]
  - Version [e.g. 22]
 
 **Additional context**
