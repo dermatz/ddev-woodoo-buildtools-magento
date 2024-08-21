@@ -2,7 +2,7 @@
 
 ## General
 
--   Make sure to have a working local development environment, e.g. ddev
+-   Make sure to have a working local development environment of [ddev](https://github.com/ddev/ddev).
 
 ## Submit Pull-Requests
 
