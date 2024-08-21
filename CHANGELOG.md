@@ -12,6 +12,7 @@ All notable changes to this project will be documented in this file.
 -   added documentation for .vscode settings end supported extentions
 -   updated trunk plugin `trunk-io/plugins v1.6.1 → v1.6.2`
 -   updated trunk linter `checkov 3.2.231 → 3.2.234`
+-   added Discord invite link to `README.md` and `CONTRIBUTING.md`
 
 ---
 

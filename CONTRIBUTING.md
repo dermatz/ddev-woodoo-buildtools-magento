@@ -3,6 +3,8 @@
 ## General
 
 -   Make sure to have a working local development environment of [ddev](https://github.com/ddev/ddev).
+-   Make sure to have a working local development environment, e.g. ddev
+-   Feel free to [join our Discord](https://discord.gg/H5CjMXQQHn) to discuss features, get help or stay connected.
 
 ## Submit Pull-Requests
 
