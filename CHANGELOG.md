@@ -10,6 +10,7 @@ All notable changes to this project will be documented in this file.
 -   added detailed color definitions and a usage example in the new "Color Assignments" section
 -   added Github Action to check if Pull Request contains `CHANGELOG.md` updates
 -   added Discord invite link to `README.md` and `CONTRIBUTING.md`
+-   changed `MIT-LICENSES.md` to `LICENSE` and set this tool under GNU GENERAL PUBLIC LICENSE 3.0
 
 ---
 

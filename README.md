@@ -148,4 +148,4 @@ Feel free to send your improvements as [Pull request](https://github.com/dermatz
 
 ## License
 
-[MIT License](./MIT-LICENSES.md) | by [Mathias Elle](https://www.linkedin.com/in/mathias-elle-842783102/)
+[License](./LICENSE) | by [Mathias Elle](https://www.linkedin.com/in/mathias-elle-842783102/)
