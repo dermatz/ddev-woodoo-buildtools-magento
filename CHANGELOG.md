@@ -6,6 +6,10 @@ All notable changes to this project will be documented in this file.
 
 ## UNRELEASED 1.9.0
 
+- updated README.md for dependencies checker by [@Morgy93]
+- added command to `update` npm dependencies for a specific theme with `ddev frontend update-npm-deps theme` [https://github.com/dermatz/ddev-woodoo-buildtools-magento/issues/39] by [@Morgy93]
+- added command to `check` outdated npm dependencies in a specific theme with `ddev frontend check-npm-deps theme` [https://github.com/dermatz/ddev-woodoo-buildtools-magento/issues/39] by [@Morgy93]
+
 ---
 
 ## Latest Release
