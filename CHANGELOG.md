@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 ## UNRELEASED 1.9.0
 
 -   Updated to use `ddev add-on get` for versions of DDEV prior to v1.23.5
+-   updated trunk plugin and linters
 
 ---
 
@@ -17,6 +18,7 @@ All notable changes to this project will be documented in this file.
 -   added documentation for color assignments in `CONTRIBUTING.md` to standardize the use of color variables in bash scripts
 -   added detailed color definitions and a usage example in the new "Color Assignments" section
 -   added Github Action to check if Pull Request contains `CHANGELOG.md` updates
+-   added documentation for .vscode settings end supported extentions
 -   added Discord invite link to `README.md` and `CONTRIBUTING.md`
 -   changed `MIT-LICENSES.md` to `LICENSE` and set this tool under GNU GENERAL PUBLIC LICENSE 3.0
 -   fixed issue to check and install grunt correctly if it is missing [https://github.com/dermatz/ddev-woodoo-buildtools-magento/issues/50]
@@ -209,7 +211,7 @@ This release has **no braking changes** and is fully compatible with existing `.
 This is the first stable release with most common functions to build Magento 2 Projects with or without hyva.
 
 -   add ddev v1.21.6 support
--   add dMagento 2 CSS/JS Watcher
+-   add Magento 2 CSS/JS Watcher
 -   add Hyvä Watcher
 -   add Magento 2 build functions
 -   add grunt self-repair during Magento 2 builds if grunt clean or less was not successful
@@ -218,6 +220,4 @@ This is the first stable release with most common functions to build Magento 2 P
 -   add help page
 -   add Woodoo selftest
 -   add theme checks
--   add init function to setup woodoo
-
 -   add init function to setup woodoo
