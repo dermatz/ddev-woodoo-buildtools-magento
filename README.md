@@ -18,6 +18,17 @@ _>> Build all your Magento themes at once, with Magic, build with Woodoo!_
 
 ---
 
+## Features
+
+- **Automatic Theme Detection**: Automatically detects and builds Magento Standard, Custom, and Hyvä themes.
+- **Dependency Management**: Installs missing dependencies automatically.
+- **Theme Configuration**: Easily configure theme paths in `.ddev/config-themes.yaml`.
+- **Build Commands**: Build all themes or specific themes with simple commands.
+- **Watch Mode**: Watch for CSS and JS changes in specific themes.
+- **Self-Test**: Perform a self-check to identify potential problems.
+- **Update Notifications**: Get notified about new releases and update easily.
+- **Developer Preview**: Option to use the latest developer preview version.
+
 ## Getting Started
 
 ### Installation
