@@ -1,7 +1,7 @@
 # [DDEV] Woodoo Frontend Buildtools for Magento & Hyvä
 
-[![tests](https://github.com/dermatz/ddev-woodoo-buildtools-magento/actions/workflows/tests.yml/badge.svg)](https://github.com/dermatz/ddev-woodoo-buildtools-magento/actions/workflows/tests.yml) <img src="https://img.shields.io/librariesio/github/dermatz/ddev-woodoo-buildtools-magento" alt="Dependencies"> <img src="https://img.shields.io/github/last-commit/dermatz/ddev-woodoo-buildtools-magento" alt="Last commit date Badge">
-<img src="https://img.shields.io/github/v/release/dermatz/ddev-woodoo-buildtools-magento" alt="Release-Badge"> <img src="https://img.shields.io/github/sponsors/dermatz" alt="Sponsors"> [<img src="https://img.shields.io/badge/Discord-Join%20Chat-orange" alt="Join our Discord">](https://discord.gg/H5CjMXQQHn)
+[![tests](https://github.com/OpenForgeProject/ddev-woodoo-buildtools-magento/actions/workflows/tests.yml/badge.svg)](https://github.com/OpenForgeProject/ddev-woodoo-buildtools-magento/actions/workflows/tests.yml) <img src="https://img.shields.io/librariesio/github/OpenForgeProject/ddev-woodoo-buildtools-magento" alt="Dependencies"> <img src="https://img.shields.io/github/last-commit/OpenForgeProject/ddev-woodoo-buildtools-magento" alt="Last commit date Badge">
+<img src="https://img.shields.io/github/v/release/OpenForgeProject/ddev-woodoo-buildtools-magento" alt="Release-Badge"> <img src="https://img.shields.io/github/sponsors/dermatz" alt="Sponsors"> [<img src="https://img.shields.io/badge/Discord-Join%20Chat-orange" alt="Join our Discord">](https://discord.gg/H5CjMXQQHn)
 
 ---
 
@@ -15,6 +15,7 @@ _>> Build all your Magento themes at once, with Magic, build with Woodoo!_
 | <img src="https://img.shields.io/badge/Magento_2_Hyvä_Fallback-Supported-43A047" alt="Hyvä Fallback is supported">        | ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg) |
 | <img src="https://img.shields.io/badge/Magento_2.x-Supported-43A047" alt="Magento 2 Supported">                           | ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg) |
 | <img src="https://img.shields.io/badge/MageOS-Supported-43A047" alt="MageOS is supported">                                | ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg) |
+| <img src="https://img.shields.io/badge/Avanta B2B-Supported-43A047" alt="MageOS is supported">                            | ![project is maintained](https://img.shields.io/maintenance/yes/2024.svg) |
 
 ---
 
@@ -40,13 +41,13 @@ _>> Build all your Magento themes at once, with Magic, build with Woodoo!_
 For DDEV v1.23.5 or above run
 
 ```shell
-ddev add-on get dermatz/ddev-woodoo-buildtools-magento
+ddev add-on get OpenForgeProject/ddev-woodoo-buildtools-magento
 ```
 
 For earlier versions of DDEV run
 
 ```shell
-ddev get dermatz/ddev-woodoo-buildtools-magento
+ddev get OpenForgeProject/ddev-woodoo-buildtools-magento
 ```
 
 ##### Latest Developer-Preview (Main-Branch - unreleased) - can be instable!
@@ -54,13 +55,13 @@ ddev get dermatz/ddev-woodoo-buildtools-magento
 For DDEV v1.23.5 or above run
 
 ```shell
-ddev add-on get https://github.com/dermatz/ddev-woodoo-buildtools-magento/archive/refs/heads/main.tar.gz
+ddev add-on get https://github.com/OpenForgeProject/ddev-woodoo-buildtools-magento/archive/refs/heads/main.tar.gz
 ```
 
 For earlier versions of DDEV run
 
 ```shell
-ddev get https://github.com/dermatz/ddev-woodoo-buildtools-magento/archive/refs/heads/main.tar.gz
+ddev get https://github.com/OpenForgeProject/ddev-woodoo-buildtools-magento/archive/refs/heads/main.tar.gz
 ```
 
 ---
@@ -154,21 +155,22 @@ ddev frontend watch <theme_code>
 
 ## Feature request
 
-Submit your [Feature Request](https://github.com/dermatz/ddev-woodoo-buildtools-magento/issues) by adding a new issue and add a label with `feature-request`.
+Submit your [Feature Request](https://github.com/OpenForgeProject/ddev-woodoo-buildtools-magento/issues) by adding a new issue and add a label with `feature-request`.
 
 ---
 
 ## Contributing
 
 Contributions are welcome! Please read the [Contributing Guidelines](./CONTRIBUTING.md) first.
-Feel free to send your improvements as [Pull request](https://github.com/dermatz/ddev-woodoo-buildtools-magento/pulls).
+Feel free to send your improvements as [Pull request](https://github.com/OpenForgeProject/ddev-woodoo-buildtools-magento/pulls).
 
 ---
 
 ### Watch out our Contributers, Tester & Supporter
 
--   [e3n GmbH & Co. KG - E-Commerce Agency based in Mainz | e3n.de](https://e3n.de)
+-   [Mathias Elle | @dermatz](https://github.com/dermatz) (Maintainer)
 -   [Thomas Hauschild | @Morgy93](https://github.com/Morgy93)
+-   [e3n GmbH & Co. KG - E-Commerce Agency based in Mainz | e3n.de](https://e3n.de)
 -   [Tom Muir | @t-muir](https://github.com/t-muir)
 
 ---
